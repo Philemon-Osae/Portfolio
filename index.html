@@ -3,91 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Philemon Osae - Full-Stack Developer | Accra, Ghana</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Philemon Osae-Hienno Kodua | Full-Stack Dev</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#0a0a0a;color:#fff;line-height:1.6}
-.container{max-width:1000px;margin:0 auto;padding:0 20px}
-nav{padding:25px 0;display:flex;justify-content:space-between;align-items:center}
-nav a{color:#999;text-decoration:none;margin-left:20px;font-size:14px}
-nav a:hover{color:#fff}
-.hero{padding:80px 0 60px}
-.hero-flex{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
-.hero-img{width:140px;height:140px;border-radius:50%;border:3px solid #7CFF7C;object-fit:cover}
-.badge{background:#1a1a1a;border:1px solid #2a2a2a;padding:6px 12px;border-radius:20px;font-size:12px;color:#7CFF7C;display:inline-block;margin-bottom:20px}
-.hero h1{font-size:52px;font-weight:800;line-height:1.1;margin-bottom:20px}
-.hero h1 span{color:#7CFF7C}
-.hero p{color:#999;font-size:18px;max-width:600px;margin-bottom:30px}
-.btn{background:#fff;color:#000;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-right:10px}
-.btn-outline{border:1px solid #333;color:#fff;background:transparent}
-.section{padding:60px 0;border-top:1px solid #1a1a1a}
-.section h2{font-size:28px;margin-bottom:30px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.card{background:#111;border:1px solid #222;border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:#333;transform:translateY(-3px)}
-.card h3{margin-bottom:8px}
-.card p{color:#888;font-size:14px;margin-bottom:15px}
-.card a{color:#7CFF7C;text-decoration:none;font-size:13px;font-weight:600}
-.tag{background:#1e1e1e;padding:4px 8px;border-radius:4px;font-size:11px;color:#aaa;margin-right:5px}
-.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.stack span{background:#111;border:1px solid #222;padding:8px 14px;border-radius:8px;font-size:13px}
-footer{padding:40px 0;text-align:center;color:#555;border-top:1px solid #1a1a1a;margin-top:40px}
-@media(max-width:600px){.hero h1{font-size:36px}.hero-img{width:110px;height:110px}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{background:#fff;color:#111;transition:0.3s}
+body.dark{background:#0a0a0a;color:#fff}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid #eee}
+body.dark nav{border-color:#222}
+.logo{font-weight:800;font-size:20px}.logo span{color:#16a34a}
+.btn{padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;display:inline-block}
+.btn-black{background:#000;color:#fff}body.dark .btn-black{background:#fff;color:#000}
+.btn-green{border:1px solid #16a34a;color:#16a34a}
+.hero{padding:60px 20px;max-width:1000px;margin:auto}
+.hero h1{font-size:42px;line-height:1;font-weight:900}
+.badge{color:#16a34a;font-weight:600;font-size:13px;margin-bottom:12px;display:block}
+.hero p{margin-top:16px;color:#666;max-width:600px;line-height:1.6}body.dark .hero p{color:#aaa}
+.tags{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.card{border:1px solid #eee;border-radius:16px;padding:20px;margin-top:20px}body.dark .card{background:#151515;border-color:#222}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.section{padding:40px 20px;max-width:1000px;margin:auto}
+.small{font-family:monospace;font-size:12px;letter-spacing:2px;color:#888;margin-bottom:20px}
+footer{border-top:1px solid #eee;padding:30px;text-align:center;font-size:13px;color:#888}body.dark footer{border-color:#222}
+a{color:inherit}
 </style>
 </head>
 <body>
-<div class="container">
+
 <nav>
-<strong>PHILEMON.</strong>
-<div><a href="https://github.com/Philemon-Osae" target="_blank">GitHub</a><a href="mailto:philemonosae1@gmail.com">Email</a></div>
+  <div class="logo">Philemon<span>.dev</span></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button onclick="document.body.classList.toggle('dark')" style="padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:none;cursor:pointer">🌙/☀️</button>
+    <a href="Philemon-CV.pdf" download class="btn btn-black">Download CV</a>
+  </div>
 </nav>
 
 <div class="hero">
-<div class="hero-flex">
-<img src="profile.jpg" alt="Philemon Osae" class="hero-img">
-<div>
-<div class="badge">● Available for internships — Accra, Ghana</div>
-<h1>Full-Stack Developer building <span>HealthTech & Marketplaces for Ghana.</span></h1>
+  <span class="badge">● Accra, Ghana • Available for Internship • Level 100 GCTU 2026</span>
+  <h1>PHILEMON<br>OSAE-HIENNO<br>KODUA</h1>
+  <h2 style="font-size:20px;margin-top:12px;color:#666;font-weight:400">Full-Stack Developer | React Native + Node.js</h2>
+  <p>
+    Self-taught since 2023 at <b>Techten Planets IT Institution</b> during SHS vacations.
+    Now Level 100 BSc Web App Development at GCTU (2026). Leading 6-person team building maternal health app.
+    Founder of 3 live booking platforms for Ghana's entertainment industry.
+  </p>
+  <div class="tags">
+    <a href="https://github.com/Philemon-Osae" target="_blank" class="btn btn-black">GitHub →</a>
+    <a href="Philemon-CV.pdf" download class="btn btn-green">Download CV</a>
+    <a href="mailto:philemonosae1@gmail.com" class="btn" style="border:1px solid #ddd">Email</a>
+  </div>
+  <div style="margin-top:20px;font-size:13px;color:#888">
+    📧 philemonosae1@gmail.com • 📱 +233 20 683 4470 • 📍 Accra, Ghana
+  </div>
 </div>
-</div>
-<p>Level 100 at GCTU, leading a 6-person team building Healthy Habits — a maternal health app. Founder of 3 live booking platforms for Ghana's event industry.</p>
-<a href="https://github.com/Philemon-Osae" class="btn">View GitHub</a>
-<a href="https://wa.me/233206834470" class="btn btn-outline">WhatsApp Me</a>
+
+<div class="section" style="background:#fafafa" id="edu-bg">
+  <div class="small">01 / EDUCATION & TRAINING</div>
+  <div class="grid">
+    <div class="card" style="border-left:4px solid #16a34a">
+      <h3>Techten Planets - IT Institution</h3>
+      <p style="color:#16a34a;font-size:13px;font-weight:600;margin-top:4px">2023 - 2026 (Present)</p>
+      <p style="font-size:13px;color:#888;margin-top:4px">Vacation & Part-time Training</p>
+      <p style="font-size:14px;margin-top:10px">Learnt HTML, CSS, JS, Node.js, Express, MySQL. Started in SHS 2023, continued through 2024, 2025, still attend in 2026 for upskilling. Self-driven learner.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #000">
+      <h3>GCTU - Ghana Communication Technology University</h3>
+      <p style="color:#888;font-size:13px;font-weight:600;margin-top:4px">2026 - Present • Level 100</p>
+      <p style="font-size:13px;color:#888;margin-top:4px">BSc. Web Application Development - Accra, Ghana</p>
+      <p style="font-size:14px;margin-top:10px">Lead Developer for Healthy Habits maternal health app — leading 6-person team. Stack: React Native, Node.js, MongoDB.</p>
+    </div>
+  </div>
 </div>
 
 <div class="section">
-<h2>Featured — Healthy Habits</h2>
-<div class="card" style="border-color:#7CFF7C33">
-<h3>Healthy Habits — Maternal Health Mobile App</h3>
-<p>Lead Developer — Team of 6 (2 Designers, 2 Researchers, 1 Field Researcher, 1 Dev). Built with React Native Expo, Node.js, Express, MongoDB Atlas. Features: Pregnancy tracking, weekly tips, appointment booking, based on real interviews with Ghanaian mothers & midwives.</p>
-<div><span class="tag">React Native</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Team Lead</span></div>
-<p style="margin-top:15px;color:#7CFF7C">Coming to Play Store soon</p>
-</div>
-</div>
-
-<div class="section">
-<h2>Live Projects</h2>
-<div class="grid">
-<div class="card"><h3>Phil Jazzy</h3><p>Instrumentalist booking platform — helping Ghanaian musicians get booked for events.</p><div><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div><br><a href="https://phil-jazzy.netlify.app" target="_blank">Visit Live →</a></div>
-<div class="card"><h3>Kwame Papaa</h3><p>Artist booking website for live events and performances.</p><div><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">Netlify</span></div><br><a href="https://kwamepapaa.netlify.app" target="_blank">Visit Live →</a></div>
-<div class="card"><h3>Wedding Invitation GH</h3><p>Digital wedding invitation platform for Ghanaian weddings.</p><div><span class="tag">JavaScript</span><span class="tag">Responsive</span></div><br><a href="https://weddinginvitation-gh.netlify.app" target="_blank">Visit Live →</a></div>
-</div>
+  <div class="small">02 / LEADERSHIP</div>
+  <div class="card" style="background:#000;color:#fff;border-radius:20px">
+    <h3>Lead Developer - Healthy Habits Maternal Health App</h3>
+    <p style="color:#aaa;font-size:13px;margin-top:4px">2026 - Present • Team of 6 • Coming to Play Store</p>
+    <ul style="margin-top:12px;font-size:14px;line-height:1.6;padding-left:18px">
+      <li>Leading 2 Designers, 2 Researchers, 1 Field Researcher, 1 Developer</li>
+      <li>Stack: React Native (Expo), Node.js, Express, MongoDB Atlas</li>
+      <li>Pregnancy tracking, weekly tips, booking — interviews with Ghanaian mothers & midwives</li>
+    </ul>
+  </div>
 </div>
 
 <div class="section">
-<h2>Stack</h2>
-<div class="stack"><span>React Native (Expo)</span><span>Node.js</span><span>Express.js</span><span>MySQL</span><span>MongoDB</span><span>JavaScript</span><span>Git & GitHub</span><span>Netlify / Vercel</span></div>
-<p style="margin-top:20px;color:#888;font-size:14px">GCTU — BSc. Web Application Development, Level 100</p>
+  <div class="small">03 / LIVE PROJECTS</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Marketplace Booking Platform</h3>
+      <p style="color:#16a34a;font-size:11px;font-weight:700;margin-top:4px">SOLO FULL-STACK • STRONGEST BACKEND • 2025</p>
+      <p style="font-size:14px;margin-top:8px;color:#666">Node.js, Express, MySQL, Auth. Users, vendors, bookings logic. 3 years from Techten.</p>
+    </div>
+    <a href="https://phil-jazzy.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit">
+      <h3>Phil Jazzy 🎷</h3>
+      <p style="color:#16a34a;font-size:11px;margin-top:4px">phil-jazzy.netlify.app • LIVE</p>
+      <p style="font-size:14px;margin-top:8px;color:#666">Instrumentalist booking platform for Ghanaian musicians.</p>
+    </a>
+    <a href="https://kwamepapaa.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit">
+      <h3>Kwame Papaa 🎤</h3>
+      <p style="color:#16a34a;font-size:11px;margin-top:4px">kwamepapaa.netlify.app • LIVE</p>
+      <p style="font-size:14px;margin-top:8px;color:#666">Artist booking website for live events.</p>
+    </a>
+    <a href="https://weddinginvitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit">
+      <h3>Wedding Invitation GH 💍</h3>
+      <p style="color:#16a34a;font-size:11px;margin-top:4px">weddinginvitation-gh.netlify.app • LIVE</p>
+      <p style="font-size:14px;margin-top:8px;color:#666">Digital wedding invitation platform.</p>
+    </a>
+  </div>
 </div>
 
-<div class="section">
-<h2>Let's build together</h2>
-<p style="color:#999;margin-bottom:20px">Internship? Freelance booking site? HealthTech collab? I reply fast on WhatsApp.</p>
-<a href="mailto:philemonosae1@gmail.com" class="btn">philemonosae1@gmail.com</a> <a href="https://wa.me/233206834470" class="btn btn-outline">0206834470</a>
-</div>
+<footer>
+  <b style="color:#111">PHILEMON OSAE-HIENNO KODUA</b>
+  <p style="margin-top:6px">Level 100 • GCTU 2026 • Techten Planets 2023-2026 • Accra, Ghana</p>
+  <div style="margin-top:12px;display:flex;gap:16px;justify-content:center">
+    <a href="Philemon-CV.pdf" download style="color:#16a34a;font-weight:700">CV.pdf</a>
+    <a href="https://github.com/Philemon-Osae" target="_blank">GitHub</a>
+    <a href="mailto:philemonosae1@gmail.com">Email</a>
+  </div>
+  <p style="margin-top:16px;font-size:11px">© 2026 • Built with 3 years learning @ Techten Planets</p>
+</footer>
 
-<footer>© 2026 Philemon Osae — Built in Accra, Ghana</footer>
-</div>
+<script>
+// auto dark bg for education section
+const obs = new MutationObserver(()=>{
+  document.getElementById('edu-bg').style.background = document.body.classList.contains('dark') ? '#111' : '#fafafa'
+});
+obs.observe(document.body, {attributes:true});
+</script>
+
 </body>
 </html>
