@@ -1,76 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Philemon | Team Lead & Frontend</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philemon | Team Lead & Full-Stack</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <nav>
-    <h2>Philemon.</h2>
-    <ul>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+<nav>
+  <h2>Philemon.</h2>
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<!-- HERO - HONEST STATIC -->
 <section class="hero-flex">
   <div class="hero-text">
-    <h1>Team Lead & Frontend Developer</h1>
-    <p>Leading 6-person team building Healthy Habits app. 
-    I build React Native UI and integrate REST APIs. Based in Accra, Ghana.</p>
+    <h1>Lead Developer building HealthTech & Marketplaces for Ghana.</h1>
+    <p>
+      Level 100 at GCTU, leading a 6-person team building Healthy Habits — 
+      a maternal health app. Founder of 3 live booking platforms for Ghana's event industry.
+    </p>
+    <p><strong>My Real Stack:</strong> React Native (Expo) + Node.js + MySQL. <br>
+    Working knowledge of MongoDB Atlas from team project.</p>
     <a href="#projects" class="btn">View Projects</a>
   </div>
   <div class="hero-image">
-    <!-- Static image - NOT from database -->
     <img src="./images/profile.jpg" alt="Philemon">
   </div>
 </section>
 
-<!-- PROJECTS - HONEST -->
 <section id="projects">
   <h2>Projects</h2>
 
+  <!-- PROJECT 1 - YOUR REAL BACKEND -->
   <div class="project-card">
-    <h3>Healthy Habits App — Team Lead / Frontend</h3>
-    <p class="role">Role: Team Lead (6 members) + Frontend Lead</p>
-    <p>
-      Wellness app for tracking daily habits. As lead, I manage team tasks 
-      and build frontend in React Native.
-    </p>
-    <p><strong>What I Built:</strong></p>
+    <h3>Marketplace Booking Platform — Full-Stack (Solo)</h3>
+    <p><strong>My strongest backend proof.</strong></p>
+    <p>Built entire backend myself for booking services.</p>
     <ul>
-      <li>React Native UI: habit list, add habit form, tips screen</li>
-      <li>API Integration: fetch() for GET /tips and POST /habits</li>
-      <li>Team Leadership: GitHub coordination, task delegation</li>
+      <li>Backend: Node.js + Express.js</li>
+      <li>Database: MySQL — users, vendors, bookings tables</li>
+      <li>Features: Auth, listing, booking logic, SQL queries</li>
     </ul>
-    <p><strong>Backend Flow (Team's + My Learning):</strong><br>
-    Frontend POST → Express with express.json() → Mongoose .save() → MongoDB Atlas</p>
     <div class="tags">
-      <span>React Native</span><span>REST API</span><span>Team Lead</span><span>Git</span>
+      <span>Node.js</span><span>Express</span><span>MySQL</span><span>Full-Stack</span>
     </div>
-    <p class="learning">Working Knowledge: Express.js, Mongoose, MongoDB Atlas</p>
   </div>
 
+  <!-- PROJECT 2 - TEAM LEAD -->
   <div class="project-card">
-    <h3>Portfolio Website</h3>
-    <p>Static portfolio site - no backend needed. Built to showcase projects and team leadership.</p>
-    <p><strong>Tech:</strong> HTML5, CSS3 (Flexbox hero-flex layout), JavaScript</p>
-    <p><strong>Image Handling:</strong> Profile photo is static file in /images/ folder. Not stored in database - this is intentional for a static portfolio.</p>
+    <h3>Healthy Habits App — Team Lead / Frontend Lead</h3>
+    <p>Maternal health app. Leading 6-person team.</p>
+    <ul>
+      <li>Frontend: React Native (Expo) — full UI</li>
+      <li>Backend Contribution: Node.js + Express routes</li>
+      <li>Integration: fetch GET /tips, POST /habits</li>
+      <li>Team's DB: MongoDB Atlas + Mongoose (I'm learning it)</li>
+    </ul>
     <div class="tags">
-      <span>HTML</span><span>CSS Flexbox</span><span>JavaScript</span><span>Static Site</span>
+      <span>React Native</span><span>Node.js</span><span>Team Lead</span><span>MongoDB Atlas (Learning)</span>
     </div>
   </div>
+
+  <!-- PROJECT 3 -->
+  <div class="project-card">
+    <h3>Portfolio Website — Frontend</h3>
+    <p>Static portfolio. No database. Photo is static file in /images/ folder.</p>
+    <div class="tags">
+      <span>HTML</span><span>CSS Flexbox</span><span>JavaScript</span>
+    </div>
+  </div>
+
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p>Email: your.email@gmail.com | GitHub: github.com/yourusername</p>
+  <h2>Available for internships — Accra, Ghana</h2>
+  <p>your.email@gmail.com | github.com/yourusername</p>
 </section>
 
 </body>
