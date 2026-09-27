@@ -34,6 +34,14 @@ body.dark nav{border-color:#222}
 .tag{font-size:10px;font-weight:800;letter-spacing:0.5px;padding:4px 8px;border-radius:6px;background:#f3f4f6;display:inline-block;margin-top:6px}body.dark .tag{background:#222;color:#aaa}
 .green{color:#16a34a;background:#f0fdf4}body.dark .green{background:#16a34a20;color:#4ade80}
 footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:13px;color:#888;margin-top:20px}body.dark footer{border-color:#222}
+
+/* FIX DARK MODE FOR GSTEP - YOUR BUG FIX */
+body.dark #gstepSec{background:#0a0a0a !important;border-color:#222 !important}
+body.dark #gstepCard1{background:#fffbeb !important;border-color:#333 !important}
+body.dark #gstepCard2{background:#f0fdf4 !important;border-color:#333 !important}
+body.dark #gstepCard1 h3, body.dark #gstepCard2 h3{color:#111 !important}
+body.dark #gstepCard1 p, body.dark #gstepCard2 p{color:#444 !important}
+body.dark #eduSec{background:#0f0f0f !important}
 </style>
 </head>
 <body>
@@ -94,17 +102,17 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
   </div>
 </div>
 
-<div class="section" style="background:#fff">
+<div class="section" style="background:#fff;border-top:1px solid #eee;border-bottom:1px solid #eee" id="gstepSec">
   <div class="small">02 / ACHIEVEMENTS — GSTEP JOURNEY</div>
   <div class="grid">
-    <div class="card" style="border-left:4px solid #f59e0b;background:#fffbeb">
-      <h3>🏆 GSTEP 2023 — Contestant & Lead Developer</h3>
+    <div class="card" id="gstepCard1" style="border-left:4px solid #f59e0b;background:#fffbeb">
+      <h3 style="color:#111">🏆 GSTEP 2023 — Contestant & Lead Developer</h3>
       <span class="tag" style="background:#f59e0b;color:#fff">Ghana Science Tech Explorer Prize • 2023</span>
       <p style="font-size:14px;margin-top:12px;color:#444">Selected as a GSTEP contestant with my team. <b>This is where Healthy Habits was born.</b> We started building the idea from scratch, and I became the Lead Developer during the build — responsible for prototype development and demonstration.</p>
       <p style="font-size:12px;margin-top:10px;color:#b45309;font-weight:700">→ Origin of Healthy Habits</p>
     </div>
-    <div class="card" style="border-left:4px solid #16a34a;background:#f0fdf4">
-      <h3>🌍 GSTEP 2025 — Eastern Region Youth Ambassador</h3>
+    <div class="card" id="gstepCard2" style="border-left:4px solid #16a34a;background:#f0fdf4">
+      <h3 style="color:#111">🌍 GSTEP 2025 — Eastern Region Youth Ambassador</h3>
       <span class="tag green">YOUTH AMBASSADOR • COMMUNICATIONS COORDINATOR • 2025 - PRESENT</span>
       <p style="font-size:14px;margin-top:12px;color:#444">Selected as one of the GSTEP Eastern Region Youth Ambassadors. Serving as <b>Communications Coordinator</b> — coordinating outreach, engaging schools & teams, and representing GSTEP in the region.</p>
       <p style="font-size:12px;margin-top:10px;color:#15803d;font-weight:700">→ Leadership • Communication • Mentorship</p>
@@ -166,10 +174,13 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
 <script>
 const body=document.body;
 const edu=document.getElementById('eduSec');
+const gstep=document.getElementById('gstepSec');
 const foot=document.getElementById('footName');
 function update(){
   const dark=body.classList.contains('dark');
   edu.style.background=dark?'#0f0f0f':'#fafafa';
+  gstep.style.background=dark?'#0a0a0a':'#fff';
+  gstep.style.borderColor=dark?'#222':'#eee';
   edu.style.borderColor=dark?'#222':'#eee';
   foot.style.color=dark?'#fff':'#111';
 }
