@@ -42,7 +42,7 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
   <div class="logo">Philemon<span>.dev</span></div>
   <div style="display:flex;gap:8px;align-items:center">
     <button onclick="document.body.classList.toggle('dark')" class="btn btn-outline" style="padding:8px 12px">🌙 / ☀️</button>
-    <a href="Philemon-CV.pdf" download class="btn btn-black">Download CV</a>
+    <a href="cv.html?download=1" class="btn btn-black">Download CV</a>
   </div>
 </nav>
 
@@ -61,8 +61,8 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
     </p>
     <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
       <a href="https://github.com/Philemon-Osae" target="_blank" class="btn btn-black">GitHub →</a>
-      <a href="Philemon-CV.pdf" download class="btn btn-green">Download CV (New)</a>
-      <a href="cv.html" target="_blank" class="btn btn-outline">View CV as Page</a>
+      <a href="cv.html?download=1" class="btn btn-green">Download CV</a>
+      <a href="cv.html" target="_blank" class="btn btn-outline">View CV</a>
     </div>
     <div class="meta">
       <span>📧 philemonosae1@gmail.com</span>
@@ -70,31 +70,28 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
       <span>📍 Accra, Ghana</span>
     </div>
   </div>
-  <div style="text-align:center">
-    <img src="profile.jpg" alt="Philemon" style="width:100%;max-width:320px;border-radius:24px;border:4px solid #f3f4f6;object-fit:cover">
+  <div class="hero-img" style="text-align:center">
+    <img src="profile.jpg" alt="Philemon">
     <div style="margin-top:12px;font-size:12px;color:#888;font-family:monospace">Abomosu STEM Eng 23-26 • Techten 23-26 • GSTEP 23 • GCTU L100 Oct 2026</div>
   </div>
 </div>
 
-<div class="section" style="background:#fafafa;border-top:1px solid #eee;border-bottom:1px solid #eee" id="eduSec">
+<div class="section" style="background:#fafafa;border-top:1px solid #eee;border-bottom:1px solid #eee">
   <div class="small">01 / EDUCATION</div>
   <div class="grid3">
     <div class="card" style="border-left:4px solid #0ea5e9">
       <h3>Abomosu STEM SHS</h3>
-      <span class="tag" style="background:#0ea5e9;color:#fff">DEC 2023 - JUNE 2026 • ENGINEERING • COMPLETED</span>
-      <p style="font-size:13px;color:#888;margin-top:6px">Abomosu, Eastern Region</p>
+      <span class="tag" style="background:#0ea5e9;color:#fff">DEC 2023 - JUNE 2026 • COMPLETED</span>
       <p style="font-size:14px;margin-top:10px;color:#444">Built Healthy Habits for GSTEP 2023 in SHS 1.</p>
     </div>
     <div class="card" style="border-left:4px solid #16a34a">
       <h3>Techten Planets IT</h3>
       <span class="tag green">2023 - 2026 • VACATION TRAINING</span>
-      <p style="font-size:13px;color:#888;margin-top:6px">Part-time IT Training</p>
       <p style="font-size:14px;margin-top:10px;color:#444">HTML, CSS, JS, Node.js, Express, MySQL during SHS vacations.</p>
     </div>
     <div class="card" style="border-left:4px solid #000">
       <h3>GCTU</h3>
       <span class="tag" style="background:#111;color:#fff">OCT 2026 - PRESENT • LEVEL 100</span>
-      <p style="font-size:13px;color:#888;margin-top:6px">BSc Web App Development</p>
       <p style="font-size:14px;margin-top:10px;color:#444">Starting next week Oct 2026. Leading 6-person Healthy Habits team.</p>
     </div>
   </div>
@@ -103,32 +100,20 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
 <div class="section">
   <div class="small">02 / GSTEP & LEADERSHIP</div>
   <div class="grid">
-    <div class="card" style="border-left:4px solid #f59e0b;background:#fffbeb">
-      <h3 style="color:#111">🏆 GSTEP 2023 — Contestant</h3>
-      <span class="tag" style="background:#f59e0b;color:#fff">2023 • SHS 1 @ Abomosu STEM</span>
-      <p style="font-size:14px;margin-top:12px;color:#444">Origin of Healthy Habits.</p>
-    </div>
-    <div class="card" style="border-left:4px solid #16a34a;background:#f0fdf4">
-      <h3 style="color:#111">🌍 GSTEP 2025 — Youth Ambassador</h3>
-      <span class="tag green">2025 - PRESENT • SHS 3</span>
-      <p style="font-size:14px;margin-top:12px;color:#444">Eastern Region Communications Coordinator.</p>
-    </div>
+    <div class="card" style="border-left:4px solid #f59e0b;background:#fffbeb"><h3>🏆 GSTEP 2023 — Contestant</h3><span class="tag" style="background:#f59e0b;color:#fff">2023 • SHS 1</span><p style="font-size:14px;margin-top:12px;color:#444">Origin of Healthy Habits.</p></div>
+    <div class="card" style="border-left:4px solid #16a34a;background:#f0fdf4"><h3>🌍 GSTEP 2025 — Youth Ambassador</h3><span class="tag green">2025 - PRESENT</span><p style="font-size:14px;margin-top:12px;color:#444">Eastern Region Communications Coordinator.</p></div>
   </div>
-  <div class="card" style="background:#111;color:#fff;border-radius:22px;border:none;margin-top:18px">
-    <h3 style="color:#fff">Lead Developer - Healthy Habits Maternal Health App</h3>
-    <p style="color:#4ade80;font-size:12px;font-weight:700;margin-top:6px;font-family:monospace">2023 ORIGIN @ ABOMOSU STEM • TEAM OF 6 • GCTU L100</p>
-    <p style="margin-top:10px;font-size:14px;color:#d1d5db">React Native (Expo), Node.js, Express, MongoDB Atlas</p>
-  </div>
+  <div class="card" style="background:#111;color:#fff;border-radius:22px;border:none;margin-top:18px"><h3 style="color:#fff">Lead Developer - Healthy Habits</h3><p style="color:#4ade80;font-size:12px;font-weight:700;margin-top:6px;font-family:monospace">2023 ORIGIN • TEAM OF 6 • GCTU L100 • React Native, Node.js, MongoDB</p></div>
 </div>
 
 <div class="section">
   <div class="small">03 / LIVE PROJECTS — 6 DEPLOYED</div>
   <div class="grid">
-    <div class="card"><h3>Marketplace Booking Platform</h3><span class="tag green">STRONGEST BACKEND • 2025</span><p style="font-size:14px;margin-top:10px;color:#666">Node.js, Express, MySQL, Auth.</p></div>
+    <div class="card"><h3>Marketplace Booking Platform</h3><span class="tag green">STRONGEST BACKEND</span><p style="font-size:14px;margin-top:10px;color:#666">Node.js, Express, MySQL, Auth.</p></div>
     <a href="https://phil-jazzy.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit"><h3>Phil Jazzy 🥁</h3><span class="tag green">phil-jazzy.netlify.app • LIVE</span></a>
     <a href="https://kwamepapaa.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit"><h3>Kwamepapaa 🥁</h3><span class="tag green">kwamepapaa.netlify.app • LIVE</span></a>
-    <a href="https://weddinginvitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #ddd"><h3>Wedding V1 💍</h3><span class="tag">ARCHIVE</span><p style="font-size:14px;margin-top:10px;color:#666">Bakatel & Juliet basic version.</p></a>
-    <a href="https://wedding-invitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #eab308"><h3>Wedding V2 💍✨</h3><span class="tag green">V2 • LIVE • NEW</span><p style="font-size:14px;margin-top:10px;color:#666">Envelope open, floating hearts, calendar 5th, New Creation Chapel Tesano, guest wish wall. Bakatel & Juliet.</p></a>
+    <a href="https://weddinginvitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #ddd"><h3>Wedding V1 💍</h3><span class="tag">ARCHIVE</span><p style="font-size:14px;margin-top:10px;color:#666">Bakatel & Juliet basic.</p></a>
+    <a href="https://wedding-invitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #eab308"><h3>Wedding V2 💍✨</h3><span class="tag green">V2 • LIVE</span><p style="font-size:14px;margin-top:10px;color:#666">Envelope open, floating hearts, calendar 5th, New Creation Chapel Suhum, guest wish wall.</p></a>
     <a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #16a34a"><h3>Adom Trombonist 🪊</h3><span class="tag green">LIVE</span></a>
   </div>
 </div>
@@ -137,15 +122,11 @@ footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:1
   <b style="color:#111">PHILEMON OSAE-HIENNO KODUA</b>
   <p style="margin-top:6px">Abomosu STEM Eng 23-26 • Techten 23-26 • GCTU Level 100 Oct 2026 • 6 Live Sites</p>
   <div style="margin-top:14px;display:flex;gap:16px;justify-content:center;font-family:monospace">
-    <a href="Philemon-CV.pdf" download style="color:#16a34a;font-weight:800">Download New CV</a>
+    <a href="cv.html?download=1" style="color:#16a34a;font-weight:800">Download CV</a>
     <a href="cv.html" target="_blank">View CV</a>
     <a href="https://github.com/Philemon-Osae" target="_blank">GitHub</a>
   </div>
   <p style="margin-top:18px;font-size:11px">© 2026 • Abomosu STEM Alumni • GCTU Level 100</p>
 </footer>
-
-<script>
-document.querySelector('button').addEventListener('click',()=>document.body.classList.toggle('dark'))
-</script>
 </body>
 </html>
