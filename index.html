@@ -1,154 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Philemon Osae-Hienno Kodua | Full-Stack Developer</title>
-<meta name="google-site-verification" content="wQvwOsSiwISzVpbfcx9eXFs2h2bcJipBV-47EO8mG7A" />
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philemon Osae-Hienno Kodua - CV</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#fff;color:#111;transition:0.3s;line-height:1.6}
-body.dark{background:#0a0a0a;color:#fff}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:inherit;z-index:10}
-body.dark nav{border-color:#222}
-.logo{font-weight:900;font-size:20px}.logo span{color:#16a34a}
-.btn{padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;cursor:pointer}
-.btn-black{background:#000;color:#fff}body.dark .btn-black{background:#fff;color:#000}
-.btn-green{border:1.5px solid #16a34a;color:#16a34a}
-.btn-outline{border:1px solid #ddd;color:#666}body.dark .btn-outline{border-color:#333;color:#aaa}
-.hero{padding:50px 20px;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center}
-@media(max-width:800px){.hero{grid-template-columns:1fr}.hero-img{order:-1}}
-.hero-img img{width:100%;max-width:320px;border-radius:24px;border:4px solid #f3f4f6;object-fit:cover}body.dark .hero-img img{border-color:#222}
-.hero h1{font-size:48px;line-height:0.95;font-weight:900;letter-spacing:-1px}
-@media(max-width:500px){.hero h1{font-size:36px}}
-.badge{color:#16a34a;font-weight:700;font-size:12px;margin-bottom:12px;display:inline-block;background:#f0fdf4;padding:6px 10px;border-radius:20px}
-.meta{margin-top:18px;font-size:13px;color:#888;display:flex;gap:12px;flex-wrap:wrap}
-.section{padding:50px 20px;max-width:1100px;margin:auto}
-.small{font-family:monospace;font-size:11px;letter-spacing:2.5px;color:#999;margin-bottom:24px;font-weight:700}
-.card{border:1px solid #eee;border-radius:18px;padding:22px;background:#fff;display:block}body.dark .card{background:#151515;border-color:#222}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
-.tag{font-size:10px;font-weight:800;padding:4px 8px;border-radius:6px;background:#f3f4f6;display:inline-block;margin-top:6px}
-.green{color:#16a34a;background:#f0fdf4}
-footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:13px;color:#888;margin-top:20px}body.dark footer{border-color:#222}
+@page{size:A4;margin:15mm}*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,system-ui,sans-serif}
+body{background:#fff;color:#111;line-height:1.5;padding:30px;max-width:850px;margin:auto}
+h1{font-size:32px;font-weight:900;line-height:0.95}h1 span{color:#16a34a}
+h2{font-size:12px;letter-spacing:2px;color:#999;margin:28px 0 12px 0;font-weight:800;border-bottom:1px solid #eee;padding-bottom:6px}
+h3{font-size:14px;font-weight:800}p,li{font-size:13px;color:#333}.small{font-size:11px;color:#777}
+.tag{font-size:9px;font-weight:800;padding:3px 6px;border-radius:5px;background:#f3f4f6;display:inline-block;margin-left:6px}
+.green{background:#f0fdf4;color:#16a34a}.blue{background:#eff6ff;color:#0ea5e9}.yellow{background:#fffbeb;color:#d97706}
+.header{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:3px solid #111;padding-bottom:18px}
+.contact{font-size:12px;color:#555;line-height:1.6;text-align:right}@media(max-width:600px){.contact{text-align:left}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.item{border-left:3px solid #eee;padding-left:12px;margin-bottom:14px}
+.item.b-green{border-color:#16a34a}.item.b-blue{border-color:#0ea5e9}.item.b-black{border-color:#111}.item.b-yellow{border-color:#f59e0b}
+ul{padding-left:16px;margin-top:6px}li{margin-bottom:4px}a{color:#16a34a;text-decoration:none;font-weight:700}
+.skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.skills span{font-size:11px;background:#f6f6f6;border:1px solid #eee;padding:4px 8px;border-radius:20px}
+.topbar{position:fixed;top:15px;right:15px;display:flex;gap:8px}.topbar button{background:#111;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:800;cursor:pointer}
+@media print{.topbar{display:none}body{padding:0}}
 </style>
 </head>
 <body>
-<nav>
-  <div class="logo">Philemon<span>.dev</span></div>
-  <div style="display:flex;gap:8px;align-items:center">
-    <button onclick="document.body.classList.toggle('dark')" class="btn btn-outline" style="padding:8px 12px">🌙 / ☀️</button>
-    <a href="cv.html?download=1" class="btn btn-black">Download CV</a>
-  </div>
-</nav>
-<div class="hero">
-  <div>
-    <span class="badge">● Abomosu STEM Alumni '26 • Level 100 GCTU Student • Available for Internship</span>
-    <h1>PHILEMON<br>OSAE-HIENNO<br>KODUA</h1>
-    <h2 style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px">
-      <span style="background:#111;color:#fff;padding:5px 12px;border-radius:20px;font-size:14px;font-weight:800">Full-Stack Developer</span>
-      <span style="color:#555;font-size:16px;font-weight:600">React Native + Node.js</span>
-    </h2>
-    <p style="margin-top:16px;color:#666;max-width:600px;font-size:15px">
-      Engineering at <b>Abomosu STEM SHS (Dec 2023 - June 2026)</b> where I built Healthy Habits for GSTEP 2023.
-      Self-taught at <b>Techten Planets IT</b> during vacations since 2023.
-      Now <b>Level 100 BSc Web App Development student at GCTU</b>. Founder of 6 live platforms.
-    </p>
-    <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
-      <a href="https://github.com/Philemon-Osae" target="_blank" class="btn btn-black">GitHub →</a>
-      <a href="mailto:philemonosae1@gmail.com" class="btn btn-black" style="background:#EA4335;border:none">📧 Email Me</a>
-      <a href="cv.html?download=1" class="btn btn-green">Download CV</a>
-      <a href="cv.html" target="_blank" class="btn btn-outline">View CV</a>
-      <a href="https://wa.me/233206834470" target="_blank" class="btn btn-black" style="background:#25D366;border:none">💬 WhatsApp</a>
-    </div>
-    <div class="meta"><span>📧 philemonosae1@gmail.com</span><span>📱 +233 20 683 4470</span><span>📍 Accra, Ghana</span></div>
-  </div>
-  <div class="hero-img" style="text-align:center">
-    <img src="profile.jpg" alt="Philemon">
-    <div style="margin-top:12px;font-size:12px;color:#888;font-family:monospace">Abomosu STEM Eng 23-26 • Techten 23-26 • GSTEP 23 • GCTU L100</div>
-  </div>
-</div>
-
-<div class="section" style="background:#fafafa;border-top:1px solid #eee;border-bottom:1px solid #eee">
-  <div class="small">01 / EDUCATION</div>
-  <div class="grid3">
-    <div class="card" style="border-left:4px solid #0ea5e9"><h3>Abomosu STEM SHS</h3><span class="tag" style="background:#0ea5e9;color:#fff">DEC 2023 - JUNE 2026 • COMPLETED</span><p style="font-size:14px;margin-top:10px;color:#444">Built Healthy Habits for GSTEP 2023 in SHS 1.</p></div>
-    <div class="card" style="border-left:4px solid #16a34a"><h3>Techten Planets IT</h3><span class="tag green">2023 - 2026 • VACATION TRAINING</span><p style="font-size:14px;margin-top:10px;color:#444">HTML, CSS, JS, Node.js, Express, MySQL during SHS vacations.</p></div>
-    <div class="card" style="border-left:4px solid #000"><h3>GCTU</h3><span class="tag" style="background:#111;color:#fff">OCT 2026 - PRESENT • LEVEL 100</span><p style="font-size:14px;margin-top:10px;color:#444">Currently Level 100 student. Leading 6-person Healthy Habits team.</p></div>
-  </div>
-</div>
-
-<div class="section" id="projects">
-  <div class="small">02 / LIVE PROJECTS - 6 LIVE</div>
-  <div class="grid">
-    <a href="https://phil-tech-two.vercel.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #0b2a7a">
-      <h3>Phil Tech ⚡</h3>
-      <span class="tag green">phil-tech-two.vercel.app • LIVE • LEAD SYSTEM</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">Booking platform for GCTU campus businesses. Students choose a package (Basic GHC 500-800, Standard 1200-1800, Premium 2500-4000), fill business info, MoMo, delivery fee, domain & colors — one tap sends booking direct to my WhatsApp DM (0206834470).</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="tag" style="background:#0b2a7a;color:#fff">HTML</span><span class="tag" style="background:#0b2a7a;color:#fff">CSS</span><span class="tag" style="background:#0b2a7a;color:#fff">VANILLA JS</span><span class="tag" style="background:#000;color:#fff">VERCEL</span><span class="tag" style="background:#25d366;color:#fff">wa.me API</span>
-      </div>
-    </a>
-    <a href="https://phil-jazzy.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #eab308">
-      <h3>Phil Jazzy 🥁</h3>
-      <span class="tag green">phil-jazzy.netlify.app • LIVE • INTERACTIVE</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">Personal brand + booking site for my drumming. Built 2 tools with Web Audio API: TRY MY KIT (9-pad drum machine Q,W,E,A,S,D,Z,X,C) + WORSHIP PAD (12-note C-B chord sustainer Major/Minor Warm/Bright/Strings/Airy). AI assistant with rate card Church 250-400 Wedding 400-700 Studio 200/hr Full Band 800+ books in 30s via WhatsApp.</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="tag" style="background:#eab308;color:#000">HTML</span><span class="tag" style="background:#eab308;color:#000">CSS</span><span class="tag" style="background:#eab308;color:#000">VANILLA JS</span><span class="tag" style="background:#000;color:#fff">Web Audio API</span><span class="tag" style="background:#111;color:#fff">AI Chatbot</span><span class="tag" style="background:#000;color:#fff">NETLIFY</span>
-      </div>
-    </a>
-    <a href="https://kwamepapaa.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #f59e0b">
-      <h3>Kwamepapaa 🥁</h3>
-      <span class="tag green">kwamepapaa.netlify.app • LIVE • BOOKING + RENTAL SYSTEM</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">Full booking system for Ghanaian celebrity drummer Joseph Offei. Services & Pricing: Church Program GHC250, Wedding GHC250, Concert GHC250, Studio Session GHC250, Brand Promotion GHC200. Instrument Rental: Drums GHC800, Keyboard GHC400, Bass GHC400 per rental. Built GET AN INSTANT QUOTE calculator — tick services + rentals, see total instantly (e.g., GHC1250 for 3 items), bundle discount alert + one-tap Send Quote on WhatsApp. About Me with UEW affiliation, Projects & Collabs, FAQ, Contact with TikTok @kwamepapaa_backup, IG @kwamepapaa. Dark + Gold premium theme.</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="tag" style="background:#f59e0b;color:#000">HTML</span><span class="tag" style="background:#f59e0b;color:#000">CSS</span><span class="tag" style="background:#f59e0b;color:#000">VANILLA JS</span><span class="tag" style="background:#000;color:#fff">Instant Quote Calculator</span><span class="tag" style="background:#25d366;color:#fff">wa.me API</span><span class="tag" style="background:#000;color:#fff">NETLIFY</span>
-      </div>
-    </a>
-    <a href="https://weddinginvitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #ec4899">
-      <h3>Wedding Invitation V1 💍</h3>
-      <span class="tag green">weddinginvitation-gh.netlify.app • V1 • LIVE • Dec 6 2025 • New Creation Chapel Tesano</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">First wedding template for Bakatel & Juliet - Sat 06 Dec 2025 10:00 AM, New Creation Chapel International, Tesano. Built gold seal Open Invite hero with ring, Our Story with photos, SAVE THE DATE live countdown 51d 22h 29m + December calendar with 5th circled + 10am View on Google Maps + Google Calendar/Add to Phone/Share on WhatsApp, Event Details Dress code Elegant shades green & gold, Support the Couple MTN MoMo 0547833766 Juliet Oforiwaa Osae Copy MoMo Number, Guest Wishes form + Tap to RSVP. Fast mobile-first foundation for V2.</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="tag" style="background:#ec4899;color:#fff">HTML</span><span class="tag" style="background:#ec4899;color:#fff">CSS</span><span class="tag" style="background:#ec4899;color:#fff">VANILLA JS</span><span class="tag" style="background:#000;color:#fff">Countdown Timer</span><span class="tag" style="background:#000;color:#fff">Google Maps API</span><span class="tag" style="background:#000;color:#fff">NETLIFY</span>
-      </div>
-    </a>
-    <a href="https://wedding-invitation-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #eab308">
-      <h3>Wedding Invitation V2 💍✨</h3>
-      <span class="tag green">wedding-invitation-gh.netlify.app • V2 • PREMIUM • LIVE • Dec 6 2025 • New Creation Chapel Tesano</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">Premium envelope upgrade for Bakatel & Juliet - Same venue New Creation Chapel International, Tesano. From video: Tap to Open Invitation + envelope open animation + floating hearts + SAVE THE DATE 51d 22h 29m + December calendar 5 circled + 10am View on Google Maps + Google Calendar/Add to Phone/Share WhatsApp + Dress code Elegant green & gold + Reception New Creation Chapel + Coordinator 0206834470 + Support Couple MTN MoMo 0547833766 Juliet + Copy MoMo + Our Story in Pictures circular + RSVP & Share Wishes Open Google Form + Guest Wishes for Bakatel & Juliet + Your Name + Your Wish/Blessing + Prefer WhatsApp? Joyfully attending + RSVP on WhatsApp + Akwaaba footer. Premium version of V1 with higher conversions. Design by Philemon Osae.</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="tag" style="background:#eab308;color:#000">HTML</span><span class="tag" style="background:#eab308;color:#000">CSS</span><span class="tag" style="background:#eab308;color:#000">JavaScript</span><span class="tag" style="background:#000;color:#fff">Envelope Animation</span><span class="tag" style="background:#000;color:#fff">Google Forms API</span><span class="tag" style="background:#000;color:#fff">Google Maps API</span><span class="tag" style="background:#000;color:#fff">NETLIFY</span>
-      </div>
-    </a>
-    <a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" class="card" style="text-decoration:none;color:inherit;border-left:4px solid #16a34a">
-      <h3>Adom Trombonist 🎺 - Adom Nyarko-Yeboah</h3>
-      <span class="tag green">adom-the-trombonist-gh.netlify.app • LIVE • INTERACTIVE • CCTU • NADAMB • Taifa-Wakiki</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">Full portfolio for Adom Nyarko-Yeboah - Professional Trombonist based in Accra, Trombonist at Northern Accra Diocese (NADAMB), member of Association of Methodist Brigade, civil engineering student at CCTU. Focused on training others, pocket, serving. Location Accra Taifa-Wakiki, Ghana, Available Fri-Sun. WHAT I DO: Church Programmes, Wedding & Events, Studio Recording, Concerts and Live Shows, Contact for pricing. Built TRY MY HORN - 12-note chromatic sustained brass tone C C# D D# E F F# G G# A A# B - tap a note to hear, tap again to stop - with Web Audio API. FAQ accordion: What services? Church, weddings, studio, concerts & live shows + When available? Fri-Sun Message WhatsApp date confirm + Where based? Accra Taifa-Wakiki Ghana + How much? Pricing depends contact 053 474 9409 for quote + How do I book? Tap Book on WhatsApp/Quick Book or call 053 474 9409 tell event type date location + Do you train other musicians? Yes training is focus Message WhatsApp to learn. CONTACT: WhatsApp 053 474 9409, Call 053 474 9409, TikTok @nanakwadwo211, IG nanakwadwo_573, Facebook Adom Nyarko-Yeboah, Accra Taifa-Wakiki Ghana, Quick Book on WhatsApp. © 2026 Adom Nyarko-Yeboah - Designed by Philemon Osae. Dark + Gold premium theme.</p>
-      <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-        <span class="tag" style="background:#16a34a;color:#fff">HTML</span><span class="tag" style="background:#16a34a;color:#fff">CSS</span><span class="tag" style="background:#16a34a;color:#fff">VANILLA JS</span><span class="tag" style="background:#000;color:#fff">Web Audio API</span><span class="tag" style="background:#000;color:#fff">12-Note Chromatic Brass</span><span class="tag" style="background:#000;color:#fff">FAQ Accordion</span><span class="tag" style="background:#25d366;color:#fff">wa.me API</span><span class="tag" style="background:#000;color:#fff">NETLIFY</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-<div class="section" style="background:#fafafa;border-top:1px solid #eee;border-bottom:1px solid #eee">
-  <div class="small">03 / SERVICES - PHIL TECH</div>
-  <div class="grid3">
-    <div class="card" style="border-left:4px solid #16a34a"><h3>Web Development</h3><span class="tag green">REACT • HTML • CSS • JS</span><p style="font-size:14px;margin-top:10px;color:#444">Modern, mobile friendly business websites, booking platforms, and e-commerce sites built for speed and SEO.</p></div>
-    <div class="card" style="border-left:4px solid #000"><h3>Mobile App Development</h3><span class="tag" style="background:#111;color:#fff">REACT NATIVE • EXPO</span><p style="font-size:14px;margin-top:10px;color:#444">Android and iOS apps with login, push notifications, and Play Store deployment. One codebase, both platforms.</p></div>
-    <div class="card" style="border-left:4px solid #0ea5e9"><h3>Backend & API Integration</h3><span class="tag" style="background:#0ea5e9;color:#fff">NODE.JS • EXPRESS • FIREBASE • MYSQL</span><p style="font-size:14px;margin-top:10px;color:#444">Secure backends, databases, auth systems, and API integration for Paystack, Hubtel, WhatsApp, and Google Maps.</p></div>
-  </div>
-  <div style="text-align:center;margin-top:28px">
-    <a href="https://wa.me/233206834470?text=Hello%20Phil%20Tech,%20I%20need%20a%20website/app" target="_blank" class="btn btn-black" style="background:#16a34a;border:none;color:#fff">Hire Me on WhatsApp →</a>
-  </div>
-</div>
-<footer>
-  <b style="color:#111">PHILEMON OSAE-HIENNO KODUA</b>
-  <p style="margin-top:6px">Abomosu STEM Eng 23-26 • Techten 23-26 • GCTU Level 100 Student • 6 Live Platforms</p>
-  <p style="margin-top:18px;font-size:11px">© 2026 • Abomosu STEM Alumni • GCTU Level 100</p>
-</footer>
+<div class="topbar"><button onclick="window.print()">🖨️ Save as PDF</button><button style="background:#16a34a" onclick="window.location='index.html'">← Back</button></div>
+<div class="header"><div><h1>PHILEMON<br>OSAE-HIENNO<br>KODUA<span>.</span></h1><p style="margin-top:8px;font-weight:700;font-size:14px">Full-Stack Developer | React Native + Node.js</p><p class="small" style="margin-top:4px">Abomosu STEM Alumni '26 • Level 100 GCTU Student • GSTEP Ambassador • 6 LIVE Platforms</p></div><div class="contact"><div>📍 Accra, Ghana</div><div>📱 +233 20 683 4470</div><div>📧 philemonosae1@gmail.com</div><div>🌐 <a href="https://philemon-portfolio-ten.vercel.app" target="_blank">philemon-portfolio-ten.vercel.app</a></div><div>🔗 <a href="https://github.com/Philemon-Osae" target="_blank">github.com/Philemon-Osae</a></div><div>💼 <a href="https://www.linkedin.com/in/philemon-osae-hienno-kodua-650492304" target="_blank" rel="noopener">linkedin.com/in/philemon-osae-hienno-kodua-650492304</a></div></div></div>
+ 
+<h2>SUMMARY</h2><p>Self-taught Full-Stack Developer since 2023 at Techten Planets IT. Abomosu STEM SHS Engineering graduate (Dec 2023-June 2026). GSTEP 2023 Contestant, now GSTEP 2025 Eastern Region Youth Ambassador. Currently Level 100 BSc Web App Development at GCTU. Founder of 6 live platforms including Phil Tech (campus business booking), Phil Jazzy (interactive drummer with Web Audio API + AI), Kwamepapaa (booking + rental with instant quote calculator), Wedding Invitation templates for New Creation Chapel International, Tesano (envelope animation, countdown 51d 22h, MoMo 0547833766), and Adom Trombonist (NADAMB CCTU Taifa-Wakiki 12-note brass pad).</p>
+ 
+<h2>CORE SERVICES</h2><div class="grid2"><div class="item b-green"><h3>Web Development</h3><p class="small">React, HTML, CSS, JS. Business websites, wedding invitations, booking and e-commerce with instant quote calculators.</p></div><div class="item b-black"><h3>Mobile App Development</h3><p class="small">React Native + Expo. Android and iOS with Play Store deployment.</p></div><div class="item b-blue"><h3>Backend & API Integration</h3><p class="small">Node.js, Express, MySQL, Firebase, Web Audio API, 12-Note Chromatic Brass, Countdown Timer, wa.me API, Google Maps API, Google Forms API, Envelope Animation, FAQ Accordion.</p></div></div>
+ 
+<h2>EDUCATION</h2><div class="grid2"><div class="item b-blue"><h3>Abomosu STEM SHS <span class="tag blue">DEC 2023 - JUNE 2026</span></h3><p class="small">Engineering</p><p>Built Healthy Habits for GSTEP 2023.</p></div><div class="item b-green"><h3>Techten Planets IT <span class="tag green">2023-2026</span></h3><p class="small">Vacation Training</p><p>HTML, CSS, JS, Node, Express, MySQL, Firebase, React Native</p></div><div class="item b-black"><h3>GCTU <span class="tag" style="background:#111;color:#fff">OCT 2026 - PRESENT • L100</span></h3><p class="small">BSc Web App Development</p><p>Currently Level 100, Leading Healthy Habits team.</p></div></div>
+ 
+<h2>PROJECTS - 6 LIVE</h2>
+<div class="item b-green"><h3>Phil Tech - Campus Business Booking Platform <span class="tag green">phil-tech-two.vercel.app • LIVE</span></h3><p>Booking funnel for GCTU student entrepreneurs. Package selection Basic GHC500-800 Standard 1200-1800 Premium 2500-4000, business info, MoMo, delivery fee, domain & colors, one-tap wa.me to WhatsApp DM 0206834470. Tech: HTML, CSS, Vanilla JS, Vercel, wa.me API.</p></div>
+ 
+<div class="item b-yellow"><h3>Phil Jazzy - Interactive Drummer Portfolio <span class="tag green">phil-jazzy.netlify.app • LIVE</span></h3><p>Personal brand for drumming. 2 Web Audio API tools: TRY MY KIT 9-pad drum machine Kick/Snare/Hi-Hat/Tom/Ride/Crash/Clap/Cowbell/Rimshot + keyboard Q,W,E,A,S,D,Z,X,C + WORSHIP PAD 12-note C-B chord sustainer Major/Minor Warm/Bright/Strings/Airy Choir. AI assistant rate card Church 250-400 Wedding 400-700 Studio 200/hr Full Band 800+ books in 30s via WhatsApp. Tech: HTML, CSS, Vanilla JS, Web Audio API, AI Chatbot, Netlify.</p></div>
+ 
+<div class="item b-yellow"><h3>Kwamepapaa - Drummer Booking + Instrument Rental Platform <span class="tag green">kwamepapaa.netlify.app • LIVE • 2026</span></h3><p>Full booking + instrument rental system for celebrity drummer Joseph Offei (Kwamepapaa). Services: Church Program GHC250, Wedding GHC250, Concert GHC250, Studio Session GHC250, Brand Promotion GHC200. Rentals: Drums GHC800, Keyboard GHC400, Bass GHC400 per rental. Built GET AN INSTANT QUOTE calculator — user ticks services + rentals, total calculates instantly with bundle discount alert (e.g., GHC1250 for 3 items) and one-tap Send Quote on WhatsApp via wa.me API. Tech: HTML, CSS, Vanilla JS, Instant Quote Calculator, wa.me API, Netlify.</p></div>
+ 
+<div class="item b-black"><h3>Wedding Invitation GH V1 - Bakatel & Juliet <span class="tag green">weddinginvitation-gh.netlify.app • LIVE • V1 • Dec 6 2025 • New Creation Chapel Tesano</span></h3><p>First wedding template - Sat 06 Dec 2025 10:00 AM, New Creation Chapel International, Tesano. Features: Gold seal Open Invite hero with ring, SAVE THE DATE live countdown 51d 22h 29m + December calendar with 5 circled + 10am View on Google Maps + Google Calendar/Add to Phone/Share WhatsApp, Dress code Elegant shades green & gold, Support Couple MTN MoMo 0547833766 Juliet Oforiwaa Osae, Guest Wishes + Tap to RSVP. Tech: HTML, CSS, Vanilla JS, Countdown Timer, Google Maps API, Netlify.</p></div>
+ 
+<div class="item b-black"><h3>Wedding Invitation GH V2 - Premium Envelope <span class="tag green">wedding-invitation-gh.netlify.app • LIVE • V2 • Dec 6 2025 • New Creation Chapel Tesano</span></h3><p>Premium envelope upgrade verified from video: Tap to Open Invitation + envelope open animation + floating hearts + SAVE THE DATE 51d 22h 29m + December calendar 5 circled + 10am New Creation Chapel Intl Tesano View On Google Maps + Google Calendar + Add to Phone Calendar + Share on WhatsApp + Event Details Dress code Elegant shades green & gold Reception New Creation Chapel International Tesano Coordinator 0206834470 + Support the Couple MTN MoMo 0547833766 Juliet Oforiwaa Osae Copy MoMo Number + Our Story in Pictures circular photos + RSVP & Share Your Wishes Open Google Form + Guest Wishes for Bakatel & Juliet Your Name + Your Wish/Blessing + Prefer WhatsApp? Joyfully attending + RSVP on WhatsApp + Akwaaba footer. Design by Philemon Osae. Tech: HTML, CSS, JS, Envelope Animation, Google Forms API, Google Maps API, Netlify.</p></div>
+ 
+<div class="item b-black"><h3>Adom The Trombonist - Adom Nyarko-Yeboah Professional Trombonist <span class="tag green">adom-the-trombonist-gh.netlify.app • LIVE • 2026 • NADAMB • CCTU • Taifa-Wakiki • Fri-Sun</span></h3><p>Full portfolio + booking for Adom Nyarko-Yeboah - Professional trombonist based in Accra, Ghana, Trombonist at Northern Accra Diocese (NADAMB), member of Association of Methodist Brigade, civil engineering student at CCTU, focused on training others, pocket, serving. Location Accra Taifa-Wakiki, Ghana, Available Fri-Sun. WHAT I DO: Church Programmes, Wedding & Events, Studio Recording, Concerts and Live Shows, Contact for pricing. Built TRY MY HORN - 12-note chromatic sustained brass tone C C# D D# E F F# G G# A A# B - tap a note to hear a sustained brass tone, tap again to stop - with Web Audio API. FAQ accordion: What services? Church programmes, weddings & events, studio recording, concerts & live shows + When available? Friday to Sunday Message WhatsApp date confirm + Where based? Accra Taifa-Wakiki Ghana + How much charge? Pricing depends contact 053 474 9409 for quote + How do I book? Tap Book on WhatsApp/Quick Book on WhatsApp or call 053 474 9409 tell event type date location + Do you train other musicians? Training others is one of my focuses Message WhatsApp talk about what you'd like to learn. CONTACT: WhatsApp 053 474 9409, Call 053 474 9409, TikTok @nanakwadwo211, IG nanakwadwo_573, Facebook Adom Nyarko-Yeboah, Accra Taifa-Wakiki Ghana, Quick Book on WhatsApp, © 2026 Adom Nyarko-Yeboah - Designed by Philemon Osae. Tech: HTML, CSS, Vanilla JS, Web Audio API 12-Note Chromatic, FAQ Accordion, wa.me API, Netlify.</p></div>
+ 
+<h2>SKILLS</h2><div class="skills"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>React Native</span><span>Node.js</span><span>Express</span><span>MySQL</span><span>Firebase</span><span>Web Audio API</span><span>12-Note Chromatic Brass</span><span>Countdown Timer</span><span>Envelope Animation</span><span>FAQ Accordion</span><span>Instant Quote Calculator</span><span>AI Chatbot</span><span>wa.me API</span><span>Google Maps API</span><span>Google Forms API</span><span>Git & GitHub</span><span>Netlify</span><span>Vercel</span></div>
+<script>if(window.location.search.includes('download=1')){setTimeout(()=>window.print(),800);}</script>
 </body>
 </html>
+ 
