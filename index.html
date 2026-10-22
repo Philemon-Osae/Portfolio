@@ -1,113 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Philemon Osae-Hienno Kodua | Full-Stack Developer</title>
+<meta name="description" content="Philemon Osae-Hienno Kodua, full-stack developer in Accra, Ghana. React Native, Node.js and Supabase. Booking systems, class portals and interactive audio sites.">
+<meta name="google-site-verification" content="wQvwOsSiwISzVpbfcx9eXFs2h2bcJipBV-47EO8mG7A" />
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#fff;color:#111;line-height:1.6}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:10}
+body{background:#fff;color:#111;transition:0.3s;line-height:1.6}
+body.dark{background:#0a0a0a;color:#fff}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:inherit;z-index:10}
+body.dark nav{border-color:#222}
 .logo{font-weight:900;font-size:20px}.logo span{color:#16a34a}
-.btn{padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block}
-.btn-black{background:#000;color:#fff}.btn-green{border:1.5px solid #16a34a;color:#16a34a}.btn-outline{border:1px solid #ddd;color:#666}
+.btn{padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;cursor:pointer}
+.btn-black{background:#000;color:#fff}body.dark .btn-black{background:#fff;color:#000}
+.btn-green{border:1.5px solid #16a34a;color:#16a34a}
+.btn-outline{border:1px solid #ddd;color:#666}body.dark .btn-outline{border-color:#333;color:#aaa}
 .hero{padding:50px 20px;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center}
 @media(max-width:800px){.hero{grid-template-columns:1fr}.hero-img{order:-1}}
-.hero-img img{width:100%;max-width:320px;border-radius:24px;border:4px solid #f3f4f6;object-fit:cover}
+.hero-img img{width:100%;max-width:320px;border-radius:24px;border:4px solid #f3f4f6;object-fit:cover}body.dark .hero-img img{border-color:#222}
 .hero h1{font-size:48px;line-height:0.95;font-weight:900;letter-spacing:-1px}
 @media(max-width:500px){.hero h1{font-size:36px}}
 .badge{color:#16a34a;font-weight:700;font-size:12px;margin-bottom:12px;display:inline-block;background:#f0fdf4;padding:6px 10px;border-radius:20px}
 .meta{margin-top:18px;font-size:13px;color:#888;display:flex;gap:12px;flex-wrap:wrap}
+.lead{margin-top:16px;color:#666;max-width:600px;font-size:15px}body.dark .lead{color:#aaa}
 .section{padding:50px 20px;max-width:1100px;margin:auto}
+.alt{background:#fafafa;border-top:1px solid #eee;border-bottom:1px solid #eee}body.dark .alt{background:#101010;border-color:#222}
 .small{font-family:monospace;font-size:11px;letter-spacing:2.5px;color:#999;margin-bottom:24px;font-weight:700}
-.card{border:1px solid #eee;border-radius:18px;padding:22px;background:#fff;display:block;text-decoration:none;color:inherit}
+.card{border:1px solid #eee;border-radius:18px;padding:22px;background:#fff;display:block;text-decoration:none;color:inherit}body.dark .card{background:#151515;border-color:#222}
+.desc{font-size:14px;margin-top:10px;color:#444}body.dark .desc{color:#bbb}
+.desc2{font-size:13px;margin-top:8px;color:#666}body.dark .desc2{color:#aaa}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
-.tag{font-size:10px;font-weight:800;padding:4px 8px;border-radius:6px;background:#f3f4f6;display:inline-block;margin-top:6px}
-.green{color:#16a34a;background:#f0fdf4}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
+.tag{font-size:10px;font-weight:800;padding:4px 8px;border-radius:6px;background:#f3f4f6;display:inline-block;margin-top:6px}body.dark .tag{background:#222}
+.green{color:#16a34a;background:#f0fdf4}body.dark .green{background:#0f2a1a}
 .stack{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
 .stack span{font-size:10px;background:#111;color:#fff;padding:4px 8px;border-radius:20px;font-weight:700}
+body.dark .stack span{background:#2a2a2a}
 .stack span.light{background:#f3f4f6;color:#111;border:1px solid #eee}
-footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:13px;color:#888;margin-top:20px}
+body.dark .stack span.light{background:#1c1c1c;color:#ddd;border-color:#333}
+.flag{background:#4f46e5;color:#fff;font-size:10px;font-weight:900;padding:5px 10px;border-radius:20px;letter-spacing:1px}
+.hh{border-left:4px solid #9333ea;background:linear-gradient(135deg,#faf5ff 0%,#fff 100%)}
+body.dark .hh{background:linear-gradient(135deg,#1c1230 0%,#151515 100%)}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:13px;color:#888;margin-top:20px}body.dark footer{border-color:#222}
+footer b{color:#111}body.dark footer b{color:#fff}
 </style>
 </head>
 <body>
 <nav>
   <div class="logo">Philemon<span>.dev</span></div>
-  <div style="display:flex;gap:8px"><a href="cv.html" class="btn btn-outline">CV</a><a href="https://wa.me/233206834470" class="btn btn-black">Hire Me</a></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button onclick="document.body.classList.toggle('dark')" class="btn btn-outline" style="padding:8px 12px">🌙 / ☀️</button>
+    <a href="cv.html?download=1" class="btn btn-black">Download CV</a>
+  </div>
 </nav>
 
 <div class="hero">
   <div>
-    <span class="badge">● Available for Work • 7 Live • Accra, Ghana</span>
+    <span class="badge">● Abomosu STEM Alumni '26 • Level 100 GCTU Student • Available for Internship</span>
     <h1>PHILEMON<br>OSAE-HIENNO<br>KODUA</h1>
-    <h2 style="margin-top:14px"><span style="background:#111;color:#fff;padding:5px 12px;border-radius:20px;font-size:14px;font-weight:800">Full-Stack Developer</span> <span style="color:#555;font-size:16px">React Native + Node.js + Supabase</span></h2>
-    <p style="margin-top:16px;color:#666;max-width:600px;font-size:15px">I build websites & apps that get bookings. <b>ClassHub</b> for my GCTU class (49 students, Supabase Auth + RLS), booking systems with instant quote calculators, interactive audio with Web Audio API, and offline-first mobile apps.</p>
+    <h2 style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px">
+      <span style="background:#111;color:#fff;padding:5px 12px;border-radius:20px;font-size:14px;font-weight:800">Full-Stack Developer</span>
+      <span style="color:#16a34a;font-size:16px;font-weight:600">React Native + Node.js + Supabase</span>
+    </h2>
+    <p class="lead">
+      Engineering at <b>Abomosu STEM SHS (Dec 2023 - June 2026)</b> where I built Healthy Habits for GSTEP 2023.
+      Self-taught at <b>Techten Planets IT</b> during vacations since 2023.
+      Now <b>Level 100 BSc Web App Development student at GCTU</b>. Founder of 8 projects (7 live + 1 in progress), including <b>ClassHub</b>, a secure class portal with Supabase login and row level security.
+    </p>
     <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
-      <a href="https://github.com/Philemon-Osae" class="btn btn-black">GitHub →</a>
-      <a href="https://wa.me/233206834470" class="btn btn-black" style="background:#25D366">WhatsApp</a>
-      <a href="cv.html" class="btn btn-green">Download CV</a>
+      <a href="https://github.com/Philemon-Osae" target="_blank" rel="noopener" class="btn btn-black">GitHub →</a>
+      <a href="https://www.linkedin.com/in/philemon-osae-hienno-kodua-650492304" target="_blank" rel="noopener" class="btn btn-black" style="background:#0A66C2;border:none;color:#fff">in LinkedIn</a>
+      <a href="mailto:philemonosae1@gmail.com" class="btn btn-black" style="background:#EA4335;border:none;color:#fff">📧 Email Me</a>
+      <a href="cv.html?download=1" class="btn btn-green">Download CV</a>
+      <a href="cv.html" target="_blank" class="btn btn-outline">View CV</a>
+      <a href="https://wa.me/233206834470" target="_blank" rel="noopener" class="btn btn-black" style="background:#25D366;border:none;color:#fff">💬 WhatsApp</a>
     </div>
-    <div class="meta"><span>📧 philemonosae1@gmail.com</span><span>📱 +233 20 683 4470</span><span>📍 Accra</span></div>
+    <div class="meta"><span>📧 philemonosae1@gmail.com</span><span>📱 +233 20 683 4470</span><span>📍 Accra, Ghana</span></div>
   </div>
-  <div class="hero-img" style="text-align:center"><img src="profile.jpg" alt="Philemon" loading="lazy"></div>
+  <div class="hero-img" style="text-align:center">
+    <img src="profile.jpg" alt="Philemon Osae-Hienno Kodua" loading="lazy">
+    <div style="margin-top:12px;font-size:12px;color:#888;font-family:monospace">Abomosu STEM Eng 23-26 • Techten 23-26 • GSTEP 23 • GCTU L100</div>
+  </div>
+</div>
+
+<div class="section alt">
+  <div class="small">01 / EDUCATION</div>
+  <div class="grid3">
+    <div class="card" style="border-left:4px solid #0ea5e9"><h3>Abomosu STEM SHS</h3><span class="tag" style="background:#0ea5e9;color:#fff">DEC 2023 - JUNE 2026 • COMPLETED</span><p class="desc">Built Healthy Habits for GSTEP 2023 in SHS 1.</p></div>
+    <div class="card" style="border-left:4px solid #16a34a"><h3>Techten Planets IT</h3><span class="tag green">2023 - 2026 • VACATION TRAINING</span><p class="desc">HTML, CSS, JS, Node.js, Express, MySQL during SHS vacations.</p></div>
+    <div class="card" style="border-left:4px solid #000"><h3>GCTU</h3><span class="tag" style="background:#111;color:#fff">OCT 2026 - PRESENT • LEVEL 100</span><p class="desc">Currently Level 100 student. Leading an 8-project portfolio including Healthy Habits for Ghana.</p></div>
+  </div>
 </div>
 
 <div class="section" id="projects">
-  <div class="small">PROJECTS - 7 LIVE + 1 IN PROGRESS - WITH TECH STACK</div>
+  <div class="small">02 / PROJECTS - 7 LIVE + 1 IN PROGRESS</div>
   <div class="grid">
 
-    <a href="https://classhub2.vercel.app" target="_blank" class="card" style="border-left:4px solid #4f46e5">
-      <h3>ClassHub 🎓 - Secure Class Portal</h3>
-      <span class="tag green">classhub2.vercel.app • LIVE • FLAGSHIP</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">For GCTU BWAD L100 (49 students). Secure login, materials by course/week, past questions, announcements, timetable with live banner, deadlines, rep upload center with file/Drive links, pinned posts, delete, seen counts, Share to WhatsApp. Postgres trigger + RLS blocks non-reps.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#3ecf8e;color:#000">Supabase</span><span>Postgres</span><span>RLS</span><span>Auth</span><span>Storage</span><span class="light">Vercel</span><span style="background:#25D366">wa.me API</span></div>
+    <a href="https://classhub2.vercel.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #4f46e5">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h3>ClassHub 🎓 - Secure Class Portal</h3><span class="flag">FLAGSHIP</span>
+      </div>
+      <span class="tag green">classhub2.vercel.app • LIVE • GCTU BWAD L100</span>
+      <p class="desc">Class website I built for my own class, so WhatsApp stays for chat and ClassHub is the searchable archive. Students register once, then browse materials by course and week, past questions, announcements, the real teaching timetable with a live week banner, deadline countdowns, and send requests. Course reps get an upload center (files or Drive links), pinned announcements, deletion, "seen by" counts and one-tap Share to WhatsApp. Rep access is enforced on the server: a Postgres trigger checks each rep's index and secret code, and row level security blocks everyone else, so it cannot be bypassed from the browser.</p>
+      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#3ecf8e;color:#000">Supabase</span><span>Postgres</span><span>Row Level Security</span><span>Auth</span><span>Storage</span><span style="background:#25D366">wa.me API</span><span class="light">Vercel</span></div>
     </a>
 
-    <div class="card" style="border-left:4px solid #9333ea;background:#faf5ff">
-      <h3>Healthy Habits 🇬🇭 🤰 - Prenatal Wellness</h3>
-      <span class="tag" style="background:#9333ea;color:#fff">IN PROGRESS • OFFLINE-FIRST</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">For pregnant women in Ghana. 100% offline, shareable via Bluetooth in clinics. 4 routines (2 mins each): Stand & Stretch, Bend Backwards, Knee Movements, Leg Stretching. Privacy-first, no login.</p>
-      <div class="stack"><span style="background:#9333ea">React Native</span><span>Expo SDK 52+</span><span>expo-video v2</span><span>React Navigation</span><span class="light">EAS Build</span><span class="light">Offline-First</span></div>
+    <div class="card hh">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h3>Healthy Habits 🇬🇭 🤰 - Prenatal Wellness for Ghana</h3>
+        <span style="background:#9333ea;color:#fff;font-size:10px;font-weight:900;padding:5px 10px;border-radius:20px;letter-spacing:1px">🚧 IN PROGRESS • COMING SOON</span>
+      </div>
+      <span class="tag" style="background:#9333ea;color:#fff">FOR GHANA • REAL IMPACT</span>
+      <p class="desc"><b>What it does:</b> Mobile health app supporting pregnant women in Ghana with safe, simple prenatal exercises. 100% offline after install, so it works for mothers from Accra to villages with limited access to physiotherapy. Shareable via Bluetooth/ShareIt in clinics and CHPS compounds.</p>
+      <p class="desc2"><b>4 guided routines (2 mins each, safe for all trimesters):</b> Stand & Stretch for lower back pain, Bend Backwards for posture and breathing, Knee Movements to reduce swelling, Leg Stretching for circulation. Chair-supported, can be done at home.</p>
+      <p class="desc2"><b>Why it matters:</b> Eases back pain and leg swelling, prepares the body for safe delivery, and encourages daily movement. Privacy-first: no login, no data collection.</p>
+      <div class="stack"><span style="background:#9333ea">React Native</span><span>Expo SDK 52+</span><span>expo-video v2</span><span>React Navigation</span><span class="light">EAS Build APK</span><span class="light">Offline-First</span></div>
+      <div class="links">
+        <span class="btn btn-outline" style="padding:6px 12px;font-size:12px;cursor:default;opacity:0.8">📱 Android APK - Coming Soon</span>
+        <span class="btn btn-outline" style="padding:6px 12px;font-size:12px;cursor:default;opacity:0.8">🔜 Play Store Soon</span>
+      </div>
     </div>
 
-    <a href="https://kwamepapaa.netlify.app" target="_blank" class="card" style="border-left:4px solid #f59e0b">
-      <h3>Kwamepapaa 🥁 - Booking + Rental System</h3>
-      <span class="tag green">kwamepapaa.netlify.app • LIVE</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">For pro drummer Joseph Offei. Services: Church, Wedding, Concert, Studio, Brand Promo. Rentals: Drums, Keyboard, Bass. Built Instant Quote calculator with bundle discount + WhatsApp send.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#f59e0b;color:#000">Instant Quote Calculator</span><span style="background:#25D366">wa.me API</span><span class="light">Netlify</span></div>
-    </a>
-
-    <a href="https://phil-tech-two.vercel.app" target="_blank" class="card" style="border-left:4px solid #0b2a7a">
+    <a href="https://phil-tech-two.vercel.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #0b2a7a">
       <h3>Phil Tech ⚡ - Campus Business Booking</h3>
-      <span class="tag green">phil-tech-two.vercel.app • LIVE</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">For GCTU student businesses. Package (Basic GHC500-800, Standard 1200-1800, Premium 2500-4000) → Business info → MoMo prompt → Domain & colors → WhatsApp DM.</p>
+      <span class="tag green">phil-tech-two.vercel.app • LIVE • LEAD SYSTEM</span>
+      <p class="desc">Booking platform for GCTU campus businesses. Students choose a package (Basic GHC 500-800, Standard 1200-1800, Premium 2500-4000), fill business info, MoMo, delivery fee, domain and colors. One tap sends the booking straight to my WhatsApp.</p>
       <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Lead Funnel</span><span style="background:#25D366">wa.me API</span><span class="light">Vercel</span></div>
     </a>
 
-    <a href="https://phil-jazzy.netlify.app" target="_blank" class="card" style="border-left:4px solid #eab308">
+    <a href="https://phil-jazzy.netlify.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #eab308">
       <h3>Phil Jazzy 🥁 - Interactive Drummer Portfolio</h3>
-      <span class="tag green">phil-jazzy.netlify.app • LIVE</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">TRY MY KIT 9-pad (Kick/Snare/Hi-Hat/Tom/Ride/Crash/Clap/Cowbell/Rimshot) keyboard Q,W,E,A,S,D,Z,X,C + WORSHIP PAD 12-note C-B Major/Minor Warm/Bright/Strings/Airy. AI rate card Church 250-400 Wedding 400-700.</p>
+      <span class="tag green">phil-jazzy.netlify.app • LIVE • INTERACTIVE</span>
+      <p class="desc">Personal brand and booking site for my drumming, with 2 Web Audio API tools: TRY MY KIT (9-pad drum machine, keys Q,W,E,A,S,D,Z,X,C) and WORSHIP PAD (12-note C-B chord sustainer, Major/Minor, Warm/Bright/Strings/Airy). An AI assistant with a rate card books gigs via WhatsApp.</p>
       <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#000">Web Audio API</span><span>AI Chatbot</span><span class="light">Netlify</span></div>
     </a>
 
-    <a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" class="card" style="border-left:4px solid #16a34a">
-      <h3>Adom Trombonist 🎺 - Professional Portfolio</h3>
-      <span class="tag green">adom-the-trombonist-gh.netlify.app • LIVE</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">For Adom Nyarko-Yeboah, professional trombonist Accra/NADAMB/CCTU. WHAT I DO: Church, Wedding, Studio, Concerts. TRY MY HORN 12-note chromatic brass C-B, tap to play/stop. FAQ accordion + WhatsApp booking.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#000">Web Audio API</span><span>12-Note Chromatic</span><span>FAQ Accordion</span><span style="background:#25D366">wa.me API</span><span class="light">Netlify</span></div>
+    <a href="https://kwamepapaa.netlify.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #f59e0b">
+      <h3>Kwamepapaa 🥁 - Booking + Rental System</h3>
+      <span class="tag green">kwamepapaa.netlify.app • LIVE • BOOKING + RENTAL</span>
+      <p class="desc">Full booking system for Ghanaian drummer Joseph Offei. Services: Church, Wedding, Concert, Studio, Brand Promotion. Instrument rentals: Drums, Keyboard, Bass. Built a GET AN INSTANT QUOTE calculator: tick services and rentals, see the total instantly with a bundle discount alert, then send the quote on WhatsApp. Dark and gold premium theme.</p>
+      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#f59e0b;color:#000">Instant Quote Calculator</span><span style="background:#25D366">wa.me API</span><span class="light">Netlify</span></div>
     </a>
 
-    <a href="https://wedding-invitation-gh.netlify.app" target="_blank" class="card" style="border-left:4px solid #ec4899">
-      <h3>Wedding Invitation GH 💍 - Premium Templates (V1 + V2)</h3>
-      <span class="tag green">2 Templates Live</span>
-      <p style="font-size:14px;margin-top:10px;color:#444">Reusable Ghanaian wedding sites. Features: Envelope animation + hearts, SAVE THE DATE countdown, calendar highlight, Google Maps + Google Calendar + Add to Phone + Share WhatsApp, Dress code, Support the Couple with MoMo copy button, Our Story photos, Guest Wishes + RSVP via Google Forms.</p>
+    <div class="card" style="border-left:4px solid #ec4899">
+      <h3>Wedding Invitation GH 💍 - Premium Templates</h3>
+      <span class="tag green">2 TEMPLATES LIVE • V1 + V2 • REUSABLE</span>
+      <p class="desc">Reusable Ghanaian wedding invitation sites, built first for Bakatel & Juliet. V1 is the fast mobile-first foundation; V2 is the premium envelope upgrade. Features: gold seal Open Invite hero, envelope animation with floating hearts, SAVE THE DATE live countdown, calendar highlight, Google Maps, Google Calendar, Add to Phone and Share on WhatsApp, dress code, Support the Couple with a copy-MoMo button, Our Story photos, Guest Wishes and RSVP via Google Forms or WhatsApp.</p>
       <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Envelope Animation</span><span>Countdown Timer</span><span>Google Maps API</span><span>Google Forms API</span><span class="light">Netlify</span></div>
+      <div class="links">
+        <a href="https://weddinginvitation-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-outline" style="padding:6px 12px;font-size:12px">View V1 →</a>
+        <a href="https://wedding-invitation-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-black" style="padding:6px 12px;font-size:12px">View V2 →</a>
+      </div>
+    </div>
+
+    <a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #16a34a">
+      <h3>Adom Trombonist 🎺 - Professional Portfolio</h3>
+      <span class="tag green">adom-the-trombonist-gh.netlify.app • LIVE • INTERACTIVE</span>
+      <p class="desc">Portfolio and booking site for Adom Nyarko-Yeboah, professional trombonist in Accra (NADAMB, CCTU). Services: church programmes, weddings and events, studio recording, concerts. Built TRY MY HORN, a 12-note chromatic sustained brass tone (C to B): tap a note to play, tap again to stop. FAQ accordion and one-tap WhatsApp booking.</p>
+      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#000">Web Audio API</span><span>12-Note Chromatic</span><span>FAQ Accordion</span><span style="background:#25D366">wa.me API</span><span class="light">Netlify</span></div>
     </a>
 
   </div>
 </div>
 
-<footer>© 2026 Philemon Osae-Hienno Kodua • philemonosae1@gmail.com • Available for Work</footer>
+<div class="section alt">
+  <div class="small">03 / SERVICES - PHIL TECH</div>
+  <div class="grid3">
+    <div class="card" style="border-left:4px solid #16a34a"><h3>Web Development</h3><span class="tag green">REACT • HTML • CSS • JS</span><p class="desc">Modern, mobile friendly business websites, booking platforms, and e-commerce sites built for speed and SEO.</p></div>
+    <div class="card" style="border-left:4px solid #000"><h3>Mobile App Development</h3><span class="tag" style="background:#111;color:#fff">REACT NATIVE • EXPO</span><p class="desc">Android and iOS apps with login, push notifications, and Play Store deployment. One codebase, both platforms.</p></div>
+    <div class="card" style="border-left:4px solid #0ea5e9"><h3>Backend & API Integration</h3><span class="tag" style="background:#0ea5e9;color:#fff">NODE.JS • EXPRESS • FIREBASE • MYSQL • SUPABASE</span><p class="desc">Secure backends, databases, auth systems, and API integration for Paystack, Hubtel, WhatsApp, and Google Maps.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="https://wa.me/233206834470?text=Hello%20Phil%20Tech,%20I%20need%20a%20website/app" target="_blank" rel="noopener" class="btn btn-black" style="background:#16a34a;border:none;color:#fff">Hire Me on WhatsApp →</a>
+  </div>
+</div>
+
+<footer>
+  <b>PHILEMON OSAE-HIENNO KODUA</b>
+  <p style="margin-top:6px">Abomosu STEM Eng 23-26 • Techten 23-26 • GCTU Level 100 Student • 8 Projects (7 Live + 1 In Progress)</p>
+</footer>
 </body>
 </html>
