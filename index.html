@@ -127,13 +127,41 @@ section{padding:56px 0}
 footer{border-top:1px solid var(--line);padding:34px 20px;text-align:center;font-size:13px;color:var(--muted)}
 footer b{color:var(--ink)}
 
+
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.92) rotate(-2deg)}to{opacity:1;transform:none}}
+@keyframes bob{50%{transform:translateY(-7px)}}
+@keyframes glow{50%{box-shadow:0 0 0 7px rgba(15,138,95,0)}}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:linear-gradient(90deg,var(--indigo),var(--gold));transform:scaleX(0);transform-origin:left}
+.hero .badge,.hero h1,.hero .role,.hero .lead,.hero .cta,.hero .meta{animation:rise .8s cubic-bezier(.2,.7,.2,1) backwards}
+.hero .badge{animation-delay:.05s}.hero h1{animation-delay:.15s}.hero .role{animation-delay:.28s}
+.hero .lead{animation-delay:.38s}.hero .cta{animation-delay:.48s}.hero .meta{animation-delay:.58s}
+.photo{animation:pop .9s cubic-bezier(.2,.8,.2,1) .25s backwards}
+.photo:before{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.photo:hover:before{transform:translate(8px,8px)}
+.chip{animation:bob 4.5s ease-in-out infinite}.chip.b{animation-delay:-2.2s}
+.badge:before{animation:glow 2.2s ease-out infinite}
+.btn:active{transform:scale(.96)}
+.win{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.proj:hover .win{transform:translateY(-10px)}
+.proj:hover .pill{transform:scale(1.06)}.pill{transition:transform .25s}
+.js .rv{opacity:0}
+.js .rv.in{opacity:1;animation:rise .75s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:var(--d,0s)}
+.js .timeline:before{transform:scaleY(0);transform-origin:top;transition:transform 1.2s cubic-bezier(.4,0,.2,1)}
+.js .timeline.in:before{transform:scaleY(1)}
+.svc .card{transition:transform .25s,box-shadow .25s}
+.svc .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi)}
+.svc .card:hover .ico{transform:rotate(-8deg) scale(1.1)}.ico{transition:transform .3s}
+.stat{transition:transform .25s}.stat:hover{transform:translateY(-4px)}
 @media(max-width:900px){.svc{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
 @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:36px}.photo{order:-1;max-width:260px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.photo img{flex:0 0 100%}.photo .chip{position:static;margin-top:14px;text-align:center}.grid{grid-template-columns:1fr}.proj.big .top{flex-direction:column}.big .shot{flex:none;min-height:190px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .rv{opacity:1}.js .timeline:before{transform:none}}
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<nav><div class="wrap">
+<nav><div class="progress" id="progress"></div><div class="wrap">
   <a class="logo" href="#top">Philemon<i>.dev</i></a>
   <div class="nav-r">
     <button class="btn btn-ghost" id="theme" aria-label="Toggle dark mode">🌙</button>
@@ -164,9 +192,9 @@ footer b{color:var(--ink)}
   </div>
 
   <div class="stats">
-    <div class="stat"><b>8</b><span>Projects built</span></div>
-    <div class="stat"><b>7</b><span>Live on the web</span></div>
-    <div class="stat"><b>3</b><span>Years of self-training</span></div>
+    <div class="stat"><b data-count="8">8</b><span>Projects built</span></div>
+    <div class="stat"><b data-count="7">7</b><span>Live on the web</span></div>
+    <div class="stat"><b data-count="3">3</b><span>Years of self-training</span></div>
     <div class="stat"><b>L100</b><span>BSc Web App Dev, GCTU</span></div>
   </div>
 
@@ -317,3 +345,60 @@ footer b{color:var(--ink)}
             <p>Portfolio and booking site for Adom Nyarko-Yeboah, professional trombonist in Accra (NADAMB, CCTU). Services: church programmes, weddings and events, studio recording, concerts. <b>Try My Horn</b> is a 12-note chromatic brass tone (C to B): tap a note to play, tap again to stop. FAQ accordion and one-tap WhatsApp booking.</p>
             <div class="links"><a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-ink">Visit live site</a></div>
         </div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head"><h2>Services</h2><p>Through Phil Tech</p></div>
+    <div class="svc">
+      <div class="card"><div class="ico" style="--c:#bbf7d0">🌐</div><h3>Web development</h3><small>React, HTML, CSS, JS</small><p>Mobile-friendly business websites, booking platforms and online shops built for speed and SEO.</p></div>
+      <div class="card"><div class="ico" style="--c:#c7d2fe">📱</div><h3>Mobile apps</h3><small>React Native, Expo</small><p>Android and iOS apps with login, push notifications and Play Store deployment, from one codebase.</p></div>
+      <div class="card"><div class="ico" style="--c:#fde68a">⚙️</div><h3>Backend and APIs</h3><small>Node.js, Express, Firebase, MySQL, Supabase</small><p>Secure backends, databases and auth, plus Paystack, Hubtel, WhatsApp and Google Maps integration.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>Philemon Osae-Hienno Kodua</b>
+  <p style="margin-top:6px">Abomosu STEM 2023-26 · Techten 2023-26 · GCTU Level 100 · 8 projects (7 live, 1 in progress)</p>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches}
+  function paint(){btn.textContent=isDark()?'☀️':'🌙'}
+  btn.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');paint()});
+  paint();
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var bar=document.getElementById('progress');
+  function prog(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?scrollY/h:0)+')'}
+  addEventListener('scroll',prog,{passive:true});prog();
+  function count(el){
+    var n=+el.dataset.count,t0=null;
+    if(reduce){el.textContent=n;return}
+    el.textContent='0';
+    (function step(t){t0=t0||t;var p=Math.min((t-t0)/1100,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(n*e);if(p<1)requestAnimationFrame(step)})(performance.now());
+  }
+  var groups=['.stats','.grid','.svc','.timeline'];
+  document.querySelectorAll('.stat,.step,.proj,.svc .card,.head').forEach(function(el){
+    var sibs=el.parentElement.children,i=Array.prototype.indexOf.call(sibs,el);
+    el.style.setProperty('--d',(Math.min(i,4)*0.09)+'s');el.classList.add('rv');
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;
+    e.target.classList.add('in');
+    var c=e.target.querySelector('[data-count]');if(c)count(c);
+    io.unobserve(e.target);
+  })},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv,.timeline').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.proj .top').forEach(function(t){
+    function tog(){var c=t.parentElement,o=c.classList.toggle('open');t.setAttribute('aria-expanded',o);var h=t.querySelector('.hint');if(h)h.textContent=o?'Hide details':'Tap for details'}
+    t.addEventListener('click',tog);
+    t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
+  });
+})();
+</script>
+</body>
+</html>
