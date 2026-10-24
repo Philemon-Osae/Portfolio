@@ -6,183 +6,349 @@
 <title>Philemon Osae-Hienno Kodua | Full-Stack Developer</title>
 <meta name="description" content="Philemon Osae-Hienno Kodua, full-stack developer in Accra, Ghana. React Native, Node.js and Supabase. Booking systems, class portals and interactive audio sites.">
 <meta name="google-site-verification" content="wQvwOsSiwISzVpbfcx9eXFs2h2bcJipBV-47EO8mG7A" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#fff;color:#111;transition:0.3s;line-height:1.6}
-body.dark{background:#0a0a0a;color:#fff}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:inherit;z-index:10}
-body.dark nav{border-color:#222}
-.logo{font-weight:900;font-size:20px}.logo span{color:#16a34a}
-.btn{padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;cursor:pointer}
-.btn-black{background:#000;color:#fff}body.dark .btn-black{background:#fff;color:#000}
-.btn-green{border:1.5px solid #16a34a;color:#16a34a}
-.btn-outline{border:1px solid #ddd;color:#666}body.dark .btn-outline{border-color:#333;color:#aaa}
-.hero{padding:50px 20px;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center}
-@media(max-width:800px){.hero{grid-template-columns:1fr}.hero-img{order:-1}}
-.hero-img img{width:100%;max-width:320px;border-radius:24px;border:4px solid #f3f4f6;object-fit:cover}body.dark .hero-img img{border-color:#222}
-.hero h1{font-size:48px;line-height:0.95;font-weight:900;letter-spacing:-1px}
-@media(max-width:500px){.hero h1{font-size:36px}}
-.badge{color:#16a34a;font-weight:700;font-size:12px;margin-bottom:12px;display:inline-block;background:#f0fdf4;padding:6px 10px;border-radius:20px}
-.meta{margin-top:18px;font-size:13px;color:#888;display:flex;gap:12px;flex-wrap:wrap}
-.lead{margin-top:16px;color:#666;max-width:600px;font-size:15px}body.dark .lead{color:#aaa}
-.section{padding:50px 20px;max-width:1100px;margin:auto}
-.alt{background:#fafafa;border-top:1px solid #eee;border-bottom:1px solid #eee}body.dark .alt{background:#101010;border-color:#222}
-.small{font-family:monospace;font-size:11px;letter-spacing:2.5px;color:#999;margin-bottom:24px;font-weight:700}
-.card{border:1px solid #eee;border-radius:18px;padding:22px;background:#fff;display:block;text-decoration:none;color:inherit}body.dark .card{background:#151515;border-color:#222}
-.desc{font-size:14px;margin-top:10px;color:#444}body.dark .desc{color:#bbb}
-.desc2{font-size:13px;margin-top:8px;color:#666}body.dark .desc2{color:#aaa}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
-.tag{font-size:10px;font-weight:800;padding:4px 8px;border-radius:6px;background:#f3f4f6;display:inline-block;margin-top:6px}body.dark .tag{background:#222}
-.green{color:#16a34a;background:#f0fdf4}body.dark .green{background:#0f2a1a}
-.stack{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.stack span{font-size:10px;background:#111;color:#fff;padding:4px 8px;border-radius:20px;font-weight:700}
-body.dark .stack span{background:#2a2a2a}
-.stack span.light{background:#f3f4f6;color:#111;border:1px solid #eee}
-body.dark .stack span.light{background:#1c1c1c;color:#ddd;border-color:#333}
-.flag{background:#4f46e5;color:#fff;font-size:10px;font-weight:900;padding:5px 10px;border-radius:20px;letter-spacing:1px}
-.hh{border-left:4px solid #9333ea;background:linear-gradient(135deg,#faf5ff 0%,#fff 100%)}
-body.dark .hh{background:linear-gradient(135deg,#1c1230 0%,#151515 100%)}
+:root{
+  --bg:#eef1f6;--surface:#fff;--ink:#101828;--muted:#566075;--line:#dde2ec;
+  --indigo:#4338ca;--green:#0f8a5f;--gold:#f2b01e;--shadow:0 1px 2px rgba(16,24,40,.06),0 12px 32px -12px rgba(40,50,110,.28);
+  --shadow-hi:0 2px 4px rgba(16,24,40,.08),0 28px 48px -16px rgba(40,50,110,.4);
+}
+:root[data-theme="dark"]{
+  --bg:#0c0f1a;--surface:#161b2c;--ink:#eef1fb;--muted:#9aa4bf;--line:#273049;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.7);
+  --shadow-hi:0 2px 4px rgba(0,0,0,.5),0 30px 50px -16px rgba(0,0,0,.85);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c0f1a;--surface:#161b2c;--ink:#eef1fb;--muted:#9aa4bf;--line:#273049;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.7);
+  --shadow-hi:0 2px 4px rgba(0,0,0,.5),0 30px 50px -16px rgba(0,0,0,.85);}}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;
+  background-image:radial-gradient(60rem 30rem at 85% -10%,rgba(67,56,202,.16),transparent 60%),radial-gradient(40rem 25rem at -10% 20%,rgba(242,176,30,.14),transparent 60%);
+  background-repeat:no-repeat}
+h1,h2,h3{font-family:'Bricolage Grotesque','Instrument Sans',system-ui,sans-serif;line-height:1.05}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--indigo);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1120px;margin:auto;padding:0 20px}
+
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;text-decoration:none}
+.logo i{font-style:normal;color:var(--green)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-ink{background:var(--ink);color:var(--bg);box-shadow:0 8px 18px -8px rgba(16,24,40,.6)}
+.btn-ghost{background:var(--surface);border-color:var(--line);color:var(--ink);box-shadow:var(--shadow)}
+.btn-wa{background:#1fa855;color:#fff;box-shadow:0 8px 18px -8px rgba(31,168,85,.7)}
+.btn-in{background:#0a66c2;color:#fff;box-shadow:0 8px 18px -8px rgba(10,102,194,.7)}
+.btn-mail{background:#d93f2f;color:#fff;box-shadow:0 8px 18px -8px rgba(217,63,47,.7)}
+
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding:64px 0 40px}
+.badge{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:600;background:var(--surface);border:1px solid var(--line);padding:7px 14px;border-radius:99px;box-shadow:var(--shadow)}
+.badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(15,138,95,.2)}
+.hero h1{font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.03em;margin:22px 0 18px}
+.role{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.role b{background:var(--indigo);color:#fff;padding:6px 14px;border-radius:99px;font-size:14px}
+.role span{color:var(--green);font-weight:600}
+.lead{color:var(--muted);max-width:560px;font-size:16px}
+.lead b{color:var(--ink)}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:14px;color:var(--muted)}
+
+.photo{position:relative;max-width:340px;margin:auto}
+.photo:before{content:"";position:absolute;inset:18px -18px -18px 18px;border-radius:30px;background:linear-gradient(135deg,var(--indigo),#7c3aed 55%,var(--gold));opacity:.9}
+.photo img{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:30px;border:5px solid var(--surface);box-shadow:var(--shadow-hi);display:block}
+.chip{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:12px;font-weight:600;box-shadow:var(--shadow-hi);z-index:2}
+.chip b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;line-height:1}
+.chip.a{left:-22px;bottom:34px}.chip.b{right:-14px;top:26px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow)}
+.stat b{font-family:'Bricolage Grotesque',sans-serif;font-size:32px;display:block;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
+
+section{padding:56px 0}
+.head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.head h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em}
+.head p{color:var(--muted);font-size:14px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:start}
+.proj{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.proj:hover{transform:translateY(-6px);box-shadow:var(--shadow-hi)}
+.proj.big{grid-column:1/-1}.proj.big .top{display:flex}
+.shot{position:relative;min-height:190px;padding:46px 22px 0;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:var(--g)}
+.big .shot{flex:0 0 40%;min-height:auto}
+.win{width:100%;max-width:340px;background:rgba(255,255,255,.96);border-radius:12px 12px 0 0;box-shadow:0 -4px 30px rgba(0,0,0,.25);color:#101828;padding:34px 16px 16px;position:relative;min-height:120px}
+.win:before{content:"";position:absolute;left:12px;top:12px;width:9px;height:9px;border-radius:50%;background:#ff5f57;box-shadow:15px 0 #febc2e,30px 0 #28c840}
+.win:after{content:attr(data-url);position:absolute;left:62px;right:12px;top:7px;height:19px;border-radius:6px;background:#eef1f6;font-size:10px;line-height:19px;padding:0 8px;color:#566075;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.win em{display:block;font-style:normal;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px}
+.win i{display:block;height:7px;border-radius:4px;background:#e3e7f0;margin-top:9px}
+.win i:nth-of-type(2){width:70%}.win i:nth-of-type(3){width:45%;background:var(--ac)}
+.pill{position:absolute;top:14px;right:14px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.95);color:#101828}
+.top{cursor:pointer}.top:focus-visible{outline-offset:-3px}
+.body{padding:22px 24px 20px;display:flex;flex-direction:column;flex:1}
+.hint{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--indigo)}
+.hint:after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .25s}
+.open .hint:after{transform:rotate(-135deg) translateY(-2px)}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.open .more{grid-template-rows:1fr}
+.more-in{overflow:hidden}
+.pad{padding:0 24px 24px;border-top:1px solid var(--line);margin:0 0;padding-top:4px;max-width:78ch}
+.pad p{font-size:14px;color:var(--muted);margin-top:12px}.pad p b{color:var(--ink)}
+.body h3{font-size:22px;letter-spacing:-.01em}
+.sub{font-size:13px;font-weight:600;color:var(--green);margin-top:6px}
+.stack{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:16px}
+.stack span{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--ink)}
 .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-footer{border-top:1px solid #eee;padding:35px 20px;text-align:center;font-size:13px;color:#888;margin-top:20px}body.dark footer{border-color:#222}
-footer b{color:#111}body.dark footer b{color:#fff}
+.links .btn{padding:8px 14px;font-size:13px}
+.soon{opacity:.75;cursor:default}
+.soon:hover{transform:none}
+
+.timeline{position:relative;display:grid;gap:18px;padding-left:30px}
+.timeline:before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--indigo),var(--gold))}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 22px;box-shadow:var(--shadow)}
+.step:before{content:"";position:absolute;left:-29px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--indigo)}
+.step small{font-size:12px;font-weight:700;color:var(--indigo)}
+.step h3{font-size:19px;margin:4px 0}
+.step p{font-size:14px;color:var(--muted)}
+
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow)}
+.ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:14px;background:var(--c);box-shadow:0 10px 18px -8px var(--c)}
+.svc h3{font-size:20px}
+.svc small{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:6px 0 10px}
+.svc p{font-size:14px;color:var(--muted)}
+.hire{text-align:center;margin-top:30px}
+
+footer{border-top:1px solid var(--line);padding:34px 20px;text-align:center;font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+
+@media(max-width:900px){.svc{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:36px}.photo{order:-1;max-width:260px}.grid{grid-template-columns:1fr}.proj.big .top{flex-direction:column}.big .shot{flex:none;min-height:190px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<nav>
-  <div class="logo">Philemon<span>.dev</span></div>
-  <div style="display:flex;gap:8px;align-items:center">
-    <button onclick="document.body.classList.toggle('dark')" class="btn btn-outline" style="padding:8px 12px">🌙 / ☀️</button>
-    <a href="cv.html?download=1" class="btn btn-black">Download CV</a>
+<nav><div class="wrap">
+  <a class="logo" href="#top">Philemon<i>.dev</i></a>
+  <div class="nav-r">
+    <button class="btn btn-ghost" id="theme" aria-label="Toggle dark mode">🌙</button>
   </div>
-</nav>
+</div></nav>
 
-<div class="hero">
-  <div>
-    <span class="badge">● Abomosu STEM Alumni '26 • Level 100 GCTU Student • Available for Internship</span>
-    <h1>PHILEMON<br>OSAE-HIENNO<br>KODUA</h1>
-    <h2 style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px">
-      <span style="background:#111;color:#fff;padding:5px 12px;border-radius:20px;font-size:14px;font-weight:800">Full-Stack Developer</span>
-      <span style="color:#16a34a;font-size:16px;font-weight:600">React Native + Node.js + Supabase</span>
-    </h2>
-    <p class="lead">
-      Engineering at <b>Abomosu STEM SHS (Dec 2023 - June 2026)</b> where I built Healthy Habits for GSTEP 2023.
-      Self-taught at <b>Techten Planets IT</b> during vacations since 2023.
-      Now <b>Level 100 BSc Web App Development student at GCTU</b>. Founder of 8 projects (7 live + 1 in progress), including <b>ClassHub</b>, a secure class portal with Supabase login and row level security.
-    </p>
-    <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
-      <a href="https://github.com/Philemon-Osae" target="_blank" rel="noopener" class="btn btn-black">GitHub →</a>
-      <a href="https://www.linkedin.com/in/philemon-osae-hienno-kodua-650492304" target="_blank" rel="noopener" class="btn btn-black" style="background:#0A66C2;border:none;color:#fff">in LinkedIn</a>
-      <a href="mailto:philemonosae1@gmail.com" class="btn btn-black" style="background:#EA4335;border:none;color:#fff">📧 Email Me</a>
-      <a href="cv.html?download=1" class="btn btn-green">Download CV</a>
-      <a href="cv.html" target="_blank" class="btn btn-outline">View CV</a>
-      <a href="https://wa.me/233206834470" target="_blank" rel="noopener" class="btn btn-black" style="background:#25D366;border:none;color:#fff">💬 WhatsApp</a>
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <span class="badge">Level 100 at GCTU · Available for internship</span>
+      <h1>Philemon Osae-Hienno Kodua</h1>
+      <div class="role"><b>Full-Stack Developer</b><span>React Native, Node.js, Supabase</span></div>
+      <p class="lead">I built <b>Healthy Habits</b> for GSTEP 2023 while at <b>Abomosu STEM SHS</b> (Dec 2023 to June 2026), and I’ve been self-taught at <b>Techten Planets IT</b> since 2023. Now a <b>BSc Web App Development student at GCTU</b>, I’ve shipped 8 projects, including <b>ClassHub</b>, a class portal with Supabase login and row level security.</p>
+      <div class="cta">
+        <a href="https://github.com/Philemon-Osae" target="_blank" rel="noopener" class="btn btn-ink">GitHub</a>
+        <a href="https://www.linkedin.com/in/philemon-osae-hienno-kodua-650492304" target="_blank" rel="noopener" class="btn btn-in">LinkedIn</a>
+        <a href="mailto:philemonosae1@gmail.com" class="btn btn-mail">Email me</a>
+        <a href="https://wa.me/233206834470" target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+        <a href="cv.html" target="_blank" class="btn btn-ghost">View CV</a>
+      </div>
+      <div class="meta"><span>📧 philemonosae1@gmail.com</span><span>📱 +233 20 683 4470</span><span>📍 Accra, Ghana</span></div>
     </div>
-    <div class="meta"><span>📧 philemonosae1@gmail.com</span><span>📱 +233 20 683 4470</span><span>📍 Accra, Ghana</span></div>
+    <div class="photo">
+      <img src="profile.jpg" alt="Philemon Osae-Hienno Kodua" loading="lazy">
+      <div class="chip a"><b>7 live</b>projects shipped</div>
+      <div class="chip b"><b>GSTEP ’23</b>Healthy Habits</div>
+    </div>
   </div>
-  <div class="hero-img" style="text-align:center">
-    <img src="profile.jpg" alt="Philemon Osae-Hienno Kodua" loading="lazy">
-    <div style="margin-top:12px;font-size:12px;color:#888;font-family:monospace">Abomosu STEM Eng 23-26 • Techten 23-26 • GSTEP 23 • GCTU L100</div>
+
+  <div class="stats">
+    <div class="stat"><b>8</b><span>Projects built</span></div>
+    <div class="stat"><b>7</b><span>Live on the web</span></div>
+    <div class="stat"><b>3</b><span>Years of self-training</span></div>
+    <div class="stat"><b>L100</b><span>BSc Web App Dev, GCTU</span></div>
   </div>
-</div>
 
-<div class="section alt">
-  <div class="small">01 / EDUCATION</div>
-  <div class="grid3">
-    <div class="card" style="border-left:4px solid #0ea5e9"><h3>Abomosu STEM SHS</h3><span class="tag" style="background:#0ea5e9;color:#fff">DEC 2023 - JUNE 2026 • COMPLETED</span><p class="desc">Built Healthy Habits for GSTEP 2023 in SHS 1.</p></div>
-    <div class="card" style="border-left:4px solid #16a34a"><h3>Techten Planets IT</h3><span class="tag green">2023 - 2026 • VACATION TRAINING</span><p class="desc">HTML, CSS, JS, Node.js, Express, MySQL during SHS vacations.</p></div>
-    <div class="card" style="border-left:4px solid #000"><h3>GCTU</h3><span class="tag" style="background:#111;color:#fff">OCT 2026 - PRESENT • LEVEL 100</span><p class="desc">Currently Level 100 student. Leading an 8-project portfolio including Healthy Habits for Ghana.</p></div>
-  </div>
-</div>
+  <section>
+    <div class="head"><h2>Education</h2></div>
+    <div class="timeline">
+      <div class="step"><small>2023 to June 2026 · Vacation training</small><h3>Techten Planets IT</h3><p>HTML, CSS, JS, Node.js, Express and MySQL during SHS vacations.</p></div>
+      <div class="step"><small>Dec 2023 to June 2026 · Completed</small><h3>Abomosu STEM SHS</h3><p>Built Healthy Habits for GSTEP 2023 in SHS 1.</p></div>
+      <div class="step"><small>Oct 2026 to present · Level 100</small><h3>GCTU</h3><p>BSc Web App Development, leading an 8-project portfolio including Healthy Habits for Ghana.</p></div>
+    </div>
+  </section>
 
-<div class="section" id="projects">
-  <div class="small">02 / PROJECTS - 7 LIVE + 1 IN PROGRESS</div>
-  <div class="grid">
+  <section id="projects">
+    <div class="head"><h2>Projects</h2><p>7 live, 1 in progress</p></div>
+    <div class="grid">
 
-    <a href="https://classhub2.vercel.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #4f46e5">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-        <h3>ClassHub 🎓 - Secure Class Portal</h3><span class="flag">FLAGSHIP</span>
+      <div class="proj big" style="--ac:#4338ca">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#4338ca,#7c3aed)">
+          <span class="pill">Flagship</span>
+          <div class="win" data-url="classhub2.vercel.app"><em>ClassHub 🎓</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>ClassHub: Secure Class Portal</h3>
+            <div class="sub">Live · GCTU BWAD L100</div>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Supabase</span><span>Postgres</span><span>Row Level Security</span><span>Auth</span><span>Storage</span><span>wa.me API</span><span>Vercel</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>A class website I built for my own class, so WhatsApp stays for chat and ClassHub is the searchable archive. Students register once, then browse materials by course and week, past questions, announcements, the real teaching timetable with a live week banner, deadline countdowns, and send requests. Course reps get an upload center (files or Drive links), pinned announcements, deletion, “seen by” counts and one-tap Share to WhatsApp.</p>
+            <p><b>Secure by design:</b> rep access is enforced on the server. A Postgres trigger checks each rep’s index and secret code, and row level security blocks everyone else, so it can’t be bypassed from the browser.</p>
+            <div class="links"><a href="https://classhub2.vercel.app" target="_blank" rel="noopener" class="btn btn-ink">Visit live site</a></div>
+        </div></div></div>
       </div>
-      <span class="tag green">classhub2.vercel.app • LIVE • GCTU BWAD L100</span>
-      <p class="desc">Class website I built for my own class, so WhatsApp stays for chat and ClassHub is the searchable archive. Students register once, then browse materials by course and week, past questions, announcements, the real teaching timetable with a live week banner, deadline countdowns, and send requests. Course reps get an upload center (files or Drive links), pinned announcements, deletion, "seen by" counts and one-tap Share to WhatsApp. Rep access is enforced on the server: a Postgres trigger checks each rep's index and secret code, and row level security blocks everyone else, so it cannot be bypassed from the browser.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#3ecf8e;color:#000">Supabase</span><span>Postgres</span><span>Row Level Security</span><span>Auth</span><span>Storage</span><span style="background:#25D366">wa.me API</span><span class="light">Vercel</span></div>
-    </a>
 
-    <div class="card hh">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-        <h3>Healthy Habits 🇬🇭 🤰 - Prenatal Wellness for Ghana</h3>
-        <span style="background:#9333ea;color:#fff;font-size:10px;font-weight:900;padding:5px 10px;border-radius:20px;letter-spacing:1px">🚧 IN PROGRESS • COMING SOON</span>
+      <div class="proj" style="--ac:#9333ea">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#9333ea,#db2777)">
+          <span class="pill">🚧 In progress</span>
+          <div class="win" data-url="Android APK, coming soon"><em>Healthy Habits 🤰</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>Healthy Habits: Prenatal Wellness for Ghana</h3>
+            <div class="sub">Coming soon · Real impact</div>
+            <div class="stack"><span>React Native</span><span>Expo SDK 52+</span><span>expo-video v2</span><span>React Navigation</span><span>EAS Build APK</span><span>Offline-first</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>A mobile app with safe, simple prenatal exercises for pregnant women in Ghana. It works 100% offline after install, so it reaches mothers from Accra to villages with limited access to physiotherapy, and can be shared by Bluetooth or ShareIt in clinics and CHPS compounds.</p>
+            <p><b>4 guided routines, 2 minutes each, safe in all trimesters:</b> Stand &amp; Stretch for lower back pain, Bend Backwards for posture and breathing, Knee Movements to reduce swelling, Leg Stretching for circulation. No login and no data collection.</p>
+            <div class="links"><span class="btn btn-ghost soon">📱 Android APK soon</span><span class="btn btn-ghost soon">Play Store soon</span></div>
+        </div></div></div>
       </div>
-      <span class="tag" style="background:#9333ea;color:#fff">FOR GHANA • REAL IMPACT</span>
-      <p class="desc"><b>What it does:</b> Mobile health app supporting pregnant women in Ghana with safe, simple prenatal exercises. 100% offline after install, so it works for mothers from Accra to villages with limited access to physiotherapy. Shareable via Bluetooth/ShareIt in clinics and CHPS compounds.</p>
-      <p class="desc2"><b>4 guided routines (2 mins each, safe for all trimesters):</b> Stand & Stretch for lower back pain, Bend Backwards for posture and breathing, Knee Movements to reduce swelling, Leg Stretching for circulation. Chair-supported, can be done at home.</p>
-      <p class="desc2"><b>Why it matters:</b> Eases back pain and leg swelling, prepares the body for safe delivery, and encourages daily movement. Privacy-first: no login, no data collection.</p>
-      <div class="stack"><span style="background:#9333ea">React Native</span><span>Expo SDK 52+</span><span>expo-video v2</span><span>React Navigation</span><span class="light">EAS Build APK</span><span class="light">Offline-First</span></div>
-      <div class="links">
-        <span class="btn btn-outline" style="padding:6px 12px;font-size:12px;cursor:default;opacity:0.8">📱 Android APK - Coming Soon</span>
-        <span class="btn btn-outline" style="padding:6px 12px;font-size:12px;cursor:default;opacity:0.8">🔜 Play Store Soon</span>
+
+      <div class="proj" style="--ac:#0b2a7a">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#0b2a7a,#2563eb)">
+          <span class="pill">Live</span>
+          <div class="win" data-url="phil-tech-two.vercel.app"><em>Phil Tech ⚡</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>Phil Tech: Campus Business Booking</h3>
+            <div class="sub">Lead system</div>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Lead funnel</span><span>wa.me API</span><span>Vercel</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>Booking platform for GCTU campus businesses. Students choose a package (Basic GHC 500-800, Standard 1200-1800, Premium 2500-4000), fill in business info, MoMo, delivery fee, domain and colors, and one tap sends the booking straight to my WhatsApp.</p>
+            <div class="links"><a href="https://phil-tech-two.vercel.app" target="_blank" rel="noopener" class="btn btn-ink">Visit live site</a></div>
+        </div></div></div>
+      </div>
+
+      <div class="proj" style="--ac:#ca8a04">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#1c1917,#ca8a04)">
+          <span class="pill">Live</span>
+          <div class="win" data-url="phil-jazzy.netlify.app"><em>Phil Jazzy 🥁</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>Phil Jazzy: Interactive Drummer Portfolio</h3>
+            <div class="sub">Interactive</div>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Web Audio API</span><span>AI chatbot</span><span>Netlify</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>Personal brand and booking site for my drumming, with 2 Web Audio API tools: <b>Try My Kit</b>, a 9-pad drum machine (keys Q, W, E, A, S, D, Z, X, C), and <b>Worship Pad</b>, a 12-note chord sustainer with Major/Minor and Warm, Bright, Strings and Airy sounds. An AI assistant with a rate card books gigs via WhatsApp.</p>
+            <div class="links"><a href="https://phil-jazzy.netlify.app" target="_blank" rel="noopener" class="btn btn-ink">Visit live site</a></div>
+        </div></div></div>
+      </div>
+
+      <div class="proj" style="--ac:#f59e0b">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#292524,#f59e0b)">
+          <span class="pill">Live</span>
+          <div class="win" data-url="kwamepapaa.netlify.app"><em>Kwamepapaa 🥁</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>Kwamepapaa: Booking + Rental System</h3>
+            <div class="sub">Booking and rental</div>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Quote calculator</span><span>wa.me API</span><span>Netlify</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>Full booking system for Ghanaian drummer Joseph Offei. Services: Church, Wedding, Concert, Studio, Brand Promotion. Rentals: Drums, Keyboard, Bass. The <b>Instant Quote</b> calculator totals ticked services and rentals, flags the bundle discount, and sends the quote on WhatsApp. Dark and gold theme.</p>
+            <div class="links"><a href="https://kwamepapaa.netlify.app" target="_blank" rel="noopener" class="btn btn-ink">Visit live site</a></div>
+        </div></div></div>
+      </div>
+
+      <div class="proj" style="--ac:#ec4899">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#be185d,#f9a8d4)">
+          <span class="pill">2 templates live</span>
+          <div class="win" data-url="weddinginvitation-gh.netlify.app"><em>Wedding Invitation GH 💍</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>Wedding Invitation GH: Premium Templates</h3>
+            <div class="sub">V1 + V2 · Reusable</div>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Countdown</span><span>Google Maps API</span><span>Google Forms API</span><span>Netlify</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>Reusable Ghanaian wedding invitation sites, built first for Bakatel &amp; Juliet. V1 is the fast mobile-first foundation; V2 is the premium envelope upgrade. Features: envelope animation with floating hearts, live countdown, Google Maps and Calendar, Add to Phone, Share on WhatsApp, dress code, a copy-MoMo button to support the couple, Our Story photos, Guest Wishes and RSVP via Google Forms or WhatsApp.</p>
+            <div class="links"><a href="https://weddinginvitation-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-ghost">View V1</a>
+            <a href="https://wedding-invitation-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-ink">View V2</a></div>
+        </div></div></div>
+      </div>
+
+      <div class="proj" style="--ac:#16a34a">
+        <div class="top" role="button" tabindex="0" aria-expanded="false">
+        <div class="shot" style="--g:linear-gradient(135deg,#064e3b,#16a34a)">
+          <span class="pill">Live</span>
+          <div class="win" data-url="adom-the-trombonist-gh.netlify.app"><em>Adom Trombonist 🎺</em><i></i><i></i><i></i></div>
+        </div>
+          <div class="body">
+            <h3>Adom Trombonist: Professional Portfolio</h3>
+            <div class="sub">Interactive</div>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Web Audio API</span><span>FAQ accordion</span><span>wa.me API</span><span>Netlify</span></div>
+            <span class="hint">Tap for details</span>
+          </div>
+        </div>
+        <div class="more"><div class="more-in"><div class="pad">
+            <p>Portfolio and booking site for Adom Nyarko-Yeboah, professional trombonist in Accra (NADAMB, CCTU). Services: church programmes, weddings and events, studio recording, concerts. <b>Try My Horn</b> is a 12-note chromatic brass tone (C to B): tap a note to play, tap again to stop. FAQ accordion and one-tap WhatsApp booking.</p>
+            <div class="links"><a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-ink">Visit live site</a></div>
+        </div></div></div>
       </div>
     </div>
+  </section>
 
-    <a href="https://phil-tech-two.vercel.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #0b2a7a">
-      <h3>Phil Tech ⚡ - Campus Business Booking</h3>
-      <span class="tag green">phil-tech-two.vercel.app • LIVE • LEAD SYSTEM</span>
-      <p class="desc">Booking platform for GCTU campus businesses. Students choose a package (Basic GHC 500-800, Standard 1200-1800, Premium 2500-4000), fill business info, MoMo, delivery fee, domain and colors. One tap sends the booking straight to my WhatsApp.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Lead Funnel</span><span style="background:#25D366">wa.me API</span><span class="light">Vercel</span></div>
-    </a>
-
-    <a href="https://phil-jazzy.netlify.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #eab308">
-      <h3>Phil Jazzy 🥁 - Interactive Drummer Portfolio</h3>
-      <span class="tag green">phil-jazzy.netlify.app • LIVE • INTERACTIVE</span>
-      <p class="desc">Personal brand and booking site for my drumming, with 2 Web Audio API tools: TRY MY KIT (9-pad drum machine, keys Q,W,E,A,S,D,Z,X,C) and WORSHIP PAD (12-note C-B chord sustainer, Major/Minor, Warm/Bright/Strings/Airy). An AI assistant with a rate card books gigs via WhatsApp.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#000">Web Audio API</span><span>AI Chatbot</span><span class="light">Netlify</span></div>
-    </a>
-
-    <a href="https://kwamepapaa.netlify.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #f59e0b">
-      <h3>Kwamepapaa 🥁 - Booking + Rental System</h3>
-      <span class="tag green">kwamepapaa.netlify.app • LIVE • BOOKING + RENTAL</span>
-      <p class="desc">Full booking system for Ghanaian drummer Joseph Offei. Services: Church, Wedding, Concert, Studio, Brand Promotion. Instrument rentals: Drums, Keyboard, Bass. Built a GET AN INSTANT QUOTE calculator: tick services and rentals, see the total instantly with a bundle discount alert, then send the quote on WhatsApp. Dark and gold premium theme.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#f59e0b;color:#000">Instant Quote Calculator</span><span style="background:#25D366">wa.me API</span><span class="light">Netlify</span></div>
-    </a>
-
-    <div class="card" style="border-left:4px solid #ec4899">
-      <h3>Wedding Invitation GH 💍 - Premium Templates</h3>
-      <span class="tag green">2 TEMPLATES LIVE • V1 + V2 • REUSABLE</span>
-      <p class="desc">Reusable Ghanaian wedding invitation sites, built first for Bakatel & Juliet. V1 is the fast mobile-first foundation; V2 is the premium envelope upgrade. Features: gold seal Open Invite hero, envelope animation with floating hearts, SAVE THE DATE live countdown, calendar highlight, Google Maps, Google Calendar, Add to Phone and Share on WhatsApp, dress code, Support the Couple with a copy-MoMo button, Our Story photos, Guest Wishes and RSVP via Google Forms or WhatsApp.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Envelope Animation</span><span>Countdown Timer</span><span>Google Maps API</span><span>Google Forms API</span><span class="light">Netlify</span></div>
-      <div class="links">
-        <a href="https://weddinginvitation-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-outline" style="padding:6px 12px;font-size:12px">View V1 →</a>
-        <a href="https://wedding-invitation-gh.netlify.app" target="_blank" rel="noopener" class="btn btn-black" style="padding:6px 12px;font-size:12px">View V2 →</a>
-      </div>
+  <section>
+    <div class="head"><h2>Services</h2><p>Through Phil Tech</p></div>
+    <div class="svc">
+      <div class="card"><div class="ico" style="--c:#bbf7d0">🌐</div><h3>Web development</h3><small>React, HTML, CSS, JS</small><p>Mobile-friendly business websites, booking platforms and online shops built for speed and SEO.</p></div>
+      <div class="card"><div class="ico" style="--c:#c7d2fe">📱</div><h3>Mobile apps</h3><small>React Native, Expo</small><p>Android and iOS apps with login, push notifications and Play Store deployment, from one codebase.</p></div>
+      <div class="card"><div class="ico" style="--c:#fde68a">⚙️</div><h3>Backend and APIs</h3><small>Node.js, Express, Firebase, MySQL, Supabase</small><p>Secure backends, databases and auth, plus Paystack, Hubtel, WhatsApp and Google Maps integration.</p></div>
     </div>
-
-    <a href="https://adom-the-trombonist-gh.netlify.app" target="_blank" rel="noopener" class="card" style="border-left:4px solid #16a34a">
-      <h3>Adom Trombonist 🎺 - Professional Portfolio</h3>
-      <span class="tag green">adom-the-trombonist-gh.netlify.app • LIVE • INTERACTIVE</span>
-      <p class="desc">Portfolio and booking site for Adom Nyarko-Yeboah, professional trombonist in Accra (NADAMB, CCTU). Services: church programmes, weddings and events, studio recording, concerts. Built TRY MY HORN, a 12-note chromatic sustained brass tone (C to B): tap a note to play, tap again to stop. FAQ accordion and one-tap WhatsApp booking.</p>
-      <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span style="background:#000">Web Audio API</span><span>12-Note Chromatic</span><span>FAQ Accordion</span><span style="background:#25D366">wa.me API</span><span class="light">Netlify</span></div>
-    </a>
-
-  </div>
-</div>
-
-<div class="section alt">
-  <div class="small">03 / SERVICES - PHIL TECH</div>
-  <div class="grid3">
-    <div class="card" style="border-left:4px solid #16a34a"><h3>Web Development</h3><span class="tag green">REACT • HTML • CSS • JS</span><p class="desc">Modern, mobile friendly business websites, booking platforms, and e-commerce sites built for speed and SEO.</p></div>
-    <div class="card" style="border-left:4px solid #000"><h3>Mobile App Development</h3><span class="tag" style="background:#111;color:#fff">REACT NATIVE • EXPO</span><p class="desc">Android and iOS apps with login, push notifications, and Play Store deployment. One codebase, both platforms.</p></div>
-    <div class="card" style="border-left:4px solid #0ea5e9"><h3>Backend & API Integration</h3><span class="tag" style="background:#0ea5e9;color:#fff">NODE.JS • EXPRESS • FIREBASE • MYSQL • SUPABASE</span><p class="desc">Secure backends, databases, auth systems, and API integration for Paystack, Hubtel, WhatsApp, and Google Maps.</p></div>
-  </div>
-  <div style="text-align:center;margin-top:28px">
-    <a href="https://wa.me/233206834470?text=Hello%20Phil%20Tech,%20I%20need%20a%20website/app" target="_blank" rel="noopener" class="btn btn-black" style="background:#16a34a;border:none;color:#fff">Hire Me on WhatsApp →</a>
-  </div>
-</div>
+  </section>
+</main>
 
 <footer>
-  <b>PHILEMON OSAE-HIENNO KODUA</b>
-  <p style="margin-top:6px">Abomosu STEM Eng 23-26 • Techten 23-26 • GCTU Level 100 Student • 8 Projects (7 Live + 1 In Progress)</p>
+  <b>Philemon Osae-Hienno Kodua</b>
+  <p style="margin-top:6px">Abomosu STEM 2023-26 · Techten 2023-26 · GCTU Level 100 · 8 projects (7 live, 1 in progress)</p>
 </footer>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches}
+  function paint(){btn.textContent=isDark()?'☀️':'🌙'}
+  btn.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');paint()});
+  paint();
+  document.querySelectorAll('.proj .top').forEach(function(t){
+    function tog(){var c=t.parentElement,o=c.classList.toggle('open');t.setAttribute('aria-expanded',o);var h=t.querySelector('.hint');if(h)h.textContent=o?'Hide details':'Tap for details'}
+    t.addEventListener('click',tog);
+    t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
+  });
+})();
+</script>
 </body>
 </html>
