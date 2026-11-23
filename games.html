@@ -1,558 +1,228 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Philemon's Adult Game Center — 18+ | Hustle, Casino, Strategy</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101322">
+<title>Philemon's Game Arcade — Play, Relax, Level Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0A0A0F;--card:#13131A;--card2:#1A1A24;--ink:#F2F0EB;--muted:#9A9AA8;--gold:#D4AF37;--gold2:#FFD700;--green:#22C55E;--red:#EF4444;--neon:#00FF88;--purple:#8B5CF6}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden}
-button{font-family:inherit;cursor:pointer;border:0}
-.btn{padding:12px 18px;border-radius:10px;font-weight:700;font-size:14px;transition:.15s}
-.btn:active{transform:scale(.96)} .btn-gold{background:var(--gold);color:#111}.btn-green{background:var(--green);color:#111}.btn-red{background:var(--red);color:#fff}.btn-ghost{background:#222;color:#fff;border:1px solid #333}.btn-neon{background:var(--neon);color:#111}
-.wrap{max-width:1120px;margin:0 auto;padding:0 14px}
-#top{position:sticky;top:0;z-index:60;background:rgba(10,10,15,.94);backdrop-filter:blur(12px);border-bottom:1px solid #222}
-#top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;gap:8px}
-.logo{font-family:'Playfair Display',serif;font-weight:800;font-size:19px}.logo span{color:var(--gold)}
-.topRight{display:flex;gap:6px;align-items:center}
-.chip{background:#1A1A24;border:1px solid #2A2A33;padding:7px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
-.chip b{color:var(--gold)}
-.ageBadge{background:#EF4444;color:#fff;font-weight:800;font-size:11px;padding:5px 9px;border-radius:6px;letter-spacing:.05em}
-.hero{text-align:center;padding:28px 0 12px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,8vw,56px);line-height:1.05}
-.hero h1 i{font-style:normal;color:var(--gold)}
-.hero p{color:var(--muted);max-width:620px;margin:12px auto 0;font-size:14.5px}.hero p b{color:#fff}
-.moodRow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
-.moodRow button{padding:9px 14px;border-radius:99px;background:#1A1A24;border:1px solid #2A2A33;color:#fff;font-weight:600;font-size:12.5px}
-.moodRow button.on{background:var(--gold);color:#111;border-color:var(--gold)}
-#moodMsg{margin-top:10px;font-weight:600;color:var(--gold);min-height:22px;font-size:14px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
-.stat{background:var(--card);border:1px solid #222;border-radius:14px;padding:12px;text-align:center}
-.stat b{font-size:22px;display:block}.stat b.gold{color:var(--gold)}.stat span{font-size:11.5px;color:var(--muted)}
-.homeGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
-.homeCard{background:var(--card);border:1px solid #222;border-radius:16px;padding:14px 10px;text-align:center;cursor:pointer;transition:.15s}
-.homeCard:hover{transform:translateY(-3px);border-color:var(--gold)}
-.homeCard:active{transform:scale(.96)}
-.homeCard b{font-size:28px;display:block}.homeCard h3{font-size:13px;margin:6px 0 2px}.homeCard p{font-size:11px;color:var(--muted);line-height:1.4}
-.homeCard .pts{font-size:11px;font-weight:700;color:var(--gold);margin-top:6px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px;position:sticky;top:60px;z-index:40;background:var(--bg);padding:8px 0}
-.tabs button{padding:9px 12px;border-radius:99px;background:#1A1A24;border:1px solid #2A2A33;color:#fff;font-weight:600;font-size:12px}
-.tabs button.on{background:var(--gold);color:#111;border-color:var(--gold)}
-.panel{display:none}.panel.on{display:block;animation:fade .3s}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.card{background:var(--card);border:1px solid #222;border-radius:18px;padding:18px}
-.card h2{font-size:20px;font-family:'Playfair Display',serif}.card p{color:var(--muted);font-size:13.5px;margin:6px 0}
-.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-/* CARDS */
-.playingCards{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0;min-height:96px}
-.pcard{width:64px;height:92px;background:#fff;color:#111;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:20px;box-shadow:0 8px 20px rgba(0,0,0,.5);animation:deal .3s}
-@keyframes deal{from{transform:translateY(-20px) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
-.pcard.red{color:#C00}.pcard small{font-size:11px;opacity:.6}
-.pcard.back{background:linear-gradient(135deg,#111,#8B5CF6);color:#fff;border:2px solid var(--gold)}
-.betRow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
-.betRow button{width:56px;height:56px;border-radius:50%;font-weight:800;font-size:13px;border:2px solid #333;background:#1A1A24;color:#fff}
-.betRow button.on{background:var(--gold);color:#111;border-color:var(--gold)}
-.betRow button:active{transform:scale(.92)}
-/* ROULETTE */
-.rouletteWheel{width:190px;height:190px;border-radius:50%;margin:14px auto;border:6px solid var(--gold);background:conic-gradient(#EF4444 0 10%,#111 0 20%,#EF4444 0 30%,#111 0 40%,#EF4444 0 50%,#111 0 60%,#EF4444 0 70%,#111 0 80%,#EF4444 0 90%,#111 0 100%);display:grid;place-items:center;position:relative;transition:transform 2s cubic-bezier(.1,.7,.2,1)}
-.rouletteWheel:after{content:"";position:absolute;width:36px;height:36px;background:#fff;border-radius:50%;border:3px solid var(--gold)}
-.rouletteNum{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;background:#111;border:2px solid var(--gold);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px}
-/* SLOTS */
-.slots{display:flex;gap:10px;justify-content:center;margin:16px 0}
-.slot{width:86px;height:86px;background:#111;border:2px solid #333;border-radius:14px;display:grid;place-items:center;font-size:38px}
-/* HUSTLE */
-.hustleBar{height:12px;background:#222;border-radius:99px;overflow:hidden;margin:8px 0}
-.hustleBar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0;transition:width .5s}
-.bizGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-.biz{padding:14px;border-radius:14px;background:#1A1A24;border:1px solid #2A2A33;text-align:left}
-.biz h3{font-size:14px}.biz p{font-size:12px}
-.biz button{margin-top:8px;width:100%}
-/* TRIVIA */
-.quizOpt{display:grid;gap:8px;margin-top:12px}
-.quizOpt button{padding:13px;text-align:left;border-radius:12px;border:1px solid #333;background:#1A1A24;color:#fff;font-weight:600;font-size:14px}
-.quizOpt button.correct{background:var(--green)!important;color:#111}.quizOpt button.wrong{background:var(--red)!important}
-/* DICE */
-.diceRow{display:flex;gap:12px;justify-content:center;margin:16px 0}
-.dice{width:72px;height:72px;background:#fff;color:#111;border-radius:14px;display:grid;place-items:center;font-size:36px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.5)}
-.dice.rolling{animation:shake .4s infinite}
-@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(10deg) translateY(-4px)}75%{transform:rotate(-10deg)}}
-/* DECISION */
-.decisionCard{background:#1A1A24;border:1px solid #333;border-radius:16px;padding:18px;text-align:center;min-height:150px;display:grid;place-items:center}
-.decisionCard h3{font-size:20px;line-height:1.4}
-/* LEADER */
-.lbRow{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;background:#1A1A24;border:1px solid #2A2A33;margin-top:8px}
-.lbRow.me{border-color:var(--gold);background:#2A2410}
-.lbRank{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#222;flex-shrink:0}
-#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,12px);background:#fff;color:#111;padding:12px 16px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:100;border:2px solid var(--gold);max-width:92vw;text-align:center;font-size:14px}
+:root{--bg:#0b1020;--panel:#141b30;--panel2:#1b2540;--line:#293451;--text:#f4f6ff;--muted:#9ba8c4;--cyan:#54e1e8;--violet:#9b8cff;--pink:#ff77b7;--lime:#b6f36b;--gold:#ffd166;--radius:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse at 15% -10%,#26315d 0,transparent 38%),radial-gradient(ellipse at 95% 20%,#25204b 0,transparent 32%),var(--bg);color:var(--text);min-height:100vh}
+button{font:inherit;cursor:pointer;border:0}
+button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+header{padding:18px 0;border-bottom:1px solid #ffffff12;background:#0b1020d9;position:sticky;top:0;z-index:10;backdrop-filter:blur(16px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font:700 18px 'Space Grotesk'}
+.brandIcon{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#101322;font-size:23px}
+.brand small{display:block;font:600 10px 'DM Sans';color:var(--muted);letter-spacing:1.7px;text-transform:uppercase;margin-top:2px}
+.profile{display:flex;align-items:center;gap:8px}
+.pill{background:var(--panel);border:1px solid var(--line);padding:9px 12px;border-radius:99px;font-size:12px;font-weight:800}
+.pill strong{color:var(--gold)}
+.hero{padding:38px 0 22px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center}
+.eyebrow{color:var(--cyan);font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+h1{font:700 clamp(34px,6vw,58px)/1.02 'Space Grotesk';letter-spacing:-2px;margin:10px 0 14px}
+h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));background-clip:text;color:transparent}
+.hero p{max-width:590px;color:var(--muted);font-size:15px;line-height:1.7}
+.heroArt{min-height:205px;border:1px solid #ffffff18;border-radius:28px;background:linear-gradient(135deg,#26345a,#30234f 65%,#47284b);display:grid;place-items:center;position:relative;overflow:hidden}
+.heroArt:before,.heroArt:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.65}
+.heroArt:before{width:160px;height:160px;background:#54e1e855;top:-55px;left:-30px}
+.heroArt:after{width:190px;height:190px;background:#ff77b755;bottom:-105px;right:-25px}
+.arcadeEmojis{font-size:clamp(35px,6vw,58px);z-index:1;display:flex;gap:12px;align-items:center;transform:rotate(-5deg);text-shadow:0 12px 30px #0008}
+.arcadeEmojis span:nth-child(2){font-size:1.35em;transform:translateY(-14px)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 26px}
+.stat{padding:14px 16px;background:#141b30cc;border:1px solid var(--line);border-radius:16px}
+.stat b{font:700 22px 'Space Grotesk';display:block}.stat span{color:var(--muted);font-size:11px}
+.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:26px 0 14px}
+.sectionHead h2{font:700 23px 'Space Grotesk'}
+.sectionHead p{color:var(--muted);font-size:12px;margin-top:4px}
+.gameGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.gameCard{border:1px solid var(--line);border-radius:20px;background:linear-gradient(155deg,#19233d,#11182b);padding:16px;text-align:left;color:var(--text);min-height:190px;transition:.2s;position:relative;overflow:hidden}
+.gameCard:hover{transform:translateY(-4px);border-color:#6c83bd;box-shadow:0 16px 32px #0003}.gameCard:active{transform:scale(.98)}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-9px) rotate(-2deg)}}
+@keyframes popIn{0%{transform:scale(.7);opacity:.3}100%{transform:scale(1);opacity:1}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 #54e1e800}50%{box-shadow:0 0 25px #54e1e833}}
+.arcadeEmojis{animation:floaty 4s ease-in-out infinite}.gameCard{animation:glowPulse 5s ease-in-out infinite}.bubble,.tile,.memoryTile,.hole{animation:popIn .18s ease-out}
+.soundBtn{background:#263451;color:white;padding:9px 11px;border-radius:11px;border:1px solid #ffffff18;font-size:12px;font-weight:800}.soundBtn[aria-pressed="true"]{color:var(--lime);border-color:#b6f36b66}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+.gameCard .emoji{font-size:35px;display:block;margin-bottom:13px}
+.gameCard h3{font:700 16px 'Space Grotesk';margin-bottom:5px}
+.gameCard p{color:var(--muted);font-size:12px;line-height:1.5;min-height:36px}
+.tag{display:inline-block;margin-top:12px;padding:5px 8px;border-radius:99px;background:#ffffff0c;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.5px}
+.gameCard:after{content:"↗";position:absolute;right:15px;top:15px;color:#8291b3;font-size:18px}
+.progressPanel{margin:25px 0;background:linear-gradient(120deg,#202e50,#272247);border:1px solid #ffffff20;border-radius:22px;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.progressPanel h3{font:700 17px 'Space Grotesk';margin-bottom:4px}.progressPanel p{font-size:12px;color:var(--muted)}
+.xpTrack{height:9px;background:#0b1020;border-radius:99px;overflow:hidden;margin-top:10px;width:min(380px,55vw)}
+.xpTrack i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet));width:0%;border-radius:99px;transition:.3s}
+.levelOrb{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--gold),#ff8c69);color:#15182a;font:800 23px 'Space Grotesk';flex-shrink:0}
+footer{padding:30px 0 40px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
+footer strong{color:var(--text)}
+.overlay{position:fixed;inset:0;z-index:30;background:#070b16ee;backdrop-filter:blur(12px);display:none;overflow:auto;padding:18px}
+.overlay.show{display:block}
+.gameShell{width:min(850px,100%);margin:20px auto;background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 30px 100px #0009}
+.gameTop{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);gap:10px}
+.gameTop h2{font:700 19px 'Space Grotesk'}
+.close{background:#ffffff12;color:white;border:1px solid #ffffff20;border-radius:11px;padding:9px 12px;font-weight:700}
+.gameBody{padding:20px}
+.gameIntro{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:16px}
+.gameStats{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:12px 0 18px}
+.gameStats span{background:#0c1325;border:1px solid var(--line);padding:8px 12px;border-radius:99px;font-size:12px;color:var(--muted)}
+.gameStats b{color:var(--text)}
+.action{background:linear-gradient(100deg,var(--cyan),#83d6ff);color:#0b1424;padding:11px 16px;border-radius:12px;font-weight:800}
+.secondary{background:#263451;color:white;padding:11px 16px;border-radius:12px;font-weight:700;border:1px solid #ffffff12}
+.actionRow{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:15px}
+.feedback{text-align:center;color:var(--gold);font-weight:800;min-height:24px;margin:12px 0;font-size:14px}
+.grid6{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;max-width:510px;margin:0 auto}
+.bubble{aspect-ratio:1;border-radius:50%;font-size:clamp(16px,4vw,27px);box-shadow:inset -5px -7px 10px #0003,inset 4px 4px 8px #fff5;transition:transform .12s}
+.bubble:active{transform:scale(.88)}
+.matchGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;max-width:430px;margin:auto}
+.tile{aspect-ratio:1;border-radius:11px;background:#253451;border:1px solid #ffffff18;font-size:clamp(18px,4vw,27px);display:grid;place-items:center}
+.tile.selected{outline:3px solid var(--gold);background:#39496e}
+canvas{display:block;max-width:100%;margin:auto;background:linear-gradient(#182849,#111a30);border:1px solid #435275;border-radius:16px;touch-action:none}
+.memoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;max-width:420px;margin:auto}
+.memoryTile{aspect-ratio:1;border-radius:13px;background:linear-gradient(140deg,#34486e,#202b47);border:1px solid #65799f;color:white;font-size:clamp(22px,5vw,34px);font-weight:800}
+.memoryTile.open{background:#eef4ff;color:#1b2540}.memoryTile.matched{background:#b6f36b;color:#16211a}
+.whackGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:420px;margin:auto}
+.hole{aspect-ratio:1;border-radius:50%;background:#0b1325;border:5px solid #34415e;display:grid;place-items:center;font-size:clamp(27px,7vw,46px)}
+.hole.active{background:#34415e;border-color:var(--lime)}
+.petCard{max-width:460px;margin:auto;background:linear-gradient(150deg,#293a60,#29244a);border:1px solid #ffffff20;border-radius:22px;padding:22px;text-align:center}
+.petFace{font-size:92px;line-height:1.3;filter:drop-shadow(0 12px 12px #0005)}
+.meter{display:grid;grid-template-columns:70px 1fr 35px;align-items:center;gap:8px;margin:12px 0;text-align:left;font-size:12px}
+.meterTrack{height:9px;background:#10172a;border-radius:99px;overflow:hidden}.meterTrack i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:99px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f6ff;color:#101629;padding:12px 17px;border-radius:12px;font-weight:800;z-index:60;transition:.2s;max-width:90vw;text-align:center}
 #toast.show{opacity:1;transform:translate(-50%,0)}
-#ageModal{position:fixed;inset:0;background:#000;z-index:200;display:grid;place-items:center;padding:16px}
-#ageModal.hide{display:none}
-.ageCard{background:#13131A;border:2px solid var(--gold);border-radius:20px;padding:28px;width:100%;max-width:400px;text-align:center}
-.ageCard h1{font-family:'Playfair Display',serif;font-size:28px}
-#nameModal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:120;display:none;place-items:center;padding:16px}
-#nameModal.show{display:grid}.modalCard{background:#13131A;border:2px solid var(--gold);border-radius:20px;padding:22px;width:100%;max-width:360px;text-align:center}
-.modalCard input{width:100%;padding:13px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-size:16px;font-weight:700;margin:12px 0;text-align:center}
-footer{text-align:center;padding:22px 0;color:var(--muted);font-size:13px}
-@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}.homeGrid{grid-template-columns:repeat(2,1fr)}.bizGrid{grid-template-columns:1fr}.topRight .hideM{display:none}}
+@media(max-width:850px){.gameGrid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.heroArt{min-height:150px}.gameCard{min-height:175px}}
+@media(max-width:460px){.wrap{width:calc(100% - 22px)}.brand{font-size:15px}.brandIcon{width:37px;height:37px}.profile .pill:first-child{display:none}.stats{gap:7px}.stat{padding:11px}.stat b{font-size:18px}.gameGrid{gap:9px}.gameCard{padding:13px;min-height:168px}.gameCard .emoji{font-size:30px}.gameBody{padding:14px}.overlay{padding:8px}.gameShell{margin:8px auto}.gameTop{padding:13px}.progressPanel{padding:14px}.levelOrb{width:54px;height:54px}}
 </style>
 </head>
 <body>
-<div id="ageModal"><div class="ageCard"><span style="font-size:44px">🎰</span><h1>18+ Only</h1><p style="color:var(--muted);font-size:14px;margin-top:8px">This is an adult game center. Casino games, hustle, strategy, grown-man decisions. No real money — play money only. You must be 18+ to enter.</p><p style="font-size:13px;color:var(--gold);font-weight:700;margin-top:12px">Are you 18 or older?</p><div style="display:flex;gap:10px;margin-top:16px"><button class="btn btn-gold" style="flex:1" onclick="enterAdult()">Yes, I'm 18+ →</button><button class="btn btn-ghost" style="flex:1" onclick="location.href='https://google.com'">No, Leave</button></div><p style="font-size:11px;color:var(--muted);margin-top:12px">Play responsibly. This is for fun & stress relief — not real gambling.</p></div></div>
-
-<div id="top"><div class="wrap"><div class="logo">Philemon's <span>Adult Center 🎰</span></div><div class="topRight"><span class="ageBadge">18+</span><span class="chip hideM">💰 Balance: <b id="balanceTop">₵ 5,000</b></span><span class="chip">⭐ <span id="xpTop">0 XP</span></span><button class="btn btn-gold" style="padding:8px 12px;font-size:12px" onclick="showNameModal()">🏆 Join</button></div></div></div>
-<div id="nameModal"><div class="modalCard"><h2>Welcome, Boss 👑</h2><p style="color:var(--muted);font-size:14px;margin-top:6px">Enter your player name. Your balance & wins dey save.</p><input id="playerNameInput" placeholder="e.g. Kwame Boss" maxlength="20"><button class="btn btn-gold" style="width:100%" onclick="saveName()">Enter Casino →</button></div></div>
-
+<header><div class="wrap nav">
+  <div class="brand"><div class="brandIcon">🎮</div><div>PHILEMON'S ARCADE<small>Play • Relax • Level Up</small></div></div>
+  <div class="profile"><span class="pill">⭐ <strong id="levelTop">Level 1</strong></span><span class="pill">✨ <strong id="xpTop">0 XP</strong></span><button class="soundBtn" id="soundToggle" onclick="toggleSound()" aria-pressed="true">🔊 Sound on</button><button class="secondary" onclick="changeName()">👤 <span id="nameTop">Player</span></button></div>
+</div></header>
 <main class="wrap">
-<header class="hero">
-<h1>Play Like A <i>Boss.</i><br>Win Like A Boss.</h1>
-<p>No kiddie games here. <b>Blackjack, Roulette, Slots, Poker Dice, Hustle Empire, Adult Trivia</b> — play money, real strategy, real bragging rights. Built by <b>Philemon Osae-Hienno Kodua</b> from Accra.</p>
-<div class="moodRow" id="moodRow"><button data-mood="hustle" class="on">💰 I wan hustle</button><button data-mood="chill">🥃 I wan chill</button><button data-mood="risk">🎲 I feel lucky</button><button data-mood="smart">🧠 I wan think</button></div>
-<p id="moodMsg">Hustle mode: Start with Hustle Empire, build your business, then use profit for Blackjack. 💰</p>
-<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px"><button class="btn btn-gold" onclick="dailyBonus()">🎁 Claim Daily ₵500</button><button class="btn btn-green" onclick="goTab('blackjack')">♠️ Play Blackjack</button><button class="btn btn-ghost" onclick="goTab('hustle')">🏢 Build Empire</button></div>
-</header>
-
-<div class="stats">
-<div class="stat"><b class="gold" id="statBalance">₵ 5,000</b><span>💰 Play Balance</span></div>
-<div class="stat"><b id="statWins">0</b><span>🏆 Total Wins</span></div>
-<div class="stat"><b id="statXP">0</b><span>⭐ XP / Rank</span></div>
-<div class="stat"><b id="statBiz">0</b><span>🏢 Businesses</span></div>
-</div>
-
-<div class="homeGrid">
-<div class="homeCard" onclick="goTab('blackjack')"><b>♠️</b><h3>Blackjack 21</h3><p>Beat dealer to 21. Classic casino.</p><div class="pts">Win = 2x bet</div></div>
-<div class="homeCard" onclick="goTab('roulette')"><b>🎡</b><h3>Roulette</h3><p>Red / Black / Number. Spin wheel.</p><div class="pts">Win up to 10x</div></div>
-<div class="homeCard" onclick="goTab('slots')"><b>🎰</b><h3>Slots</h3><p>3 reels. Match to win jackpot.</p><div class="pts">Jackpot 50x</div></div>
-<div class="homeCard" onclick="goTab('dice')"><b>🎲</b><h3>Poker Dice</h3><p>Roll 5 dice. Poker hand wins.</p><div class="pts">Straight = 5x</div></div>
-<div class="homeCard" onclick="goTab('hustle')"><b>🏢</b><h3>Hustle Empire</h3><p>Build business empire in Accra.</p><div class="pts">Passive income</div></div>
-<div class="homeCard" onclick="goTab('trivia')"><b>🧠</b><h3>Adult Trivia</h3><p>Money, life, Ghana, hustle trivia.</p><div class="pts">+100 XP per correct</div></div>
-<div class="homeCard" onclick="goTab('decision')"><b>🤔</b><h3>Boss Decisions</h3><p>Would you rather? Real-life choices.</p><div class="pts">See what others pick</div></div>
-<div class="homeCard" onclick="goTab('number')"><b>🔢</b><h3>Number Mind</h3><p>Guess number. High / Low strategy.</p><div class="pts">Win = 3x</div></div>
-<div class="homeCard" onclick="goTab('memory')"><b>🃏</b><h3>Memory — Cash</h3><p>Find pairs. Each pair = cash.</p><div class="pts">₵200 per pair</div></div>
-<div class="homeCard" onclick="goTab('leader')"><b>🏆</b><h3>High Rollers</h3><p>Leaderboard. Who be richest?</p><div class="pts">Top 1 = Boss 👑</div></div>
-</div>
-
-<div class="tabs" id="tabs">
-<button data-tab="blackjack" class="on">♠️ Blackjack</button><button data-tab="roulette">🎡 Roulette</button><button data-tab="slots">🎰 Slots</button><button data-tab="dice">🎲 Dice</button><button data-tab="hustle">🏢 Hustle</button><button data-tab="trivia">🧠 Trivia</button><button data-tab="decision">🤔 Decisions</button><button data-tab="number">🔢 Number</button><button data-tab="memory">🃏 Memory</button><button data-tab="leader">🏆 Leaders</button>
-</div>
-
-<!-- BLACKJACK -->
-<section class="panel on" id="panel-blackjack"><div class="card">
-<h2>♠️ Blackjack — Beat The Dealer to 21</h2><p>Place bet, Hit or Stand. Blackjack pays 3:2. Dealer must hit to 17. Play money only.</p>
-<div style="text-align:center;margin-top:10px"><span style="font-size:13px;color:var(--muted)">BET:</span> <b id="bjBetLabel" style="color:var(--gold)">₵100</b> · Balance: <b id="bjBalance">₵ 5,000</b></div>
-<div class="betRow" id="bjBets"><button data-bet="50">₵50</button><button data-bet="100" class="on">₵100</button><button data-bet="250">₵250</button><button data-bet="500">₵500</button><button data-bet="1000">₵1000</button></div>
-<p style="text-align:center;font-weight:700">Dealer <span id="dealerScore">( ? )</span></p>
-<div class="playingCards" id="dealerCards"></div>
-<p style="text-align:center;font-weight:700">You <span id="playerScore">( ? )</span></p>
-<div class="playingCards" id="playerCards"></div>
-<p id="bjMsg" style="text-align:center;font-weight:800;color:var(--gold);min-height:22px">Place bet & Deal to start.</p>
-<div class="controls"><button class="btn btn-gold" onclick="dealBlackjack()">🃏 Deal</button><button class="btn btn-green" onclick="hitBJ()">➕ Hit</button><button class="btn btn-red" onclick="standBJ()">✋ Stand</button><button class="btn btn-ghost" onclick="doubleBJ()">⚡ Double Down</button></div>
-</div></section>
-
-<!-- ROULETTE -->
-<section class="panel" id="panel-roulette"><div class="card" style="text-align:center">
-<h2>🎡 Roulette — Red / Black / Number</h2><p>Pick red, black, or exact number. Red/Black pays 2x. Number pays 10x.</p>
-<div class="rouletteWheel" id="wheel"><div class="rouletteNum" id="wheelNum">?</div></div>
-<p id="rouletteMsg" style="font-weight:800;color:var(--gold);min-height:22px">Place your bet, spin!</p>
-<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px"><button class="btn btn-red" onclick="setRouletteBet('red')">🔴 Red — 2x</button><button class="btn btn-ghost" onclick="setRouletteBet('black')">⚫ Black — 2x</button><button class="btn btn-gold" onclick="setRouletteBet('even')">Even — 2x</button><button class="btn btn-ghost" onclick="setRouletteBet('odd')">Odd — 2x</button></div>
-<div style="margin-top:12px"><label style="font-size:13px;color:var(--muted)">Bet amount</label><div class="betRow" id="rouletteBets"><button data-bet="50">₵50</button><button data-bet="100" class="on">₵100</button><button data-bet="250">₵250</button><button data-bet="500">₵500</button></div></div>
-<button class="btn btn-gold" style="margin-top:12px" onclick="spinRoulette()">🎡 SPIN WHEEL</button>
-<p style="font-size:12px;color:var(--muted);margin-top:8px">Your pick: <b id="roulettePick" style="color:#fff">None yet</b> · Balance: <b id="rouletteBalance">₵ 5,000</b></p>
-</div></section>
-
-<!-- SLOTS -->
-<section class="panel" id="panel-slots"><div class="card" style="text-align:center">
-<h2>🎰 Slots — High Roller</h2><p>Bet ₵100 per spin. Match 3 = Jackpot 50x. Match 2 = 3x. No match = try again.</p>
-<div class="slots" id="slots"><div class="slot">🍒</div><div class="slot">💎</div><div class="slot">7️⃣</div></div>
-<p id="slotMsg" style="font-weight:800;color:var(--gold);min-height:22px">Tap SPIN — good luck, Boss.</p>
-<div class="controls"><button class="btn btn-gold" onclick="spinSlots()">🎰 SPIN — ₵100</button><button class="btn btn-green" onclick="spinSlots(500)">💎 BIG SPIN — ₵500 (5x Jackpot)</button></div>
-<p style="font-size:13px;color:var(--muted)">Balance: <b id="slotBalance" style="color:#fff">₵ 5,000</b> · Spins: <span id="slotSpins">0</span> · Biggest Win: <span id="slotBig">₵0</span></p>
-</div></section>
-
-<!-- DICE -->
-<section class="panel" id="panel-dice"><div class="card" style="text-align:center">
-<h2>🎲 Poker Dice — Roll 5 Dice</h2><p>Roll 5 dice. Get poker hand: Pair, Two Pair, Three of a Kind, Straight, Full House, Four of a Kind, Five of a Kind = BIG WIN.</p>
-<div class="diceRow" id="diceRow"><div class="dice">?</div><div class="dice">?</div><div class="dice">?</div><div class="dice">?</div><div class="dice">?</div></div>
-<p id="diceMsg" style="font-weight:800;color:var(--gold);min-height:22px">Roll to start. Bet ₵100.</p>
-<div class="controls"><button class="btn btn-gold" onclick="rollDice()">🎲 ROLL — ₵100</button><button class="btn btn-ghost" onclick="rollDice(500)">💎 HIGH ROLLER — ₵500</button></div>
-<p style="font-size:13px;color:var(--muted)">Balance: <b id="diceBalance">₵ 5,000</b> · Best Hand: <span id="diceBest">—</span></p>
-</div></section>
-
-<!-- HUSTLE -->
-<section class="panel" id="panel-hustle"><div class="card">
-<h2>🏢 Hustle Empire — Build Your Accra Empire</h2><p>Start small, buy businesses, collect passive income every 10 seconds. Real hustle simulation. No luck — strategy.</p>
-<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><span style="font-size:12px;color:var(--muted)">YOUR EMPIRE VALUE</span><br><b style="font-size:26px;color:var(--gold)" id="empireValue">₵ 0</b></div><div><span style="font-size:12px;color:var(--muted)">PASSIVE INCOME / 10s</span><br><b style="font-size:20px;color:var(--green)" id="passiveIncome">₵ 0</b></div><div><span style="font-size:12px;color:var(--muted)">BALANCE</span><br><b id="hustleBalance">₵ 5,000</b></div></div>
-<div class="hustleBar"><i id="empireBar"></i></div>
-<p style="font-size:12px;color:var(--muted)">Next Level: <span id="empireNext">Buy first business</span></p>
-<div class="bizGrid" id="bizGrid"></div>
-<div class="controls"><button class="btn btn-green" onclick="collectIncome()">💰 Collect Income Now</button><button class="btn btn-gold" onclick="claimHustleBonus()">🎁 Hustle Bonus +₵300</button></div>
-</div></section>
-
-<!-- TRIVIA -->
-<section class="panel" id="panel-trivia"><div class="card">
-<h2>🧠 Adult Trivia — Money, Life, Ghana, Hustle</h2><p id="triviaQ">Loading...</p>
-<div class="quizOpt" id="triviaOpts"></div>
-<p id="triviaFeedback" style="font-weight:800;margin-top:10px"></p>
-<div class="controls"><button class="btn btn-gold" id="nextTrivia" style="display:none">Next Question →</button><span style="align-self:center;font-weight:700">Trivia Score: <span id="triviaScore">0</span></span></div>
-</div></section>
-
-<!-- DECISION -->
-<section class="panel" id="panel-decision"><div class="card" style="text-align:center">
-<h2>🤔 Boss Decisions — Would You Rather?</h2><p>No right answer. Pick wetin you go do for real life. See wetin others pick.</p>
-<div class="decisionCard"><h3 id="decisionQ">Loading...</h3></div>
-<div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-gold" style="flex:1" id="decA" onclick="pickDecision('A')">Option A</button><button class="btn btn-ghost" style="flex:1" onclick="pickDecision('B')">Option B</button></div>
-<p id="decisionResult" style="font-weight:700;color:var(--gold);margin-top:12px;min-height:22px">Pick one to see results</p>
-<div class="controls"><button class="btn btn-green" onclick="nextDecision()">Next Dilemma →</button></div>
-</div></section>
-
-<!-- NUMBER -->
-<section class="panel" id="panel-number"><div class="card" style="text-align:center">
-<h2>🔢 Number Mind — High / Low</h2><p>I dey think of number 1-100. Bet ₵100. Guess. I go tell you Higher / Lower. Win in 5 guesses = 3x. Use brain, no be luck only.</p>
-<p style="font-size:28px;font-weight:800;color:var(--gold)">Guesses left: <span id="numLeft">5</span></p>
-<p id="numMsg" style="font-weight:700;color:var(--gold);min-height:22px">Start new game to get number.</p>
-<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px"><input id="numInput" type="number" min="1" max="100" placeholder="1 - 100" style="padding:12px;border-radius:10px;border:2px solid #444;background:#111;color:#fff;font-weight:700;width:140px;text-align:center;font-size:16px"><button class="btn btn-gold" onclick="guessNumber()">Guess →</button></div>
-<div class="controls"><button class="btn btn-green" onclick="newNumberGame()">🎲 New Game — ₵100</button><button class="btn btn-ghost" onclick="hintNumber()">💡 Hint — ₵20</button></div>
-<p style="font-size:13px;color:var(--muted)">Balance: <b id="numBalance">₵ 5,000</b> · Your guesses: <span id="numHistory">—</span></p>
-</div></section>
-
-<!-- MEMORY CASH -->
-<section class="panel" id="panel-memory"><div class="card">
-<h2>🃏 Memory — Cash Pairs</h2><p>Find pairs. Each pair = ₵200. Find all 8 = ₵2000 bonus. Take your time, use memory.</p>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px" id="memGrid"></div>
-<div class="controls"><span style="align-self:center;font-weight:800">Pairs: <span id="memPairs">0</span>/8 · Flips: <span id="memFlips">0</span></span><button class="btn btn-gold" onclick="initMemory()">🔄 New Game — ₵50</button></div>
-</div></section>
-
-<!-- LEADER -->
-<section class="panel" id="panel-leader"><div class="card">
-<h2>🏆 High Rollers — Who Be Richest?</h2><p>Your balance + wins + empire value = rank. Top 1 go be Boss of the Week.</p>
-<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><input id="lbSearch" placeholder="🔍 Search player..." style="flex:1;min-width:160px;padding:11px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-weight:600"><select id="lbSort" style="padding:11px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-weight:700"><option value="balance">Richest First</option><option value="wins">Most Wins</option><option value="name">A-Z</option></select><button class="btn btn-gold" onclick="showNameModal()">+ Join</button></div>
-<div id="lbList"></div>
-<div style="background:linear-gradient(135deg,#1A1A24,#2A1A10);border:1px solid var(--gold);border-radius:14px;padding:14px;margin-top:14px;text-align:center"><b>🎁 DAILY HIGH ROLLER CHALLENGE</b><p style="font-size:13px;margin-top:6px">Win 3 Blackjack hands + Win 1 Roulette + Build 1 Business = +₵1000</p><p style="font-weight:800;color:var(--gold)" id="dailyProgress">Progress: 0/3</p><button class="btn btn-gold" style="margin-top:8px" onclick="claimDaily()">Claim +₵1000 🎁</button></div>
-<div class="controls"><button class="btn btn-gold" onclick="shareScore()">📤 Share My Rank</button><button class="btn btn-ghost" onclick="resetGame()">🔄 Reset Game</button></div>
-</div></section>
-
-<div class="card" style="margin:16px 0;text-align:center"><h2>Play Responsibly — 18+ Only</h2><p>All games use <b style="color:#fff">play money</b>. No real cash, no real betting. Na for fun, stress relief, and bragging rights. If gambling dey stress you for real life, take break, talk to someone you trust.</p><div class="controls"><button class="btn btn-gold" onclick="shareScore()">📤 Share Game Center</button><button class="btn btn-white" onclick="window.open('https://wa.me/233206834470','_blank')">💬 WhatsApp Philemon</button><button class="btn btn-ghost" onclick="window.open('https://github.com/Philemon-Osae','_blank')">GitHub ↗</button></div></div>
+  <section class="hero">
+    <div><div class="eyebrow">Your little escape starts here</div><h1>Take a break.<br><span>Have some fun.</span></h1><p>Welcome to your personal arcade. Pop bubbles, solve puzzles, race for a new high score and take care of your virtual buddy. No betting. No pressure. Just good games and good vibes.</p></div>
+    <div class="heroArt"><div class="arcadeEmojis"><span>🫧</span><span>🎮</span><span>🧩</span><span>🐣</span></div></div>
+  </section>
+  <section class="stats">
+    <div class="stat"><b id="gamesPlayed">0</b><span>GAMES PLAYED</span></div>
+    <div class="stat"><b id="bestScore">0</b><span>BEST SCORE</span></div>
+    <div class="stat"><b id="totalXP">0</b><span>XP EARNED</span></div>
+  </section>
+  <div class="sectionHead"><div><h2>Choose your game</h2><p>Pick a mood and jump straight in.</p></div></div>
+  <section class="gameGrid">
+    <button class="gameCard" onclick="openGame('bubble')"><span class="emoji">🫧</span><h3>Bubble Pop</h3><p>Pop connected bubbles, make combos and clear the board.</p><span class="tag">RELAXING • PUZZLE</span></button>
+    <button class="gameCard" onclick="openGame('match')"><span class="emoji">🍬</span><h3>Match Mania</h3><p>Swap tiles, match three and chase a high score.</p><span class="tag">PUZZLE • STRATEGY</span></button>
+    <button class="gameCard" onclick="openGame('runner')"><span class="emoji">🏃</span><h3>Crazy Runner</h3><p>Jump over obstacles and collect stars on the run.</p><span class="tag">ARCADE • REFLEX</span></button>
+    <button class="gameCard" onclick="openGame('blocks')"><span class="emoji">🧱</span><h3>Block Master</h3><p>Place shapes, complete rows and columns, keep space open.</p><span class="tag">BRAIN • PUZZLE</span></button>
+    <button class="gameCard" onclick="openGame('hockey')"><span class="emoji">🏒</span><h3>Air Hockey</h3><p>Move your striker and score against the computer.</p><span class="tag">ACTION • SKILL</span></button>
+    <button class="gameCard" onclick="openGame('memory')"><span class="emoji">🧠</span><h3>Mind Match</h3><p>Flip cards, remember the symbols and find every pair.</p><span class="tag">MEMORY • FOCUS</span></button>
+    <button class="gameCard" onclick="openGame('whack')"><span class="emoji">🐹</span><h3>Whack Attack</h3><p>Tap the popping characters before they disappear.</p><span class="tag">SPEED • REFLEX</span></button>
+    <button class="gameCard" onclick="openGame('pet')"><span class="emoji">🐣</span><h3>Virtual Pet</h3><p>Feed, play with and rest your own little companion.</p><span class="tag">CASUAL • CARE</span></button>
+  </section>
+  <section class="progressPanel"><div><h3 id="welcomeLine">Nice to see you, Player!</h3><p>Every game helps you earn XP. Keep playing to unlock new levels.</p><div class="xpTrack"><i id="xpBar"></i></div><p id="xpProgress" style="margin-top:6px">0 / 500 XP to next level</p></div><div class="levelOrb" id="levelOrb">1</div></section>
 </main>
-<footer>Philemon Osae-Hienno Kodua · Abomosu STEM · Techten · GCTU L100<br><span id="visitText">Play like a boss. Know when to stop. 🎰</span><br><span style="font-size:11px;color:var(--muted)">18+ · Play Money Only · No Real Gambling</span></footer>
-<div id="toast"></div>
+<footer class="wrap"><strong>Philemon's Arcade</strong><br>Made for fun, a little challenge and a proper mental break.<br>Your scores and progress are saved on this device.</footer>
 
+<div class="overlay" id="overlay" aria-modal="true" role="dialog">
+ <div class="gameShell"><div class="gameTop"><h2 id="gameTitle">Game</h2><button class="close" onclick="closeGame()">✕ Close</button></div><div class="gameBody" id="gameBody"></div></div>
+</div>
+<div id="toast"></div>
 <script>
-// ===== AGE GATE =====
-function enterAdult(){ document.getElementById('ageModal').classList.add('hide'); localStorage.setItem('adult_18plus','yes'); toast('Welcome, Boss 👑 18+ Verified'); }
-if(localStorage.getItem('adult_18plus')==='yes') document.getElementById('ageModal').classList.add('hide');
-// ===== STATE =====
-let S = JSON.parse(localStorage.getItem('adult_center_v1')||'{}');
-S = Object.assign({balance:5000, xp:0, wins:0, losses:0, name:'', biz:{}, empire:0, triviaScore:0, visits:0, daily:{bj:0, roulette:0, biz:0}, lastDaily:0, slotSpins:0, slotBig:0, diceBest:'—', memPairsTotal:0}, S);
-function save(){ localStorage.setItem('adult_center_v1', JSON.stringify(S)); renderAll(); }
-function fmt(n){ return '₵ ' + n.toLocaleString(); }
-function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(window._tt); window._tt=setTimeout(()=>t.classList.remove('show'),2600); }
-function addXP(n, why){ S.xp+=n; if(why) toast(`+${n} XP — ${why}`); save(); }
-function renderAll(){
-  document.getElementById('balanceTop').textContent=fmt(S.balance);
-  document.getElementById('xpTop').textContent=S.xp+' XP · Lv '+(Math.floor(S.xp/500)+1);
-  document.getElementById('statBalance').textContent=fmt(S.balance);
-  document.getElementById('statWins').textContent=S.wins+'W / '+S.losses+'L';
-  document.getElementById('statXP').textContent=S.xp+' XP';
-  document.getElementById('statBiz').textContent=Object.keys(S.biz).length+' Biz · '+fmt(S.empire);
-  ['bjBalance','rouletteBalance','slotBalance','diceBalance','numBalance','hustleBalance'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=fmt(S.balance); });
-  document.getElementById('triviaScore').textContent=S.triviaScore;
-  document.getElementById('slotSpins').textContent=S.slotSpins;
-  document.getElementById('slotBig').textContent=fmt(S.slotBig);
-  document.getElementById('diceBest').textContent=S.diceBest;
-  document.getElementById('empireValue').textContent=fmt(S.empire);
-  const passive = calcPassive(); document.getElementById('passiveIncome').textContent=fmt(passive)+' / 10s';
-  document.getElementById('empireBar').style.width=Math.min(100, S.empire/50000*100)+'%';
-  document.getElementById('empireNext').textContent = S.empire<5000 ? 'Buy first business to start empire' : S.empire<20000 ? 'Next: Own 3 businesses = Boss Level' : 'You be Big Boss 👑';
-  renderLB(); renderDaily();
-  renderBiz();
+const $=id=>document.getElementById(id);
+let soundEnabled=true,audioContext=null;
+function playTone(kind='tap'){if(!soundEnabled)return;try{const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;audioContext=audioContext||new AudioCtx();if(audioContext.state==='suspended')audioContext.resume();const now=audioContext.currentTime;const notes={tap:[520,.055,'sine'],pop:[760,.09,'sine'],match:[660,.12,'triangle'],win:[880,.2,'triangle'],miss:[180,.12,'sawtooth']};const [freq,duration,type]=notes[kind]||notes.tap;const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,now);if(kind==='win')osc.frequency.exponentialRampToValueAtTime(1320,now+duration);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.11,now+.012);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);osc.connect(gain);gain.connect(audioContext.destination);osc.start(now);osc.stop(now+duration+.02)}catch(error){console.debug('Audio unavailable',error)}}
+function toggleSound(){soundEnabled=!soundEnabled;const b=$('soundToggle');b.textContent=soundEnabled?'🔊 Sound on':'🔇 Sound off';b.setAttribute('aria-pressed',String(soundEnabled));if(soundEnabled)playTone('tap')}
+const defaults={name:'Player',xp:0,games:0,best:0,pet:{hunger:75,joy:75,energy:80}};
+let storedProfile={};try{storedProfile=JSON.parse(localStorage.getItem('philemon_arcade_v1')||'{}')||{}}catch(error){console.warn('Saved arcade data could not be read; starting fresh.')}
+let profile={...defaults,...storedProfile};
+profile.pet={...defaults.pet,...(profile.pet||{})};for(const key of ['hunger','joy','energy']){const n=Number(profile.pet[key]);profile.pet[key]=Number.isFinite(n)?Math.max(0,Math.min(100,n)):defaults.pet[key]}
+let currentGame=null, gameTimer=null, animationId=null;
+function save(){localStorage.setItem('philemon_arcade_v1',JSON.stringify(profile));renderProfile()}
+function level(){return Math.floor(profile.xp/500)+1}
+function award(points,score=0,countGame=true){profile.xp+=points;if(countGame)profile.games++;profile.best=Math.max(profile.best,score);save();playTone('win');toast(`+${points} XP — nice one!`)}
+function renderProfile(){
+ $('levelTop').textContent='Level '+level();$('xpTop').textContent=profile.xp+' XP';$('nameTop').textContent=profile.name;
+ $('gamesPlayed').textContent=profile.games;$('bestScore').textContent=profile.best;$('totalXP').textContent=profile.xp;
+ $('welcomeLine').textContent=`Nice to see you, ${profile.name}!`;
+ const into=profile.xp%500;$('xpBar').style.width=(into/5)+'%';$('xpProgress').textContent=`${into} / 500 XP to next level`;$('levelOrb').textContent=level();
 }
-function changeBalance(amount, isWin){
-  S.balance=Math.max(0, S.balance+amount);
-  if(isWin) S.wins++; else if(amount<0 && isWin===false) {}
-  if(S.balance<=0){ S.balance=500; toast('Broke? No wahala — House give you ₵500 free. Play again! 💰'); }
-  save();
-}
-function dailyBonus(){
-  const now=Date.now();
-  if(now - S.lastDaily < 60000){ toast('Daily bonus on cooldown — wait small ⏳'); return; }
-  S.lastDaily=now; S.balance+=500; addXP(20,'Daily bonus'); toast('🎁 +₵500 Daily Bonus!'); save();
-}
-// ===== TABS =====
-function goTab(tab){ document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab)); document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on', p.id==='panel-'+tab)); const el=document.getElementById('panel-'+tab); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
-document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>goTab(b.dataset.tab)));
-// Mood
-const moodMsgs={hustle:"Hustle mode: Start with Hustle Empire, build business, then use profit for Blackjack. 💰", chill:"Chill mode: Play Slots + Sound, no pressure. Just vibe. 🥃", risk:"Feeling lucky? Roulette + Slots + Dice — high risk, high reward. 🎲", smart:"Smart mode: Blackjack + Number Mind + Trivia — use brain, win big. 🧠"};
-document.querySelectorAll('#moodRow button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#moodRow button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); document.getElementById('moodMsg').textContent=moodMsgs[b.dataset.mood]; addXP(5,'Mood check'); if(b.dataset.mood==='hustle') goTab('hustle'); if(b.dataset.mood==='chill') goTab('slots'); if(b.dataset.mood==='risk') goTab('roulette'); if(b.dataset.mood==='smart') goTab('blackjack'); }));
-// ===== BLACKJACK =====
-let bjBet=100, bjPlayer=[], bjDealer=[], bjActive=false, bjDoubled=false;
-document.querySelectorAll('#bjBets button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#bjBets button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); bjBet=+b.dataset.bet; document.getElementById('bjBetLabel').textContent=fmt(bjBet); }));
-function cardVal(c){ if(['J','Q','K'].includes(c.v)) return 10; if(c.v==='A') return 11; return +c.v; }
-function handVal(hand){ let total=hand.reduce((s,c)=>s+cardVal(c),0); let aces=hand.filter(c=>c.v==='A').length; while(total>21 && aces>0){ total-=10; aces--; } return total; }
-function randomCard(){ const suits=['♠','♥','♦','♣']; const vals=['A','2','3','4','5','6','7','8','9','10','J','Q','K']; return {v:vals[Math.floor(Math.random()*vals.length)], s:suits[Math.floor(Math.random()*suits.length)]}; }
-function renderBJ(hideDealer=true){
-  const dc=document.getElementById('dealerCards'); dc.innerHTML='';
-  bjDealer.forEach((c,i)=>{ if(i===1 && hideDealer && bjActive){ const d=document.createElement('div'); d.className='pcard back'; d.innerHTML='🂠'; dc.appendChild(d); } else { const d=document.createElement('div'); d.className='pcard'+((c.s==='♥'||c.s==='♦')?' red':''); d.innerHTML=`${c.v}<br><span style="font-size:24px">${c.s}</span><small>${c.s}</small>`; dc.appendChild(d); } });
-  const pc=document.getElementById('playerCards'); pc.innerHTML='';
-  bjPlayer.forEach(c=>{ const d=document.createElement('div'); d.className='pcard'+((c.s==='♥'||c.s==='♦')?' red':''); d.innerHTML=`${c.v}<br><span style="font-size:24px">${c.s}</span><small>${c.s}</small>`; pc.appendChild(d); });
-  document.getElementById('playerScore').textContent='( '+handVal(bjPlayer)+' )';
-  document.getElementById('dealerScore').textContent= hideDealer && bjActive ? '( ? + '+cardVal(bjDealer[0])+' )' : '( '+handVal(bjDealer)+' )';
-}
-function dealBlackjack(){
-  if(S.balance < bjBet){ toast('Balance low — claim daily bonus! 💰'); return; }
-  bjPlayer=[randomCard(), randomCard()]; bjDealer=[randomCard(), randomCard()]; bjActive=true; bjDoubled=false;
-  renderBJ(true); document.getElementById('bjMsg').textContent='Your move: Hit, Stand, or Double Down.';
-  if(handVal(bjPlayer)===21){ finishBJ(true, 'BLACKJACK! 🔥'); }
-}
-function hitBJ(){
-  if(!bjActive) { toast('Deal first! 🃏'); return; }
-  bjPlayer.push(randomCard()); renderBJ(true);
-  if(handVal(bjPlayer)>21) finishBJ(false, 'BUST! Over 21. Dealer wins.');
-  else if(handVal(bjPlayer)===21) standBJ();
-}
-function standBJ(){
-  if(!bjActive) return; bjActive=false; renderBJ(false);
-  let dVal=handVal(bjDealer);
-  while(dVal<17){ bjDealer.push(randomCard()); dVal=handVal(bjDealer); renderBJ(false); }
-  const pVal=handVal(bjPlayer);
-  if(dVal>21) finishBJ(true, 'Dealer BUST! You win! 🎉');
-  else if(pVal>dVal) finishBJ(true, `You win! ${pVal} vs ${dVal} 🏆`);
-  else if(pVal<dVal) finishBJ(false, `Dealer wins. ${dVal} vs ${pVal}.`);
-  else finishBJ(null, `Push — Tie. Bet returned.`);
-}
-function doubleBJ(){
-  if(!bjActive || bjPlayer.length!==2) { toast('Double only on first 2 cards.'); return; }
-  if(S.balance < bjBet*2){ toast('Not enough to double.'); return; }
-  bjBet*=2; document.getElementById('bjBetLabel').textContent=fmt(bjBet)+' (Doubled)';
-  bjPlayer.push(randomCard()); renderBJ(true);
-  if(handVal(bjPlayer)>21) finishBJ(false, 'BUST after double!');
-  else standBJ();
-}
-function finishBJ(win, msg){
-  bjActive=false; renderBJ(false); document.getElementById('bjMsg').textContent=msg;
-  let payout=0;
-  if(win===true){ const isBJ = handVal(bjPlayer)===21 && bjPlayer.length===2; payout = isBJ ? Math.floor(bjBet*1.5) : bjBet; S.balance+=payout; S.wins++; S.daily.bj++; addXP(50,'Blackjack win'); toast(`🏆 +${fmt(payout)} — ${msg}`); }
-  else if(win===false){ S.balance-=bjBet; S.losses++; toast(`-${fmt(bjBet)} — ${msg}`); if(S.balance<=0) S.balance=500; }
-  else { toast('Push — bet returned.'); }
-  bjBet = Math.min(bjBet, 1000); if(bjBet>500) bjBet=100; document.getElementById('bjBetLabel').textContent=fmt(bjBet);
-  save();
-}
-// ===== ROULETTE =====
-let rouletteBet=100, roulettePick=null;
-document.querySelectorAll('#rouletteBets button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#rouletteBets button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); rouletteBet=+b.dataset.bet; }));
-function setRouletteBet(p){ roulettePick=p; document.getElementById('roulettePick').textContent=p.toUpperCase(); toast('Pick: '+p.toUpperCase()); }
-function spinRoulette(){
-  if(!roulettePick){ toast('Pick Red / Black / Even / Odd first!'); return; }
-  if(S.balance < rouletteBet){ toast('Balance low!'); return; }
-  const wheel=document.getElementById('wheel');
-  const deg=720+Math.floor(Math.random()*360);
-  wheel.style.transform=`rotate(${deg}deg)`;
-  document.getElementById('rouletteMsg').textContent='Spinning... 🎡';
-  setTimeout(()=>{
-    const num=Math.floor(Math.random()*37); // 0-36
-    const color = num===0 ? 'green' : num%2===0 ? 'black' : 'red';
-    const isEven = num!==0 && num%2===0; const isOdd = num%2===1;
-    document.getElementById('wheelNum').textContent=num;
-    document.getElementById('wheelNum').style.color = color==='red' ? '#EF4444' : color==='black' ? '#fff' : '#22C55E';
-    let win=false;
-    if(roulettePick==='red' && color==='red') win=true;
-    if(roulettePick==='black' && color==='black') win=true;
-    if(roulettePick==='even' && isEven) win=true;
-    if(roulettePick==='odd' && isOdd) win=true;
-    if(win){ S.balance+=rouletteBet; S.wins++; S.daily.roulette++; addXP(40,'Roulette win'); document.getElementById('rouletteMsg').textContent=`🎉 ${num} ${color.toUpperCase()} — YOU WIN +${fmt(rouletteBet)}!`; toast(`Roulette WIN +${fmt(rouletteBet)}`); }
-    else { S.balance-=rouletteBet; S.losses++; document.getElementById('rouletteMsg').textContent=`${num} ${color.toUpperCase()} — You lose -${fmt(rouletteBet)}. Try again.`; toast(`Roulette lose -${fmt(rouletteBet)}`); if(S.balance<=0) S.balance=500; }
-    save();
-  },2100);
-}
-// ===== SLOTS =====
-function spinSlots(bet=100){
-  if(S.balance < bet){ toast('Balance low!'); return; }
-  S.balance-=bet; S.slotSpins++;
-  const symbols=['🍒','🍋','💎','7️⃣','🔔','⭐','🍇'];
-  const slots=[...document.querySelectorAll('#slots .slot')];
-  let spins=0;
-  const iv=setInterval(()=>{
-    slots.forEach(s=>s.textContent=symbols[Math.floor(Math.random()*symbols.length)]);
-    spins++;
-    if(spins>12){
-      clearInterval(iv);
-      const vals=slots.map(s=>s.textContent);
-      if(vals[0]===vals[1] && vals[1]===vals[2]){
-        const jackpot = vals[0]==='💎' || vals[0]==='7️⃣' ? bet*50 : bet*10;
-        S.balance+=jackpot; S.wins++; S.slotBig=Math.max(S.slotBig, jackpot); addXP(100,'Slots JACKPOT'); document.getElementById('slotMsg').textContent=`🎰 JACKPOT! ${vals.join(' ')} — +${fmt(jackpot)}!!!`; toast(`JACKPOT +${fmt(jackpot)} 🎰`);
-      } else if(vals[0]===vals[1] || vals[1]===vals[2] || vals[0]===vals[2]){
-        const win=bet*3; S.balance+=win; S.wins++; document.getElementById('slotMsg').textContent=`Nice! Two match — +${fmt(win)}`; toast(`Slots +${fmt(win)}`);
-      } else {
-        S.losses++; document.getElementById('slotMsg').textContent=`${vals.join(' ')} — No match. Spin again.`;
-      }
-      if(S.balance<=0) S.balance=500;
-      save();
-    }
-  },90);
-}
-// ===== DICE =====
-function rollDice(bet=100){
-  if(S.balance < bet){ toast('Balance low!'); return; }
-  S.balance-=bet;
-  const dice=[...document.querySelectorAll('#diceRow .dice')];
-  dice.forEach(d=>d.classList.add('rolling'));
-  let rolls=0;
-  const iv=setInterval(()=>{
-    dice.forEach(d=>d.textContent=Math.floor(Math.random()*6)+1);
-    rolls++;
-    if(rolls>10){
-      clearInterval(iv); dice.forEach(d=>d.classList.remove('rolling'));
-      const vals=dice.map(d=>+d.textContent).sort((a,b)=>a-b);
-      const counts={}; vals.forEach(v=>counts[v]=(counts[v]||0)+1);
-      const countVals=Object.values(counts).sort((a,b)=>b-a);
-      const isStraight = vals.join(',')==='1,2,3,4,5' || vals.join(',')==='2,3,4,5,6';
-      let hand='No hand', mult=0;
-      if(countVals[0]===5){ hand='FIVE OF A KIND 👑'; mult=20; }
-      else if(countVals[0]===4){ hand='FOUR OF A KIND 🔥'; mult=10; }
-      else if(countVals[0]===3 && countVals[1]===2){ hand='FULL HOUSE 🏠'; mult=7; }
-      else if(isStraight){ hand='STRAIGHT 📏'; mult=5; }
-      else if(countVals[0]===3){ hand='THREE OF A KIND'; mult=3; }
-      else if(countVals[0]===2 && countVals[1]===2){ hand='TWO PAIR'; mult=2; }
-      else if(countVals[0]===2){ hand='ONE PAIR'; mult=1; }
-      if(mult>0){
-        const win=bet*mult; S.balance+=win; S.wins++; if(hand.includes('FIVE')||hand.includes('FOUR')) S.diceBest=hand; else if(S.diceBest==='—') S.diceBest=hand;
-        addXP(40,'Dice win'); document.getElementById('diceMsg').textContent=`${hand} — ${vals.join(' ')} — +${fmt(win)}!`; toast(`Dice WIN +${fmt(win)}`);
-      } else {
-        S.losses++; document.getElementById('diceMsg').textContent=`${vals.join(' ')} — No hand. Try again.`;
-      }
-      if(S.balance<=0) S.balance=500;
-      save();
-    }
-  },100);
-}
-// ===== HUSTLE =====
-const businesses=[
-  {id:'kiosk', name:'📱 Phone Accessories Kiosk', desc:'Osus, Accra — sell covers, chargers', cost:500, income:60},
-  {id:'food', name:'🍲 Waakye Joint', desc:'Madina — morning rush, loyal customers', cost:1200, income:150},
-  {id:'barber', name:'💈 Barber Shop', desc:'East Legon — fade + dye, premium', cost:2500, income:320},
-  {id:'studio', name:'🎙️ Music Studio', desc:'Record artists, beats, mixing', cost:5000, income:650},
-  {id:'cloth', name:'👕 Clothing Brand', desc:'Philemon Wear — hoodies, tees', cost:10000, income:1400},
-  {id:'tech', name:'💻 Tech Agency', desc:'Websites + Apps for clients', cost:20000, income:3000},
-];
-function calcPassive(){ return businesses.reduce((sum,b)=>sum + (S.biz[b.id]||0)*b.income, 0); }
-function renderBiz(){
-  const grid=document.getElementById('bizGrid'); grid.innerHTML='';
-  businesses.forEach(b=>{
-    const owned=S.biz[b.id]||0;
-    const div=document.createElement('div'); div.className='biz';
-    div.innerHTML=`<h3>${b.name}</h3><p>${b.desc}</p><p style="margin-top:6px">Owned: <b style="color:var(--gold)">${owned}</b> · Cost: <b>${fmt(b.cost)}</b> · Income: <b style="color:var(--green)">${fmt(b.income)} / 10s each</b></p>`;
-    const btn=document.createElement('button'); btn.className='btn btn-gold'; btn.textContent = S.balance>=b.cost ? `Buy — ${fmt(b.cost)}` : `Need ${fmt(b.cost)}`;
-    btn.disabled = S.balance < b.cost;
-    btn.addEventListener('click',()=>{
-      if(S.balance < b.cost){ toast('Not enough balance!'); return; }
-      S.balance-=b.cost; S.biz[b.id]=owned+1; S.empire+=b.cost; S.daily.biz++; addXP(60,'Bought business'); toast(`🏢 You buy ${b.name}! Empire +${fmt(b.cost)}`); save();
-    });
-    div.appendChild(btn); grid.appendChild(div);
-  });
-}
-function collectIncome(){
-  const inc=calcPassive();
-  if(inc===0){ toast('Buy business first to collect income! 🏢'); goTab('hustle'); return; }
-  S.balance+=inc; addXP(20,'Collected income'); toast(`💰 Collected +${fmt(inc)} passive income!`); save();
-}
-function claimHustleBonus(){ S.balance+=300; addXP(20,'Hustle bonus'); toast('+₵300 Hustle Bonus!'); save(); }
-setInterval(()=>{ const inc=calcPassive(); if(inc>0){ S.balance+=inc; S.empire+=Math.floor(inc*0.1); save(); } },10000);
-// ===== TRIVIA =====
-const trivia=[
-  {q:'If you invest ₵1,000 at 10% interest for 1 year, how much you get?', opts:['₵1,000','₵1,100','₵1,500','₵2,000'], ans:1},
-  {q:'Which one be passive income?', opts:['Salary only','Rent from shop you own','Borrowing money','Spending'], ans:1},
-  {q:'In Accra, which business get highest morning rush?', opts:['Club','Waakye joint','Cinema','Gym at midnight'], ans:1},
-  {q:'What does “Double Down” mean in Blackjack?', opts:['Run away','Double bet, get one more card','Split cards','Fold'], ans:1},
-  {q:'If you win ₵500 bet at 2x, how much you get back total (bet + profit)?', opts:['₵500','₵750','₵1,000','₵1,500'], ans:2},
-  {q:'Which be best for long-term wealth?', opts:['Spend all on flex','Save + invest small small','Borrow to flex','Keep cash under bed'], ans:1},
-  {q:'What is RLS in Supabase that Philemon use for ClassHub?', opts:['Row Level Security','Real Life System','Random Login Service','Red Light System'], ans:0},
-  {q:'Philemon built Healthy Habits for which competition?', opts:['GSTEP 2023','World Cup','Afcon','Hackathon 2025'], ans:0},
-];
-let tqi=0, tAnswered=false;
-function renderTrivia(){ const cur=trivia[tqi]; tAnswered=false; document.getElementById('triviaQ').textContent='🧠 Q'+(tqi+1)+'/'+trivia.length+': '+cur.q; const box=document.getElementById('triviaOpts'); box.innerHTML=''; document.getElementById('triviaFeedback').textContent=''; document.getElementById('nextTrivia').style.display='none'; cur.opts.forEach((o,i)=>{ const b=document.createElement('button'); b.textContent='ABCD'[i]+') '+o; b.addEventListener('click',()=>{ if(tAnswered) return; tAnswered=true; if(i===cur.ans){ b.classList.add('correct'); S.triviaScore+=100; S.balance+=100; addXP(100,'Trivia correct'); document.getElementById('triviaFeedback').textContent='Correct! +₵100 +100 XP 🎉'; } else { b.classList.add('wrong'); document.getElementById('triviaFeedback').textContent='Nope! Correct be: '+cur.opts[cur.ans]; } document.getElementById('nextTrivia').style.display='inline-flex'; save(); }); box.appendChild(b); }); }
-document.getElementById('nextTrivia').addEventListener('click',()=>{ tqi=(tqi+1)%trivia.length; renderTrivia(); }); renderTrivia();
-// ===== DECISIONS =====
-const decisions=[
-  {q:'You get ₵5,000. Would you rather...', a:'Invest ₵4,000 in business, keep ₵1,000', b:'Flex ₵5,000 for weekend, start broke Monday'},
-  {q:'Your friend ask you for ₵2,000 loan, e never pay last one. Would you rather...', a:'Give am but with clear payback date', b:'Say No, protect your peace'},
-  {q:'You get job offer ₵3,000/month vs business wey fit make ₵10,000 but risky. Pick...', a:'Take job, build business side', b:'Go all-in business, no safety net'},
-  {q:'You win ₵10,000 for casino. Would you rather...', a:'Cash out, save 70%, play 30%', b:'Keep playing to win more'},
-  {q:'Girl / Guy wey you like dey stress you but you love am. Would you rather...', a:'Talk, set boundaries, try fix', b:'Cut off, protect mental health'},
-  {q:'You get 1 hour free. Would you rather...', a:'Learn new skill (coding / business)', b:'Scroll TikTok, chill'},
-];
-let dqi=0;
-function renderDecision(){ const d=decisions[dqi]; document.getElementById('decisionQ').textContent=d.q; document.getElementById('decA').textContent='A: '+d.a; document.getElementById('decisionResult').textContent='Pick one to see results'; }
-function pickDecision(choice){
-  const aPct=55+Math.floor(Math.random()*20); const bPct=100-aPct;
-  document.getElementById('decisionResult').textContent = choice==='A' ? `You pick A. ${aPct}% of players pick A, ${bPct}% pick B.` : `You pick B. ${bPct}% of players pick B, ${aPct}% pick A.`;
-  addXP(20,'Boss decision'); toast('Decision saved! +20 XP');
-}
-function nextDecision(){ dqi=(dqi+1)%decisions.length; renderDecision(); }
-renderDecision();
-// ===== NUMBER GAME =====
-let numTarget=0, numLeft=5, numHistory=[];
-function newNumberGame(){
-  if(S.balance<100){ toast('Balance low!'); return; }
-  S.balance-=100; numTarget=Math.floor(Math.random()*100)+1; numLeft=5; numHistory=[];
-  document.getElementById('numLeft').textContent='5'; document.getElementById('numHistory').textContent='—'; document.getElementById('numMsg').textContent='I don think number 1-100. Guess! Higher / Lower go guide you.'; save();
-}
-function guessNumber(){
-  if(numTarget===0){ toast('Start new game first!'); return; }
-  const v=+document.getElementById('numInput').value;
-  if(!v || v<1 || v>100){ toast('Enter 1-100'); return; }
-  numHistory.push(v); document.getElementById('numHistory').textContent=numHistory.join(', ');
-  if(v===numTarget){
-    const win=300; S.balance+=win; S.wins++; addXP(80,'Number Mind win'); document.getElementById('numMsg').textContent=`🎉 CORRECT! Number be ${numTarget}! +${fmt(win)}!`; toast(`Number Mind WIN +${fmt(win)}`); numTarget=0; save(); return;
-  }
-  numLeft--; document.getElementById('numLeft').textContent=numLeft;
-  if(numLeft<=0){ S.losses++; document.getElementById('numMsg').textContent=`Game over! Number be ${numTarget}. Try again.`; numTarget=0; save(); return; }
-  document.getElementById('numMsg').textContent = v<numTarget ? `Higher! ⬆️ — ${numLeft} left` : `Lower! ⬇️ — ${numLeft} left`;
-  document.getElementById('numInput').value=''; document.getElementById('numInput').focus();
-}
-function hintNumber(){
-  if(numTarget===0){ toast('Start game first!'); return; }
-  if(S.balance<20){ toast('Need ₵20 for hint'); return; }
-  S.balance-=20; const range = numTarget>50 ? '50-100' : '1-50'; document.getElementById('numMsg').textContent=`💡 Hint: Number dey between ${range}. (-₵20)`; save();
-}
-// ===== MEMORY CASH =====
-let memFirst=null, memLock=false, memPairs=0, memFlips=0;
-function initMemory(){
-  if(S.balance<50){ toast('Need ₵50 to play Memory'); return; }
-  S.balance-=50;
-  const emojis=['♠️','♥️','♦️','♣️','💎','👑','🍒','7️⃣']; let deck=[...emojis,...emojis].sort(()=>Math.random()-0.5);
-  memFirst=null; memLock=false; memPairs=0; memFlips=0;
-  document.getElementById('memPairs').textContent='0'; document.getElementById('memFlips').textContent='0';
-  const grid=document.getElementById('memGrid'); grid.innerHTML='';
-  deck.forEach(em=>{
-    const b=document.createElement('button'); b.style.cssText='height:68px;border-radius:12px;background:#1A1A24;border:1px solid #333;font-size:24px;color:#fff';
-    b.textContent='🂠'; b.dataset.em=em;
-    b.addEventListener('click',()=>{
-      if(memLock||b.dataset.open==='1') return;
-      b.dataset.open='1'; b.textContent=em; b.style.background='#fff'; b.style.color='#111'; memFlips++; document.getElementById('memFlips').textContent=memFlips;
-      if(!memFirst){ memFirst=b; return; }
-      if(memFirst.dataset.em===em){ memPairs++; document.getElementById('memPairs').textContent=memPairs; S.balance+=200; addXP(30,'Memory pair'); toast('+₵200 Pair!'); memFirst=null; if(memPairs===8){ S.balance+=2000; S.wins++; addXP(150,'Memory win'); toast('🎉 MEMORY WIN! +₵2000 Bonus!'); save(); } save(); }
-      else { memLock=true; setTimeout(()=>{ memFirst.dataset.open=''; memFirst.textContent='🂠'; memFirst.style.background='#1A1A24'; memFirst.style.color='#fff'; b.dataset.open=''; b.textContent='🂠'; b.style.background='#1A1A24'; b.style.color='#fff'; memFirst=null; memLock=false; },700); }
-    });
-    grid.appendChild(b);
-  });
-  save();
-}
-initMemory();
-// ===== LEADERBOARD =====
-function getBoard(){ let board=JSON.parse(localStorage.getItem('adult_board')||'null'); if(!board){ board=[{name:'Philemon 👑',balance:45000,wins:120},{name:'Kwame Boss 💰',balance:22000,wins:80},{name:'Ama Rich 👸',balance:18000,wins:65},{name:'Yaw Hustler 🥁',balance:12000,wins:50},{name:'Efua Lucky 🍀',balance:9000,wins:40}]; localStorage.setItem('adult_board',JSON.stringify(board)); } const me={name:S.name||'You (Guest)',balance:S.balance,wins:S.wins,isMe:true}; const idx=board.findIndex(r=>r.isMe); if(idx>=0) board[idx]=me; else board.push(me); return board; }
-function renderLB(){ const q=(document.getElementById('lbSearch')?.value||'').toLowerCase(); const sort=document.getElementById('lbSort')?.value||'balance'; let board=getBoard().filter(r=>r.name.toLowerCase().includes(q)); if(sort==='balance') board.sort((a,b)=>b.balance-a.balance); else if(sort==='wins') board.sort((a,b)=>b.wins-a.wins); else board.sort((a,b)=>a.name.localeCompare(b.name)); const list=document.getElementById('lbList'); if(!list) return; list.innerHTML=board.slice(0,10).map((r,i)=>`<div class="lbRow ${r.isMe?'me':''}"><div class="lbRank">${i+1}</div><div style="flex:1;font-weight:700;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name}</div><span style="font-size:12px;color:var(--muted)">${r.wins} wins</span><b style="color:var(--gold)">${fmt(r.balance)}</b></div>`).join(''); const all=getBoard(); localStorage.setItem('adult_board', JSON.stringify(all.filter(r=>!r.isMe))); }
-document.getElementById('lbSearch')?.addEventListener('input',renderLB); document.getElementById('lbSort')?.addEventListener('change',renderLB);
-function renderDaily(){ const done=(S.daily.bj>=3?1:0)+(S.daily.roulette>=1?1:0)+(S.daily.biz>=1?1:0); const el=document.getElementById('dailyProgress'); if(el) el.textContent=`Progress: ${done}/3 — Blackjack wins ${S.daily.bj}/3 · Roulette ${S.daily.roulette}/1 · Business ${S.daily.biz}/1`; }
-function claimDaily(){ const done=(S.daily.bj>=3?1:0)+(S.daily.roulette>=1?1:0)+(S.daily.biz>=1?1:0); if(done<3){ toast('Do 3 tasks first: Win 3 Blackjack + 1 Roulette + Buy 1 Business'); goTab('blackjack'); return; } S.balance+=1000; S.daily={bj:0,roulette:0,biz:0}; addXP(100,'Daily challenge'); toast('🎁 +₵1000 Daily!'); save(); }
-function showNameModal(){ document.getElementById('nameModal').classList.add('show'); document.getElementById('playerNameInput').value=S.name||''; }
-function saveName(){ const v=document.getElementById('playerNameInput').value.trim()||'Guest'; S.name=v; save(); document.getElementById('nameModal').classList.remove('show'); toast(`Welcome, ${v}! 👑`); }
-document.getElementById('nameModal').addEventListener('click',e=>{ if(e.target.id==='nameModal') e.target.classList.remove('show'); });
-function shareScore(){ window.open(`https://wa.me/233206834470?text=${encodeURIComponent(`I dey play Philemon's Adult Game Center 🎰 — My balance: ${fmt(S.balance)}, Wins: ${S.wins}, XP: ${S.xp}. I be Boss! Try am!`)}`,'_blank'); }
-function resetGame(){ if(!confirm('Reset all? Balance + empire go clear.')) return; localStorage.removeItem('adult_center_v1'); location.reload(); }
-// Init
-S.visits++; save(); renderAll();
-document.getElementById('visitText').textContent=`You don visit ${S.visits} time${S.visits>1?'s':''} — Play like a boss. Know when to stop. 🎰`;
-setTimeout(()=>{ if(!S.name && localStorage.getItem('adult_18plus')==='yes') showNameModal(); },2000);
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2100)}
+function changeName(){const n=prompt('What should we call you?',profile.name);if(n&&n.trim()){profile.name=n.trim().slice(0,20);save();toast('Name updated!')}}
+function stopGame(){if(gameTimer){clearInterval(gameTimer);clearTimeout(gameTimer);gameTimer=null}if(animationId){cancelAnimationFrame(animationId);animationId=null}}
+function openGame(name){stopGame();currentGame=name;$('overlay').classList.add('show');document.body.style.overflow='hidden';const setup=games[name];$('gameTitle').textContent=setup.title;$('gameBody').innerHTML=setup.html;setup.start()}
+function closeGame(){stopGame();$('overlay').classList.remove('show');document.body.style.overflow='';currentGame=null}
+$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeGame()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&currentGame)closeGame();if((e.code==='Space'||e.key==='ArrowUp')&&currentGame==='runner'&&!['BUTTON','INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();jumpRunner()}});
+const games={};
+
+// BUBBLE POP
+games.bubble={title:'🫧 Bubble Pop',html:`<p class="gameIntro">Tap a group of two or more matching bubbles to pop them. Bigger groups earn more points. Clear the board or chase your best score.</p><div class="gameStats"><span>Score: <b id="bScore">0</b></span><span>Moves: <b id="bMoves">25</b></span></div><div class="grid6" id="bubbleGrid"></div><p class="feedback" id="bMsg">Find a matching group to pop!</p><div class="actionRow"><button class="secondary" onclick="startBubble()">↻ New board</button></div>`,
+start(){startBubble()}};
+const bubbleColors=['#ff718d','#63d7e7','#a88cff','#ffcf69','#a9e66f'];
+let bBoard=[],bScore=0,bMoves=25;
+function startBubble(){bBoard=Array.from({length:7},()=>Array.from({length:7},()=>Math.floor(Math.random()*5)));bScore=0;bMoves=25;renderBubble();$('bMsg').textContent='Tap a group of at least 2 matching bubbles.'}
+function renderBubble(){const g=$('bubbleGrid');if(!g)return;g.innerHTML='';bBoard.forEach((row,r)=>row.forEach((v,c)=>{const b=document.createElement('button');b.className='bubble';b.style.background=bubbleColors[v];b.textContent=['●','●','●','●','●'][v];b.setAttribute('aria-label','Bubble');b.onclick=()=>{playTone('tap');popBubble(r,c)};g.appendChild(b)}));$('bScore').textContent=bScore;$('bMoves').textContent=bMoves}
+function popBubble(r,c){if(bMoves<=0||bBoard[r][c]===null)return;const color=bBoard[r][c],stack=[[r,c]],seen=new Set([r+','+c]),group=[];while(stack.length){const [y,x]=stack.pop();group.push([y,x]);[[1,0],[-1,0],[0,1],[0,-1]].forEach(([dy,dx])=>{const ny=y+dy,nx=x+dx,k=ny+','+nx;if(ny>=0&&ny<7&&nx>=0&&nx<7&&!seen.has(k)&&bBoard[ny][nx]===color){seen.add(k);stack.push([ny,nx])}})}if(group.length<2){$('bMsg').textContent='That bubble needs a friend!';return}group.forEach(([y,x])=>bBoard[y][x]=null);bScore+=group.length*group.length*10;bMoves--;for(let x=0;x<7;x++){let vals=bBoard.map(row=>row[x]).filter(v=>v!==null);while(vals.length<7)vals.unshift(Math.floor(Math.random()*5));for(let y=0;y<7;y++)bBoard[y][x]=vals[y]}playTone('pop');$('bMsg').textContent=`Pop! ${group.length} bubbles — +${group.length*group.length*10} points.`;renderBubble();if(bMoves===0){award(35,bScore);$('bMsg').textContent=`Board complete! Final score: ${bScore}. +35 XP`;}}
+
+// MATCH MANIA
+games.match={title:'🍬 Match Mania',html:`<p class="gameIntro">Select a tile, then select a neighbouring tile to swap. Match three or more identical symbols in a row or column. You have 30 moves.</p><div class="gameStats"><span>Score: <b id="mScore">0</b></span><span>Moves: <b id="mMoves">30</b></span></div><div class="matchGrid" id="matchGrid"></div><p class="feedback" id="mMsg">Swap two neighbouring tiles.</p><div class="actionRow"><button class="secondary" onclick="startMatch()">↻ Restart</button></div>`,start(){startMatch()}};
+const matchSymbols=['🍓','🍋','🍇','🍊','🍬','🫐'];let mBoard=[],mSelected=null,mScore=0,mMoves=30,mBusy=false;
+function startMatch(){mBoard=Array.from({length:6},()=>Array.from({length:6},()=>Math.floor(Math.random()*6)));mSelected=null;mScore=0;mMoves=30;mBusy=false;renderMatch();$('mMsg').textContent='Choose two neighbouring tiles.'}
+function renderMatch(){const g=$('matchGrid');if(!g)return;g.innerHTML='';mBoard.forEach((row,r)=>row.forEach((v,c)=>{const b=document.createElement('button');b.className='tile'+(mSelected&&mSelected[0]===r&&mSelected[1]===c?' selected':'');b.textContent=matchSymbols[v];b.onclick=()=>{playTone('tap');selectMatch(r,c)};g.appendChild(b)}));$('mScore').textContent=mScore;$('mMoves').textContent=mMoves}
+function findMatches(){const set=new Set();for(let r=0;r<6;r++)for(let c=0;c<6;c++){const v=mBoard[r][c];if(c<4&&mBoard[r][c+1]===v&&mBoard[r][c+2]===v){let k=c;while(k<6&&mBoard[r][k]===v)set.add(r+','+k),k++}if(r<4&&mBoard[r+1][c]===v&&mBoard[r+2][c]===v){let k=r;while(k<6&&mBoard[k][c]===v)set.add(k+','+c),k++}}return [...set].map(k=>k.split(',').map(Number))}
+function resolveMatches(){let matches=findMatches();if(!matches.length)return false;matches.forEach(([r,c])=>mBoard[r][c]=null);mScore+=matches.length*10;playTone('match');for(let c=0;c<6;c++){let vals=mBoard.map(row=>row[c]).filter(v=>v!==null);while(vals.length<6)vals.unshift(Math.floor(Math.random()*6));for(let r=0;r<6;r++)mBoard[r][c]=vals[r]}return true}
+function selectMatch(r,c){if(mBusy||mMoves<=0)return;if(!mSelected){mSelected=[r,c];renderMatch();return}const [sr,sc]=mSelected;if(sr===r&&sc===c){mSelected=null;renderMatch();return}if(Math.abs(sr-r)+Math.abs(sc-c)!==1){mSelected=[r,c];renderMatch();return}mBusy=true;[mBoard[sr][sc],mBoard[r][c]]=[mBoard[r][c],mBoard[sr][sc]];mSelected=null;if(!findMatches().length){[mBoard[sr][sc],mBoard[r][c]]=[mBoard[r][c],mBoard[sr][sc]];$('mMsg').textContent='No match there — try another swap.';mBusy=false;renderMatch();return}mMoves--;while(resolveMatches()){}mBusy=false;renderMatch();$('mMsg').textContent='Sweet combo!';if(!mMoves){award(45,mScore);$('mMsg').textContent=`Game over — ${mScore} points. +45 XP`;}}
+
+// CRAZY RUNNER
+games.runner={title:'🏃 Crazy Runner',html:`<p class="gameIntro">Tap the screen, press Space or use the Jump button to leap over the hurdles. Collect stars and see how far you can run.</p><div class="gameStats"><span>Distance: <b id="rScore">0</b></span><span>Stars: <b id="rStars">0</b></span></div><canvas id="runnerCanvas" width="700" height="270"></canvas><p class="feedback" id="rMsg">Ready? Start running!</p><div class="actionRow"><button class="action" onclick="startRunner()">▶ Start / Restart</button><button class="secondary" onclick="jumpRunner()">⬆ Jump</button></div>`,start(){drawRunnerIdle();const c=$('runnerCanvas');c.addEventListener('pointerdown',()=>{if(runner)jumpRunner()})}};
+let runner=null;
+function drawRunnerIdle(){const c=$('runnerCanvas');if(!c)return;const x=c.getContext('2d');x.clearRect(0,0,700,270);x.fillStyle='#1e3154';x.fillRect(0,215,700,55);x.fillStyle='#b6f36b';x.fillRect(0,215,700,5);x.font='54px sans-serif';x.fillText('🏃',80,210);x.font='16px sans-serif';x.fillStyle='#dce7ff';x.fillText('Press Start to run',275,120)}
+function startRunner(){stopGame();const c=$('runnerCanvas');if(!c)return;runner={y:174,vy:0,obs:[],stars:[],score:0,collected:0,frame:0,over:false};$('rMsg').textContent='Go! Jump over the blocks.';const ctx=c.getContext('2d');function frame(){if(!runner||runner.over)return;runner.frame++;runner.score++;if(runner.frame%85===0)runner.obs.push({x:710,w:28+Math.random()*15,h:35+Math.random()*28});if(runner.frame%115===0)runner.stars.push({x:710,y:115+Math.random()*45});runner.vy+=.62;runner.y=Math.min(174,runner.y+runner.vy);if(runner.y>=174)runner.vy=0;runner.obs.forEach(o=>o.x-=5.2);runner.stars.forEach(s=>s.x-=5.2);runner.obs=runner.obs.filter(o=>o.x>-50);runner.stars=runner.stars.filter(s=>s.x>-30);const hit=runner.obs.some(o=>o.x<118&&o.x+o.w>78&&runner.y+35>215-o.h);if(hit){runner.over=true;award(25,runner.score+runner.collected*50);$('rMsg').textContent=`You crashed! Distance ${runner.score}, stars ${runner.collected}. +25 XP`;return}runner.stars=runner.stars.filter(s=>{if(s.x<118&&s.x>75&&Math.abs(s.y-(runner.y-10))<40){runner.collected++;return false}return true});ctx.clearRect(0,0,700,270);ctx.fillStyle='#1e3154';ctx.fillRect(0,215,700,55);ctx.fillStyle='#b6f36b';ctx.fillRect(0,215,700,5);ctx.fillStyle='#ffffff18';for(let i=0;i<7;i++)ctx.fillRect((i*120-runner.frame*2)%700,55,45,3);ctx.font='40px sans-serif';ctx.fillText('🏃',75,runner.y+38);ctx.font='30px sans-serif';runner.obs.forEach(o=>{ctx.fillStyle='#ff718d';ctx.fillRect(o.x,215-o.h,o.w,o.h);ctx.fillStyle='#ffd5e0';ctx.fillRect(o.x+5,215-o.h+7,5,5)});ctx.font='25px sans-serif';runner.stars.forEach(s=>ctx.fillText('⭐',s.x,s.y));$('rScore').textContent=runner.score;$('rStars').textContent=runner.collected;animationId=requestAnimationFrame(frame)}frame()}
+function jumpRunner(){if(!runner||runner.over)return;if(runner.y>=173){runner.vy=-13;playTone('tap')}}
+$('overlay').addEventListener('pointerdown',e=>{if(currentGame==='runner'&&e.target===$('runnerCanvas'))jumpRunner()});
+document.addEventListener('keydown',e=>{if(currentGame==='runner'&&e.code==='Space'){e.preventDefault();jumpRunner()}});
+
+// BLOCK MASTER
+games.blocks={title:'🧱 Block Master',html:`<p class="gameIntro">Choose a shape, then tap a starting cell to place it. Complete a full row or column to clear it. Keep the board open for as long as possible.</p><div class="gameStats"><span>Score: <b id="blScore">0</b></span><span>Pieces placed: <b id="blPlaced">0</b></span></div><div class="matchGrid" id="blockGrid" style="grid-template-columns:repeat(8,1fr);max-width:430px"></div><div class="actionRow" id="shapeChoices"></div><p class="feedback" id="blMsg">Select a shape and tap the board.</p><div class="actionRow"><button class="secondary" onclick="startBlocks()">↻ New board</button></div>`,start(){startBlocks()}};
+let blBoard=[],blScore=0,blPlaced=0,blShape=0;const shapes=[[[0,0]],[[0,0],[0,1]],[[0,0],[1,0],[1,1]],[[0,0],[0,1],[0,2]],[[0,0],[1,0],[2,0]],[[0,0],[0,1],[0,2],[1,1]]];
+function startBlocks(){blBoard=Array.from({length:8},()=>Array(8).fill(0));blScore=0;blPlaced=0;blShape=0;renderBlocks()}
+function renderBlocks(){const g=$('blockGrid');if(!g)return;g.innerHTML='';blBoard.forEach((row,r)=>row.forEach((v,c)=>{const b=document.createElement('button');b.className='tile';b.style.background=v?'linear-gradient(135deg,#54e1e8,#788bff)':'#202b45';b.textContent=v?'':' ';b.onclick=()=>placeBlock(r,c);g.appendChild(b)}));$('blScore').textContent=blScore;$('blPlaced').textContent=blPlaced;const choices=$('shapeChoices');choices.innerHTML='';shapes.forEach((s,i)=>{const b=document.createElement('button');b.className=i===blShape?'action':'secondary';b.textContent='Shape '+(i+1);b.onclick=()=>{blShape=i;renderBlocks()};choices.appendChild(b)})}
+function placeBlock(r,c){const shape=shapes[blShape];if(shape.some(([y,x])=>r+y>=8||c+x>=8||blBoard[r+y][c+x])){$('blMsg').textContent='That shape does not fit there.';return}shape.forEach(([y,x])=>blBoard[r+y][c+x]=1);blScore+=shape.length*5;blPlaced++;let rows=[],cols=[];for(let y=0;y<8;y++)if(blBoard[y].every(Boolean))rows.push(y);for(let x=0;x<8;x++)if(blBoard.every(row=>row[x]))cols.push(x);rows.forEach(y=>blBoard[y].fill(0));cols.forEach(x=>blBoard.forEach(row=>row[x]=0));blScore+=(rows.length+cols.length)*100;renderBlocks();$('blMsg').textContent=rows.length+cols.length?`Great! Cleared ${rows.length+cols.length} line(s).`:'Nice placement. Keep going!';if(blPlaced%10===0)toast('10 pieces placed — great focus!');if(!shapes.some(s=>{for(let y=0;y<8;y++)for(let x=0;x<8;x++)if(s.every(([dy,dx])=>y+dy<8&&x+dx<8&&!blBoard[y+dy][x+dx]))return true;return false})){award(40,blScore);$('blMsg').textContent=`No more moves. Final score ${blScore}. +40 XP`;}}
+
+// AIR HOCKEY
+games.hockey={title:'🏒 Air Hockey',html:`<p class="gameIntro">Drag your blue striker around your half of the table. Hit the puck into the computer's goal. First to five goals wins. On desktop use your mouse; on mobile drag your finger.</p><div class="gameStats"><span>You: <b id="hYou">0</b></span><span>Computer: <b id="hAI">0</b></span></div><canvas id="hockeyCanvas" width="620" height="360"></canvas><p class="feedback" id="hMsg">Ready for face-off?</p><div class="actionRow"><button class="action" onclick="startHockey()">▶ Start match</button></div>`,start(){drawHockeyIdle()}};
+let hockey=null;
+function drawHockeyIdle(){const c=$('hockeyCanvas');if(!c)return;const x=c.getContext('2d');x.clearRect(0,0,620,360);drawHockeyTable(x);x.fillStyle='#54e1e8';x.beginPath();x.arc(310,280,23,0,7);x.fill();x.fillStyle='#ff77b7';x.beginPath();x.arc(310,80,23,0,7);x.fill();x.fillStyle='white';x.font='16px sans-serif';x.fillText('Press Start',270,185)}
+function drawHockeyTable(ctx){ctx.fillStyle='#152947';ctx.fillRect(0,0,620,360);ctx.strokeStyle='#dce8ff';ctx.lineWidth=3;ctx.strokeRect(12,12,596,336);ctx.beginPath();ctx.moveTo(12,180);ctx.lineTo(608,180);ctx.stroke();ctx.beginPath();ctx.arc(310,180,55,0,Math.PI*2);ctx.stroke();ctx.strokeRect(235,12,150,38);ctx.strokeRect(235,310,150,38)}
+function startHockey(){stopGame();hockey={px:310,py:275,ax:310,ay:75,x:310,y:180,vx:3.2,vy:2.2,you:0,ai:0,run:true};$('hYou').textContent='0';$('hAI').textContent='0';$('hMsg').textContent='Play! Defend your goal.';const c=$('hockeyCanvas'),ctx=c.getContext('2d');function draw(){if(!hockey||!hockey.run)return;hockey.ax+=(hockey.x-hockey.ax)*.035;hockey.ay+=(hockey.y-hockey.ay)*.035;hockey.x+=hockey.vx;hockey.y+=hockey.vy;if(hockey.x<28||hockey.x>592)hockey.vx*=-1;if(hockey.y<12&&hockey.x>235&&hockey.x<385){hockey.you++;resetPuck()}else if(hockey.y>348&&hockey.x>235&&hockey.x<385){hockey.ai++;resetPuck()}else if(hockey.y<35||hockey.y>325)hockey.vy*=-1;let dx=hockey.x-hockey.px,dy=hockey.y-hockey.py,dist=Math.hypot(dx,dy);if(dist<39){hockey.vx=dx/Math.max(1,dist)*5.3;hockey.vy=dy/Math.max(1,dist)*5.3}dx=hockey.x-hockey.ax;dy=hockey.y-hockey.ay;dist=Math.hypot(dx,dy);if(dist<38){hockey.vx=dx/Math.max(1,dist)*4.5;hockey.vy=Math.abs(dy)/Math.max(1,dist)*4.5}drawHockeyTable(ctx);ctx.fillStyle='#54e1e8';ctx.beginPath();ctx.arc(hockey.px,hockey.py,23,0,7);ctx.fill();ctx.fillStyle='#ff77b7';ctx.beginPath();ctx.arc(hockey.ax,hockey.ay,23,0,7);ctx.fill();ctx.fillStyle='#f8fbff';ctx.beginPath();ctx.arc(hockey.x,hockey.y,12,0,7);ctx.fill();$('hYou').textContent=hockey.you;$('hAI').textContent=hockey.ai;if(hockey.you>=5||hockey.ai>=5){hockey.run=false;award(50,hockey.you*100);$('hMsg').textContent=hockey.you>=5?'You win the match! 🏆 +50 XP':'Computer wins. Rematch?';return}animationId=requestAnimationFrame(draw)}function resetPuck(){hockey.x=310;hockey.y=180;hockey.vx=(Math.random()>.5?1:-1)*3.5;hockey.vy=(Math.random()>.5?1:-1)*2.8}draw()}
+const hockeyCanvas=$('overlay');hockeyCanvas.addEventListener('pointermove',e=>{if(currentGame!=='hockey'||!hockey?.run)return;const c=$('hockeyCanvas'),r=c.getBoundingClientRect(),x=(e.clientX-r.left)*620/r.width,y=(e.clientY-r.top)*360/r.height;hockey.px=Math.max(35,Math.min(585,x));hockey.py=Math.max(195,Math.min(325,y))});
+
+// MIND MATCH
+games.memory={title:'🧠 Mind Match',html:`<p class="gameIntro">Flip two cards at a time and find all eight matching pairs. Try to finish with as few moves as possible.</p><div class="gameStats"><span>Pairs: <b id="mmPairs">0 / 8</b></span><span>Moves: <b id="mmMoves">0</b></span></div><div class="memoryGrid" id="memoryGrid"></div><p class="feedback" id="mmMsg">Find the matching pairs.</p><div class="actionRow"><button class="secondary" onclick="startMemory()">↻ Shuffle cards</button></div>`,start(){startMemory()}};
+let mmDeck=[],mmOpen=[],mmMatched=0,mmMoves=0,mmLock=false;
+function startMemory(){mmDeck=['🍉','🍉','🐸','🐸','🚀','🚀','🌈','🌈','🎧','🎧','🍕','🍕','🦋','🦋','⚽','⚽'].sort(()=>Math.random()-.5);mmOpen=[];mmMatched=0;mmMoves=0;mmLock=false;renderMemory()}
+function renderMemory(){const g=$('memoryGrid');if(!g)return;g.innerHTML='';mmDeck.forEach((v,i)=>{const b=document.createElement('button');b.className='memoryTile'+(mmOpen.includes(i)?' open':'')+(v===null?' matched':'');b.textContent=v===null?'✓':mmOpen.includes(i)?v:'?';b.onclick=()=>{playTone('tap');flipMemory(i)};g.appendChild(b)});$('mmPairs').textContent=mmMatched+' / 8';$('mmMoves').textContent=mmMoves}
+function flipMemory(i){if(mmLock||mmOpen.includes(i)||mmDeck[i]===null)return;mmOpen.push(i);renderMemory();if(mmOpen.length===2){mmMoves++;const [a,b]=mmOpen;if(mmDeck[a]===mmDeck[b]){playTone('match');mmDeck[a]=mmDeck[b]=null;mmMatched++;mmOpen=[];renderMemory();if(mmMatched===8){award(45,Math.max(0,1000-mmMoves*10));$('mmMsg').textContent=`All pairs found in ${mmMoves} moves! +45 XP`}}else{playTone('miss');mmLock=true;gameTimer=setTimeout(()=>{mmOpen=[];mmLock=false;renderMemory()},750)}}}
+
+// WHACK ATTACK
+games.whack={title:'🐹 Whack Attack',html:`<p class="gameIntro">Tap the little character whenever it pops up. You have 30 seconds. Don't tap empty holes — aim for the speedy ones!</p><div class="gameStats"><span>Score: <b id="wScore">0</b></span><span>Time: <b id="wTime">30</b>s</span></div><div class="whackGrid" id="whackGrid"></div><p class="feedback" id="wMsg">Press Start when you're ready.</p><div class="actionRow"><button class="action" onclick="startWhack()">▶ Start game</button></div>`,start(){buildWhack()}};
+let whackActive=-1,wScore=0,wTime=30;
+function buildWhack(){const g=$('whackGrid');if(!g)return;g.innerHTML='';for(let i=0;i<9;i++){const b=document.createElement('button');b.className='hole';b.textContent='';b.onclick=()=>hitWhack(i);g.appendChild(b)}}
+function showWhack(){const holes=[...$('whackGrid').children];holes.forEach((h,i)=>{h.classList.toggle('active',i===whackActive);h.textContent=i===whackActive?'🐹':''})}
+function startWhack(){stopGame();wScore=0;wTime=30;whackActive=Math.floor(Math.random()*9);$('wScore').textContent=0;$('wTime').textContent=30;$('wMsg').textContent='Go go go!';buildWhack();showWhack();function tick(){wTime--;if(wTime>0)whackActive=Math.floor(Math.random()*9);showWhack();$('wTime').textContent=wTime;if(wTime<=0){stopGame();whackActive=-1;showWhack();award(30,wScore);$('wMsg').textContent=`Time! You scored ${wScore}. +30 XP`;}}gameTimer=setInterval(tick,1000)}
+function hitWhack(i){if(wTime<=0)return;if(i===whackActive){wScore+=10;playTone('pop');whackActive=-1;$('wScore').textContent=wScore;showWhack();$('wMsg').textContent='Nice hit! +10';}else{$('wMsg').textContent='Miss! Wait for one to pop up.'}}
+
+// VIRTUAL PET
+games.pet={title:'🐣 Virtual Pet',html:`<p class="gameIntro">Meet your new little buddy! Keep its hunger, happiness and energy balanced. Come back later to see how your pet is doing.</p><div class="petCard"><div class="petFace" id="petFace">🐣</div><h3 id="petMood" style="font:700 20px 'Space Grotesk'">Your buddy is happy!</h3><div class="meter"><span>🍎 Hunger</span><div class="meterTrack"><i id="petHunger"></i></div><b id="petHungerN">75</b></div><div class="meter"><span>💖 Joy</span><div class="meterTrack"><i id="petJoy"></i></div><b id="petJoyN">75</b></div><div class="meter"><span>⚡ Energy</span><div class="meterTrack"><i id="petEnergy"></i></div><b id="petEnergyN">80</b></div><div class="actionRow"><button class="action" onclick="petAction('feed')">🍎 Feed</button><button class="secondary" onclick="petAction('play')">🧸 Play</button><button class="secondary" onclick="petAction('rest')">💤 Rest</button></div></div><p class="feedback" id="petMsg">Take good care of your buddy!</p>`,start(){renderPet()}};
+function renderPet(){const p=profile.pet;$('petHunger').style.width=p.hunger+'%';$('petJoy').style.width=p.joy+'%';$('petEnergy').style.width=p.energy+'%';$('petHungerN').textContent=p.hunger;$('petJoyN').textContent=p.joy;$('petEnergyN').textContent=p.energy;const mood=Math.min(p.hunger,p.joy,p.energy);$('petFace').textContent=mood<25?'🥺':p.joy>85?'🥰':p.energy<25?'😴':'🐣';$('petMood').textContent=mood<25?'Your buddy needs some love':p.joy>85?'Your buddy is delighted!':p.energy<25?'Your buddy is sleepy':'Your buddy is doing well!'}
+function petAction(a){const p=profile.pet;if(a==='feed'){p.hunger=Math.min(100,p.hunger+25);p.joy=Math.min(100,p.joy+5);$('petMsg').textContent='Yum! Your buddy enjoyed the snack.'}if(a==='play'){if(p.energy<15){$('petMsg').textContent='Your buddy is too tired. Let it rest first.';return}p.joy=Math.min(100,p.joy+25);p.energy=Math.max(0,p.energy-18);p.hunger=Math.max(0,p.hunger-8);$('petMsg').textContent='That was fun! Your buddy loved playing.'}if(a==='rest'){p.energy=Math.min(100,p.energy+30);p.joy=Math.max(0,p.joy-3);$('petMsg').textContent='A little nap. Feeling refreshed!'}save();renderPet();profile.xp+=5;save();playTone('match');toast('+5 XP — good pet care!')}
+renderProfile();
 </script>
 </body>
 </html>
