@@ -1,57 +1,537 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Philemon Osae-Hienno Kodua - CV</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-@page{size:A4;margin:0}
-:root{--ink:#111;--muted:#555;--line:#d0d0d0;--paper:#fff}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Instrument Sans',Arial,sans-serif;background:#e5e5e5;color:var(--ink);font-size:10.5pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-weight:600}
-.bar{position:fixed;top:14px;right:14px;display:flex;gap:8px;z-index:5}
-.bar a,.bar button{font:600 13px 'Instrument Sans',sans-serif;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;background:#111;color:#fff}
-.bar a{background:#fff;color:#111;border:1px solid #ccc}
-.page{width:210mm;min-height:297mm;margin:24px auto;background:#fff;box-shadow:0 20px 50px -20px rgba(0,0,0,.3);padding:14mm 15mm 12mm}
-header{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;padding-bottom:12px;border-bottom:2.5px solid #111}
-h1{font-family:'Bricolage Grotesque',sans-serif;font-size:26pt;font-weight:800;letter-spacing:-.02em;line-height:1.05}
-.title{margin-top:6px;font-size:11pt;font-weight:700;letter-spacing:.01em}
-.contact{font-size:9.2pt;line-height:1.55;text-align:right;color:var(--muted)}
-.contact a{color:var(--ink);text-decoration:none}
-section{margin-top:16px}
-h2{font-family:'Bricolage Grotesque',sans-serif;font-size:10.5pt;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#111;padding-bottom:4px;border-bottom:1px solid #111;margin-bottom:9px}
-p{color:#222}
-.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-h3{font-size:10.8pt;font-weight:800}
-.when{font-size:9pt;color:var(--muted);font-weight:600;white-space:nowrap}
-.sub{font-size:9.5pt;color:var(--muted);font-weight:500}
-.entry{margin-bottom:11px}
-ul{margin:4px 0 0 16px;color:#222}
-li{margin-bottom:2px}
-.stack{margin-top:4px;font-size:9pt;color:var(--muted)}
-.stack b{color:#111;font-weight:800}
-.feature{border-left:3px solid #111;padding:9px 12px;background:#f6f6f6;border-radius:0 6px 6px 0}
-.skills{display:grid;grid-template-columns:30mm 1fr;gap:5px 10px}
-.skills dt{font-weight:800;text-transform:uppercase;font-size:9pt;letter-spacing:.04em}
-.skills dd{color:#222}
-@media(max-width:820px){.page{width:auto;margin:0;padding:22px 18px}.bar{position:static;justify-content:flex-end;background:#e5e5e5}header{grid-template-columns:1fr}.contact{text-align:left}.row{flex-direction:column;gap:0}.when{white-space:normal}}
-@media print{body{background:#fff}.bar{display:none}.page{margin:0;box-shadow:none;padding:13mm 15mm 11mm}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Curriculum vitae of Philemon Osae-Hienno Kodua, software developer and BSc Web Application Development student at GCTU.">
+
+  <title>Philemon Osae-Hienno Kodua — CV</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @page {
+      size: A4;
+      margin: 13mm 14mm;
+    }
+
+    :root {
+      --ink: #171914;
+      --muted: #555b50;
+      --line: #d8dbd1;
+      --accent: #496d19;
+      --soft: #f2f4ed;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      margin: 0;
+      background: #e9ebe5;
+      color: var(--ink);
+      font: 9.4pt/1.46 "DM Sans", Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(233,235,229,.94);
+      backdrop-filter: blur(10px);
+    }
+
+    .toolbar a,
+    .toolbar button {
+      border: 1px solid #cbd0c3;
+      border-radius: 999px;
+      padding: 9px 15px;
+      background: #fff;
+      color: #171914;
+      font: 700 12px "DM Sans", sans-serif;
+      cursor: pointer;
+    }
+
+    .toolbar button {
+      background: #171914;
+      color: #fff;
+      border-color: #171914;
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      padding: 13mm 14mm;
+      background: #fff;
+      box-shadow: 0 15px 55px rgba(20,25,15,.13);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    h1 {
+      margin: 0;
+      font: 800 25pt/.99 "Manrope", sans-serif;
+      letter-spacing: -.055em;
+    }
+
+    .headline {
+      margin-top: 8px;
+      color: var(--accent);
+      font: 500 8.5pt "DM Mono", monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .contact {
+      text-align: right;
+      color: var(--muted);
+      font-size: 8.1pt;
+      line-height: 1.7;
+    }
+
+    .contact a {
+      color: var(--ink);
+    }
+
+    section {
+      margin-top: 13px;
+      break-inside: avoid;
+    }
+
+    h2 {
+      margin: 0 0 7px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--ink);
+      font: 800 9pt "Manrope", sans-serif;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    p { margin: 0; }
+
+    .summary {
+      font-size: 9.2pt;
+    }
+
+    .entry {
+      margin: 0 0 9px;
+      break-inside: avoid;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 9.5pt;
+      font-weight: 700;
+    }
+
+    .date {
+      color: var(--muted);
+      white-space: nowrap;
+      font: 8pt "DM Mono", monospace;
+    }
+
+    .sub {
+      margin-top: 1px;
+      color: var(--muted);
+      font-size: 8.5pt;
+    }
+
+    ul {
+      margin: 4px 0 0;
+      padding-left: 16px;
+    }
+
+    li { margin: 1px 0; }
+
+    .skills {
+      display: grid;
+      grid-template-columns: 27mm 1fr;
+      gap: 3px 10px;
+      margin: 0;
+    }
+
+    .skills dt {
+      font: 500 7.8pt "DM Mono", monospace;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .skills dd {
+      margin: 0;
+    }
+
+    .project {
+      margin-bottom: 8px;
+    }
+
+    .project p {
+      margin-top: 2px;
+    }
+
+    .project .stack {
+      color: var(--muted);
+      font-size: 8pt;
+    }
+
+    .achievement-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 18px;
+      padding-left: 16px;
+    }
+
+    .footer-note {
+      margin-top: 12px;
+      padding-top: 7px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 7.7pt;
+    }
+
+    @media (max-width: 760px) {
+      body { background: #fff; }
+
+      .toolbar {
+        position: static;
+      }
+
+      .sheet {
+        width: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 24px 20px;
+        box-shadow: none;
+      }
+
+      header {
+        grid-template-columns: 1fr;
+      }
+
+      .contact { text-align: left; }
+
+      .row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .date { white-space: normal; }
+
+      .skills {
+        grid-template-columns: 1fr;
+        gap: 1px;
+      }
+
+      .skills dd { margin-bottom: 6px; }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        font-size: 9pt;
+      }
+
+      .toolbar { display: none; }
+
+      .sheet {
+        width: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+
+      a { text-decoration: none; }
+    }
+  </style>
 </head>
+
 <body>
-<div class="bar"><a href="index.html">Back to portfolio</a><button onclick="window.print()">Save as PDF</button></div>
-<main class="page">
-<header><div><h1>Philemon Osae-Hienno Kodua</h1><div class="title">FULL-STACK DEVELOPER · REACT NATIVE, NODE.JS, SUPABASE</div></div><div class="contact"><div>Accra, Ghana</div><div><a href="tel:+233206834470">+233 20 683 4470</a></div><div><a href="mailto:philemonosae1@gmail.com">philemonosae1@gmail.com</a></div><div>philemon-portfolio-ten.vercel.app</div><div>github.com/Philemon-Osae</div></div></header>
-<section><h2>Professional Summary</h2><p><b>Self-taught since 2023, Level 100 BSc Web Application Development at GCTU.</b> I build practical sites for Ghanaian needs: a secure class portal with Supabase Auth and RLS, booking systems for musicians and campus businesses, interactive Web Audio sites, and an offline-first prenatal health app. 8 projects, 7 live.</p></section>
-<section><h2>Education</h2><div class="entry"><div class="row"><h3>Ghana Communication Technology University (GCTU)</h3><span class="when">Oct 2026 – Present</span></div><div class="sub">BSc Web Application Development, Level 100</div></div><div class="entry"><div class="row"><h3>Abomosu STEM SHS</h3><span class="when">Dec 2023 – June 2026</span></div><div class="sub">Engineering</div></div><div class="entry"><div class="row"><h3>Techten Planets</h3><span class="when">2023 – 2026</span></div><div class="sub">Vacation training: HTML, CSS, JS, Node.js, Express, MySQL, Firebase, React Native</div></div></section>
-<section><h2>Technical Skills</h2><dl class="skills"><dt>Frontend</dt><dd><b>HTML5, CSS3, JavaScript, React</b> — responsive, mobile-first</dd><dt>Mobile</dt><dd><b>React Native, Expo SDK 57, EAS Build</b> — offline-first</dd><dt>Backend</dt><dd><b>Node.js, Express, REST, Auth</b></dd><dt>Databases</dt><dd><b>Supabase, PostgreSQL (RLS, triggers), MySQL, Firebase</b></dd><dt>APIs</dt><dd>Web Audio API, WhatsApp wa.me, Google Maps/Forms</dd><dt>Tools</dt><dd>Git, GitHub, Vercel, Netlify</dd></dl></section>
-<section><h2>Projects</h2><div class="entry feature"><div class="row"><h3>ClassHub: Secure Class Portal</h3><span class="when">classhub2.vercel.app</span></div><ul><li>Archive for my GCTU class: slides, past questions, timetable with live week banner, deadline countdowns. Reps upload files/Drive links, pin, delete, seen-by counts, Share to WhatsApp.</li><li><b>Secured on server:</b> Postgres trigger verifies rep index+code, RLS + storage policies block non-reps.</li></ul><div class="stack"><b>Stack:</b> HTML, CSS, JS, Supabase (Auth, Postgres, Storage, RLS), Vercel</div></div><div class="entry"><div class="row"><h3>Healthy Habits: Prenatal Wellness App (in progress)</h3><span class="when">GSTEP 2023</span></div><ul><li>Offline-first, shareable by Bluetooth/ShareIt for clinics/CHPS. 4 guided 2-min chair-supported routines, safe all trimesters.</li></ul><div class="stack"><b>Stack:</b> React Native, Expo, expo-video, React Navigation</div></div><div class="entry"><div class="row"><h3>Booking Platforms: Kwamepapaa + Phil Tech</h3><span class="when">kwamepapaa.netlify.app · phil-tech-two.vercel.app</span></div><ul><li>Kwamepapaa: quote calculator + bundle discount + WhatsApp. Phil Tech: package funnel → WhatsApp.</li></ul></div><div class="entry"><div class="row"><h3>Interactive Audio + Weddings</h3><span class="when">phil-jazzy · adom-trombonist · weddinginvitation-gh</span></div><ul><li>Web Audio API: 9-pad drum machine, 12-note chord pad, brass tone. Wedding: countdown, Maps, Calendar, MoMo copy, RSVP via Forms.</li></ul></div></section>
-<section><h2>Experience</h2><div class="entry"><div class="row"><h3>Freelance Web Developer, Phil Tech</h3><span class="when">Accra · Present</span></div><ul><li>Ship websites and booking systems from brief to live deployment. Fixed packages, WhatsApp-based ordering.</li></ul></div></section>
-<section><h2>Achievements</h2><ul><li><b>GSTEP 2025 Eastern Region Youth Ambassador.</b></li><li>GSTEP 2023 contestant — built Healthy Habits.</li></ul></section>
-</main>
+
+  <div class="toolbar">
+    <a href="index.html">Back to portfolio</a>
+    <button type="button" onclick="window.print()">Save as PDF</button>
+  </div>
+
+  <main class="sheet">
+
+    <header>
+      <div>
+        <h1>Philemon Osae-Hienno Kodua</h1>
+        <div class="headline">
+          Software Developer · Web & Mobile Applications
+        </div>
+      </div>
+
+      <div class="contact">
+        <div>Accra, Ghana</div>
+        <div>
+          <a href="tel:+233206834470">+233 20 683 4470</a>
+        </div>
+        <div>
+          <a href="mailto:philemonosae1@gmail.com">philemonosae1@gmail.com</a>
+        </div>
+        <div>
+          <a href="https://philemon-portfolio-ten.vercel.app">Portfolio</a>
+          ·
+          <a href="https://github.com/Philemon-Osae">GitHub</a>
+        </div>
+        <div>
+          <a href="https://www.linkedin.com/in/philemon-osae-hienno-kodua-650492304">LinkedIn</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Professional Summary</h2>
+
+      <p class="summary">
+        Software developer and BSc Web Application Development student at Ghana Communication Technology University, with a development journey that began in 2023. Currently a Software Development Intern at Techten Planets. Builds responsive websites, booking experiences and data-backed applications using JavaScript, React Native, Node.js and Supabase. Interested in practical software engineering, accessible user experiences and reliable application design.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="entry">
+        <div class="row">
+          <h3>Techten Planets — Software Development Intern</h3>
+          <span class="date">2026 – Present</span>
+        </div>
+
+        <div class="sub">Accra, Ghana</div>
+
+        <ul>
+          <li>
+            Progressed into an official software development internship after participating in the organisation's student training programme.
+          </li>
+          <li>
+            Continuing to develop practical software development skills through exposure to development workflows and application projects.
+          </li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <h3>Techten Planets — Student Trainee</h3>
+          <span class="date">2023 – 2026</span>
+        </div>
+
+        <div class="sub">
+          Student training alongside senior high school studies
+        </div>
+
+        <ul>
+          <li>
+            Began software development training in 2023, before entering senior high school, and continued during school vacations.
+          </li>
+          <li>
+            Received practical instruction in JavaScript, React Native and Expo, gaining foundational experience in mobile application development.
+          </li>
+          <li>
+            Took responsibility for programming when collaborating with a teammate to initiate Healthy Habits, a prenatal wellness project for GSTEP 2023.
+          </li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <h3>Independent Learning & Project Development</h3>
+          <span class="date">2023 – Present</span>
+        </div>
+
+        <ul>
+          <li>
+            Developed additional skills through independent study and hands-on projects, including HTML, CSS, Node.js, Express.js, MySQL and Supabase.
+          </li>
+          <li>
+            Applied these skills to responsive websites, booking platforms and a class portal using authentication, database services and access policies.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+
+      <div class="entry">
+        <div class="row">
+          <h3>Ghana Communication Technology University (GCTU)</h3>
+          <span class="date">Oct 2026 – Present</span>
+        </div>
+
+        <div class="sub">
+          BSc Web Application Development · Level 100
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <h3>Abomosu STEM Senior High School</h3>
+          <span class="date">Dec 2023 – Jun 2026</span>
+        </div>
+
+        <div class="sub">
+          Engineering · STEM (Science, Technology, Engineering and Mathematics)
+        </div>
+
+        <p>
+          Practical exposure to C++ programming and Arduino-based projects.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+
+      <dl class="skills">
+        <dt>Frontend</dt>
+        <dd>
+          HTML5, CSS3, JavaScript, React fundamentals, responsive and mobile-first design
+        </dd>
+
+        <dt>Mobile</dt>
+        <dd>
+          React Native, Expo, React Navigation, offline-first application concepts
+        </dd>
+
+        <dt>Backend</dt>
+        <dd>
+          Node.js, Express.js, REST API fundamentals, authentication concepts
+        </dd>
+
+        <dt>Databases</dt>
+        <dd>
+          Supabase, PostgreSQL, Row Level Security (RLS), MySQL, Firebase
+        </dd>
+
+        <dt>Engineering</dt>
+        <dd>
+          C++ fundamentals, Arduino programming
+        </dd>
+
+        <dt>Tools & APIs</dt>
+        <dd>
+          Git, GitHub, Vercel, Netlify, Web Audio API, Expo Go, WhatsApp links
+        </dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Selected Projects</h2>
+
+      <div class="project">
+        <div class="row">
+          <h3>ClassHub — Class Resource Portal</h3>
+          <span class="date">Live · classhub2.vercel.app</span>
+        </div>
+
+        <p>
+          Built a portal for GCTU students to access course materials, past questions, announcements, timetables and student requests. Includes authentication, role-aware features, file storage and database access policies.
+        </p>
+
+        <div class="stack">
+          Technologies: HTML, CSS, JavaScript, Supabase Auth, PostgreSQL, Storage, RLS, Vercel
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="row">
+          <h3>Healthy Habits — Prenatal Wellness App</h3>
+          <span class="date">In progress · GSTEP 2023</span>
+        </div>
+
+        <p>
+          Helped develop a prenatal wellness app concept originating from the GSTEP 2023 challenge. The team advanced to the finals and demonstrated the project using Expo Go on mobile and Expo on the web.
+        </p>
+
+        <div class="stack">
+          Technologies: React Native, Expo, React Navigation
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="row">
+          <h3>Booking & Business Websites</h3>
+          <span class="date">Live projects</span>
+        </div>
+
+        <p>
+          Developed booking and service websites including Kwamepapaa and Phil Tech, with package presentation, quote calculation and WhatsApp enquiry workflows.
+        </p>
+
+        <div class="stack">
+          Technologies: HTML, CSS, JavaScript
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="row">
+          <h3>Interactive Musician & Event Websites</h3>
+          <span class="date">Live projects</span>
+        </div>
+
+        <p>
+          Built musician portfolio experiences, browser-based audio interactions using the Web Audio API, and digital wedding invitation websites with event information and guest tools.
+        </p>
+
+        <div class="stack">
+          Technologies: HTML, CSS, JavaScript, Web Audio API
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Achievements & Leadership</h2>
+
+      <ul class="achievement-list">
+        <li>
+          <b>GSTEP 2023 Finalist</b> — Healthy Habits project team.
+        </li>
+
+        <li>
+          <b>GSTEP Youth Steering Group Ambassador</b> — Eastern Region, 2025.
+        </li>
+      </ul>
+    </section>
+
+    <div class="footer-note">
+      Portfolio and project demonstrations are available through the links above. References available upon request.
+    </div>
+
+  </main>
 </body>
 </html>
