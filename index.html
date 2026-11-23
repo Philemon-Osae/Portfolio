@@ -9,49 +9,51 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
-/* --- Design tokens --- */
 :root{
   --bg:#FAFAF8; --surface:#FFFFFF; --surface-2:#F1F0EC;
   --ink:#171713; --muted:#5C5B57; --line:#E2E0D8;
   --accent:#C2410C; --accent-soft:#FFF1E7;
   --radius:14px; --radius-lg:20px;
   --shadow:0 1px 2px rgba(23,23,19,.06), 0 10px 24px -12px rgba(23,23,19,.12);
+  --shadow-3d:0 20px 40px -18px rgba(23,23,19,.28), 0 8px 16px -8px rgba(23,23,19,.12);
 }
 :root[data-theme="dark"]{
   --bg:#121210; --surface:#1B1B18; --surface-2:#242421;
   --ink:#F2F0EB; --muted:#A8A49B; --line:#2E2D29;
   --accent:#FF7A3D; --accent-soft:#2A1D17;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 14px 28px -12px rgba(0,0,0,.6);
+  --shadow-3d:0 24px 48px -18px rgba(0,0,0,.75), 0 10px 20px -10px rgba(255,122,61,.18);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;perspective:1200px;overflow-x:hidden}
 h1,h2,h3{font-family:'Newsreader',Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.02em}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;transform-style:preserve-3d}
 .mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 
-/* --- Nav --- */
-nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+/* Nav - floating 3D */
+nav{position:sticky;top:12px;z-index:20;margin:0 12px;border-radius:16px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--shadow)}
 nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
 .logo{font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.02em}
 .logo span{color:var(--accent)}
 .nav-links{display:flex;gap:4px}
 .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:8px}
 .nav-links a:hover,.nav-links a[aria-current="true"]{color:var(--ink);background:var(--surface-2)}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s}
-.btn-primary{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:transform .18s,box-shadow .18s,background .15s;transform-style:preserve-3d}
+.btn:hover{transform:translateY(-2px) translateZ(4px)}
+.btn-primary{background:var(--ink);color:var(--bg);box-shadow:0 10px 20px -10px rgba(0,0,0,.4)}
 .btn-primary:hover{background:var(--accent);color:#fff}
-.btn-secondary{background:var(--surface);border-color:var(--line);color:var(--ink)}
-.btn-secondary:hover{border-color:var(--ink)}
+.btn-secondary{background:var(--surface);border-color:var(--line);color:var(--ink);box-shadow:var(--shadow)}
+.btn-secondary:hover{transform:translateY(-2px) translateZ(6px)}
 .icon-btn{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:16px}
 
-/* --- Hero --- */
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding:56px 0 32px}
+/* Hero - 3D stage */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding:56px 0 32px;transform-style:preserve-3d}
 .eyebrow{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.hero h1{font-size:clamp(40px,6vw,64px);margin:14px 0 16px}
-.lead{color:var(--muted);font-size:16.5px;max-width:560px}
+.hero h1{font-size:clamp(40px,6vw,64px);margin:14px 0 16px;transform:translateZ(18px)}
+.lead{color:var(--muted);font-size:16.5px;max-width:560px;transform:translateZ(8px)}
 .lead b{color:var(--ink)}
 .role{margin:18px 0 0;font-size:14px;color:var(--muted)}
 .role strong{color:var(--ink)}
@@ -59,91 +61,82 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;height:6
 .meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:13.5px;color:var(--muted)}
 .meta button{font:inherit;font-size:13.5px;color:var(--muted);background:none;border:0;border-bottom:1px dashed var(--line);cursor:pointer;padding:0}
 .meta button:hover{color:var(--ink)}
-.photo img{width:100%;max-width:320px;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius-lg);display:block;margin-left:auto;border:1px solid var(--line)}
-.photo figcaption{font-size:13px;color:var(--muted);text-align:right;margin-top:10px}
 
-/* --- Stats / Marquee --- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0 8px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
-.stat b{font-family:'Newsreader',serif;font-size:28px;display:block;line-height:1}
+/* Photo - real 3D card */
+.scene{perspective:1000px}
+.photo{transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform;position:relative}
+.photo img{width:100%;max-width:320px;aspect-ratio:4/5;object-fit:cover;border-radius:20px;display:block;margin-left:auto;border:1px solid var(--line);box-shadow:var(--shadow-3d);transform:translateZ(30px)}
+.photo:after{content:"";position:absolute;inset:18px -12px -18px 18px;border:1px solid var(--line);border-radius:20px;transform:translateZ(-20px);z-index:-1;background:var(--surface-2)}
+.photo figcaption{font-size:13px;color:var(--muted);text-align:right;margin-top:14px;transform:translateZ(10px)}
+.float-badge{position:absolute;left:-8px;bottom:48px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow-3d);transform:translateZ(50px);font-size:12px;font-weight:600;line-height:1.2}
+.float-badge b{display:block;font-family:'Newsreader',serif;font-size:20px}
+.float-badge2{position:absolute;right:-6px;top:18px;background:var(--ink);color:var(--bg);border-radius:99px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:.06em;transform:translateZ(55px);box-shadow:var(--shadow-3d)}
+
+/* Stats - 3D tiles */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0 8px;transform-style:preserve-3d}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;transform-style:preserve-3d;transition:transform .2s,box-shadow .2s}
+.stat:hover{transform:translateY(-4px) translateZ(12px);box-shadow:var(--shadow-3d)}
+.stat b{font-family:'Newsreader',serif;font-size:28px;display:block;line-height:1;transform:translateZ(8px)}
 .stat span{font-size:12.5px;color:var(--muted)}
 .marquee{overflow:hidden;margin:24px 0 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .track{display:flex;width:max-content;animation:scroll 36s linear infinite}
 .track span{margin-right:8px;padding:7px 13px;border-radius:99px;font-size:13px;font-weight:500;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
-/* --- Sections --- */
 section{padding:48px 0}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .section-head h2{font-size:clamp(28px,4vw,36px)}
 .section-head p{color:var(--muted);font-size:14px}
 .timeline{display:grid;gap:12px}
-.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:transform .2s}
+.step:hover{transform:translateX(4px) translateZ(6px)}
 .step small{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
 .step h3{font-size:18px;margin:6px 0 4px}
 .step p{font-size:14px;color:var(--muted)}
 
-/* --- Projects --- */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .filter{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
 .filter[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:start}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column}
-.card:hover{border-color:color-mix(in srgb,var(--line) 60%,var(--ink) 20%)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:start;perspective:1200px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .22s ease-out,box-shadow .22s;will-change:transform;box-shadow:var(--shadow)}
+.card:hover{box-shadow:var(--shadow-3d)}
 .card.featured{grid-column:1/-1}
-.card-head{padding:20px 22px 0}
+.card-head{padding:20px 22px 0;transform:translateZ(12px)}
 .card-head .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 9px;border-radius:99px}
-.card-body{padding:16px 22px 18px;display:flex;flex-direction:column;flex:1}
+.card-body{padding:16px 22px 18px;display:flex;flex-direction:column;flex:1;transform:translateZ(8px)}
 .card-body h3{font-size:21px}
 .card-body .sub{font-size:13px;color:var(--muted);margin:6px 0 0}
 .stack{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
 .stack span{font-size:11.5px;font-weight:500;padding:4px 9px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line)}
-.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;align-items:center}
 .card-actions a{font-size:13px;font-weight:600}
+.card-actions .src{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.card-actions .src:hover{color:var(--accent)}
+.card-actions .private{font-size:12px;color:var(--muted);border:1px dashed var(--line);padding:5px 10px;border-radius:99px}
 .details{border-top:1px solid var(--line);margin-top:16px}
 .details summary{cursor:pointer;font-size:13.5px;font-weight:600;padding:12px 0;list-style:none}
 .details summary::-webkit-details-marker{display:none}
 .details p{font-size:14px;color:var(--muted);padding-bottom:14px}
-.details p + p{padding-top:0}
 
-/* --- Services / Footer --- */
-.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;perspective:1000px}
 .svc .card{padding:22px}
 .svc h3{font-size:19px}
 .svc p{font-size:14px;color:var(--muted);margin-top:8px}
 footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;font-size:13px;color:var(--muted)}
 footer b{color:var(--ink)}
-
-/* --- Subtle feedback (single, restrained) --- */
-#spark{position:fixed;pointer-events:none;z-index:99;width:10px;height:10px;border-radius:50%;background:var(--accent);opacity:0;transform:translate(-50%,-50%) scale(.6)}
 .totop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;z-index:15}
 .totop.show{opacity:1;pointer-events:auto}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,12px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:30}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-
-@media(max-width:820px){
-  .hero{grid-template-columns:1fr;padding-top:32px}
-  .photo img{margin:0;max-width:260px}
-  .stats{grid-template-columns:1fr 1fr}
-  .grid{grid-template-columns:1fr}
-  .svc{grid-template-columns:1fr}
-  .nav-links{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*:before{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .track{flex-wrap:wrap;width:auto}
-}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:32px}.photo img{margin:0;max-width:260px}.stats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.svc{grid-template-columns:1fr}.nav-links{display:none}nav{top:8px;margin:0 8px}}
+@media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important;scroll-behavior:auto!important}.track{flex-wrap:wrap;width:auto}}
 </style>
-<script>
-document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark';
-</script>
+<script>document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark';</script>
 </head>
 <body>
-<div id="spark" aria-hidden="true"></div>
-
 <nav><div class="wrap">
   <a class="logo" href="#top">Philemon<span>.dev</span></a>
-  <div class="nav-links" id="navlinks"><a href="#education">Education</a><a href="#projects">Projects</a><a href="#services">Services</a></div>
+  <div class="nav-links"><a href="#education">Education</a><a href="#projects">Projects</a><a href="#services">Services</a></div>
   <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☀️</button>
 </div></nav>
 
@@ -163,17 +156,17 @@ document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark'
       </div>
       <div class="meta"><button data-copy="philemonosae1@gmail.com">philemonosae1@gmail.com — copy</button><button data-copy="+233206834470">+233 20 683 4470 — copy</button><span>Level 100, GCTU</span></div>
     </div>
-    <figure class="photo"><img src="profile.jpg" alt="Philemon Osae-Hienno Kodua" loading="lazy"><figcaption>Accra, Ghana — Open for freelance and internship</figcaption></figure>
+    <div class="scene"><figure class="photo" id="photoTilt"><img src="profile.jpg" alt="Philemon Osae-Hienno Kodua" loading="lazy"><div class="float-badge"><b>8 Projects</b>7 live, 1 in progress</div><div class="float-badge2">OPEN TO WORK</div><figcaption>Accra, Ghana — Open for freelance and internship</figcaption></figure></div>
   </header>
 
-  <div class="stats" aria-label="Summary">
+  <div class="stats">
     <div class="stat"><b>8</b><span>Projects built</span></div>
     <div class="stat"><b>7</b><span>Live on the web</span></div>
     <div class="stat"><b>3</b><span>Years of self-training</span></div>
     <div class="stat"><b>L100</b><span>BSc Web App Dev, GCTU</span></div>
   </div>
 
-  <div class="marquee" aria-label="Technologies"><div class="track" id="track"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Node.js</span><span>Express</span><span>Supabase</span><span>PostgreSQL</span><span>MySQL</span><span>Firebase</span><span>Web Audio API</span><span>Git &amp; GitHub</span><span>Vercel</span><span>Netlify</span></div></div>
+  <div class="marquee"><div class="track" id="track"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>React Native</span><span>Expo</span><span>Node.js</span><span>Express</span><span>Supabase</span><span>PostgreSQL</span><span>MySQL</span><span>Firebase</span><span>Web Audio API</span><span>Git &amp; GitHub</span><span>Vercel</span><span>Netlify</span></div></div>
 
   <section id="education">
     <div class="section-head"><h2>Education</h2></div>
@@ -187,42 +180,33 @@ document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark'
   <section id="projects">
     <div class="section-head"><h2>Projects</h2><p>7 live, 1 in progress</p></div>
     <div class="filters" role="group" aria-label="Filter projects">
-      <button class="filter" data-f="all" aria-pressed="true">All</button>
-      <button class="filter" data-f="webapp" aria-pressed="false">Web apps</button>
-      <button class="filter" data-f="website" aria-pressed="false">Websites</button>
-      <button class="filter" data-f="mobile" aria-pressed="false">Mobile apps</button>
-      <button class="filter" data-f="invite" aria-pressed="false">Invitations</button>
+      <button class="filter" data-f="all" aria-pressed="true">All</button><button class="filter" data-f="webapp" aria-pressed="false">Web apps</button><button class="filter" data-f="website" aria-pressed="false">Websites</button><button class="filter" data-f="mobile" aria-pressed="false">Mobile apps</button><button class="filter" data-f="invite" aria-pressed="false">Invitations</button>
     </div>
     <div class="grid">
-      <article class="card featured" data-cat="webapp">
-        <div class="card-head"><span class="tag">Flagship · Live</span></div>
-        <div class="card-body"><h3>ClassHub: Secure Class Portal</h3><p class="sub">Web app · GCTU BWAD L100 · classhub2.vercel.app</p><div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Supabase</span><span>Postgres</span><span>Row Level Security</span><span>Auth</span><span>Vercel</span></div>
-        <details class="details"><summary>Details</summary><p>A class website for my own class. Students register once, then browse materials by course and week, past questions, announcements, timetable, deadline countdowns, and send requests. Course reps get an upload center, pinned announcements, deletion, “seen by” counts and Share to WhatsApp.</p><p><b>Secure by design:</b> rep access is enforced on the server. A Postgres trigger checks each rep’s index and secret code, and RLS blocks everyone else.</p></details>
-        <div class="card-actions"><a class="btn btn-primary" href="https://classhub2.vercel.app" target="_blank" rel="noopener">Visit live site</a></div></div>
-      </article>
+      <article class="card featured tilt" data-cat="webapp"><div class="card-head"><span class="tag">Flagship · Live</span></div><div class="card-body"><h3>ClassHub: Secure Class Portal</h3><p class="sub">Web app · GCTU BWAD L100 · classhub2.vercel.app</p><div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>Supabase</span><span>Postgres</span><span>Row Level Security</span><span>Auth</span><span>Vercel</span></div><details class="details"><summary>Details</summary><p>A class website for my own class. Students register once, then browse materials by course and week, past questions, announcements, timetable, deadline countdowns, and send requests. Course reps get an upload center, pinned announcements, deletion, “seen by” counts and Share to WhatsApp.</p><p><b>Secure by design:</b> rep access is enforced on the server. A Postgres trigger checks each rep’s index and secret code, and RLS blocks everyone else.</p></details><div class="card-actions"><a class="btn btn-primary" href="https://classhub2.vercel.app" target="_blank" rel="noopener">Visit live site</a><a class="src" href="https://github.com/Philemon-Osae" target="_blank" rel="noopener">View Source Code ↗</a></div></div></article>
 
-      <article class="card" data-cat="mobile"><div class="card-head"><span class="tag">In progress</span></div><div class="card-body"><h3>Healthy Habits: Prenatal Wellness for Ghana</h3><p class="sub">Mobile app · React Native</p><div class="stack"><span>React Native</span><span>Expo SDK 52+</span><span>Offline-first</span></div><details class="details"><summary>Details</summary><p>Safe, simple prenatal exercises for pregnant women in Ghana. Works 100% offline after install. 4 guided routines, 2 minutes each, safe in all trimesters. No login, no data collection.</p></details><div class="card-actions"><span style="font-size:13px;color:var(--muted)">Android APK — coming soon</span></div></div></article>
+      <article class="card tilt" data-cat="mobile"><div class="card-head"><span class="tag">In progress</span></div><div class="card-body"><h3>Healthy Habits: Prenatal Wellness for Ghana</h3><p class="sub">Mobile app · React Native</p><div class="stack"><span>React Native</span><span>Expo SDK 52+</span><span>Offline-first</span></div><details class="details"><summary>Details</summary><p>Safe, simple prenatal exercises for pregnant women in Ghana. Works 100% offline after install. 4 guided routines, 2 minutes each, safe in all trimesters. No login, no data collection.</p></details><div class="card-actions"><span class="private">Android APK — coming soon</span><a class="src" href="https://github.com/Philemon-Osae" target="_blank" rel="noopener">View Source Code ↗</a></div></div></article>
 
-      <article class="card" data-cat="website"><div class="card-head"><span class="tag">Live</span></div><div class="card-body"><h3>Phil Tech: Campus Business Booking</h3><p class="sub">Website · Booking system</p><div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>wa.me API</span></div><details class="details"><summary>Details</summary><p>Booking platform for GCTU campus businesses. Packages Basic GHC 500–800, Standard 1200–1800, Premium 2500–4000. One tap sends booking to WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://phil-tech-two.vercel.app" target="_blank" rel="noopener">Visit live site</a></div></div></article>
+      <article class="card tilt" data-cat="website"><div class="card-head"><span class="tag">Live</span></div><div class="card-body"><h3>Phil Tech: Campus Business Booking</h3><p class="sub">Website · Booking system</p><div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>wa.me API</span></div><details class="details"><summary>Details</summary><p>Booking platform for GCTU campus businesses. Packages Basic GHC 500–800, Standard 1200–1800, Premium 2500–4000. One tap sends booking to WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://phil-tech-two.vercel.app" target="_blank" rel="noopener">Visit live site</a><a class="src" href="https://github.com/Philemon-Osae" target="_blank" rel="noopener">View Source Code ↗</a></div></div></article>
 
-      <article class="card" data-cat="website"><div class="card-head"><span class="tag">Live</span></div><div class="card-body"><h3>Phil Jazzy: Interactive Drummer Portfolio</h3><p class="sub">Website · Interactive portfolio</p><div class="stack"><span>HTML</span><span>CSS</span><span>Web Audio API</span><span>AI chatbot</span></div><details class="details"><summary>Details</summary><p>Try My Kit — 9-pad drum machine (Q,W,E,A,S,D,Z,X,C). Worship Pad — 12-note chord sustainer. AI assistant books gigs via WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://phil-jazzy.netlify.app" target="_blank" rel="noopener">Visit live site</a></div></div></article>
+      <article class="card tilt" data-cat="website"><div class="card-head"><span class="tag">Live</span></div><div class="card-body"><h3>Phil Jazzy: Interactive Drummer Portfolio</h3><p class="sub">Website · Interactive portfolio</p><div class="stack"><span>HTML</span><span>CSS</span><span>Web Audio API</span><span>AI chatbot</span></div><details class="details"><summary>Details</summary><p>Try My Kit — 9-pad drum machine (Q,W,E,A,S,D,Z,X,C). Worship Pad — 12-note chord sustainer. AI assistant books gigs via WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://phil-jazzy.netlify.app" target="_blank" rel="noopener">Visit live site</a><a class="src" href="https://github.com/Philemon-Osae" target="_blank" rel="noopener">View Source Code ↗</a></div></div></article>
 
-      <article class="card" data-cat="website"><div class="card-head"><span class="tag">Live</span></div><div class="card-body"><h3>Kwamepapaa: Booking + Rental System</h3><p class="sub">Website · Booking and rental</p><div class="stack"><span>HTML</span><span>CSS</span><span>Quote calculator</span></div><details class="details"><summary>Details</summary><p>For drummer Joseph Offei. Services: Church, Wedding, Concert, Studio, Brand Promotion. Rentals: Drums, Keyboard, Bass. Instant Quote totals services + rentals and sends quote on WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://kwamepapaa.netlify.app" target="_blank" rel="noopener">Visit live site</a></div></div></article>
+      <article class="card tilt" data-cat="website"><div class="card-head"><span class="tag">Live · Client work</span></div><div class="card-body"><h3>Kwamepapaa: Booking + Rental System</h3><p class="sub">Website · Booking and rental</p><div class="stack"><span>HTML</span><span>CSS</span><span>Quote calculator</span></div><details class="details"><summary>Details</summary><p>For drummer Joseph Offei. Services: Church, Wedding, Concert, Studio, Brand Promotion. Rentals: Drums, Keyboard, Bass. Instant Quote totals services + rentals and sends quote on WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://kwamepapaa.netlify.app" target="_blank" rel="noopener">Visit live site</a><span class="private">Source — Private · Client Work</span></div></div></article>
 
-      <article class="card" data-cat="invite"><div class="card-head"><span class="tag">Live · Client work</span></div><div class="card-body"><h3>Wedding Invitation GH: V1</h3><p class="sub">Invitation website</p><div class="stack"><span>HTML</span><span>CSS</span><span>Countdown</span><span>Google Maps</span></div><details class="details"><summary>Details</summary><p>For Bakatel &amp; Juliet. Countdown, calendar highlight, Maps, dress code, Support the Couple with copy-MoMo, Our Story photos, RSVP via Google Forms or WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://weddinginvitation-gh.netlify.app" target="_blank" rel="noopener">Visit live site</a></div></div></article>
+      <article class="card tilt" data-cat="invite"><div class="card-head"><span class="tag">Live · Client work</span></div><div class="card-body"><h3>Wedding Invitation GH: V1</h3><p class="sub">Invitation website</p><div class="stack"><span>HTML</span><span>CSS</span><span>Countdown</span><span>Google Maps</span></div><details class="details"><summary>Details</summary><p>For Bakatel &amp; Juliet. Countdown, calendar highlight, Maps, dress code, Support the Couple with copy-MoMo, Our Story photos, RSVP via Google Forms or WhatsApp.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://weddinginvitation-gh.netlify.app" target="_blank" rel="noopener">Visit live site</a><span class="private">Source — Private · Client Work</span></div></div></article>
 
-      <article class="card" data-cat="invite"><div class="card-head"><span class="tag">Live · Client work</span></div><div class="card-body"><h3>Wedding Invitation GH: V2</h3><p class="sub">Invitation website · Premium upgrade</p><div class="stack"><span>HTML</span><span>CSS</span><span>Envelope animation</span></div><details class="details"><summary>Details</summary><p>Premium upgrade for same client. Gold seal “Open Invite” hero opens an envelope animation, then reveals the invitation.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://wedding-invitation-gh.netlify.app" target="_blank" rel="noopener">Visit live site</a></div></div></article>
+      <article class="card tilt" data-cat="invite"><div class="card-head"><span class="tag">Live · Client work</span></div><div class="card-body"><h3>Wedding Invitation GH: V2</h3><p class="sub">Invitation website · Premium upgrade</p><div class="stack"><span>HTML</span><span>CSS</span><span>Envelope animation</span></div><details class="details"><summary>Details</summary><p>Premium upgrade for same client. Gold seal “Open Invite” hero opens an envelope animation, then reveals the invitation.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://wedding-invitation-gh.netlify.app" target="_blank" rel="noopener">Visit live site</a><span class="private">Source — Private · Client Work</span></div></div></article>
 
-      <article class="card" data-cat="website"><div class="card-head"><span class="tag">Live</span></div><div class="card-body"><h3>Adom Trombonist: Professional Portfolio</h3><p class="sub">Website · Interactive portfolio</p><div class="stack"><span>HTML</span><span>CSS</span><span>Web Audio API</span></div><details class="details"><summary>Details</summary><p>For Adom Nyarko-Yeboah, trombonist in Accra. Try My Horn — 12-note chromatic brass tone. FAQ accordion and one-tap WhatsApp booking.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://adom-the-trombonist-gh.netlify.app" target="_blank" rel="noopener">Visit live site</a></div></div></article>
+      <article class="card tilt" data-cat="website"><div class="card-head"><span class="tag">Live · Client work</span></div><div class="card-body"><h3>Adom Trombonist: Professional Portfolio</h3><p class="sub">Website · Interactive portfolio</p><div class="stack"><span>HTML</span><span>CSS</span><span>Web Audio API</span></div><details class="details"><summary>Details</summary><p>For Adom Nyarko-Yeboah, trombonist in Accra. Try My Horn — 12-note chromatic brass tone. FAQ accordion and one-tap WhatsApp booking.</p></details><div class="card-actions"><a class="btn btn-secondary" href="https://adom-the-trombonist-gh.netlify.app" target="_blank" rel="noopener">Visit live site</a><span class="private">Source — Private · Client Work</span></div></div></article>
     </div>
   </section>
 
   <section id="services">
     <div class="section-head"><h2>Services</h2></div>
     <div class="svc">
-      <div class="card"><h3>Web development</h3><p>Mobile-friendly business websites, booking platforms and online shops built for speed and SEO. React, HTML, CSS, JS.</p></div>
-      <div class="card"><h3>Mobile apps</h3><p>Android and iOS apps with login, push notifications and Play Store deployment, from one codebase. React Native, Expo.</p></div>
-      <div class="card"><h3>Backend and APIs</h3><p>Secure backends, databases and auth, plus Paystack, Hubtel, WhatsApp and Google Maps integration. Node.js, Express, Firebase, MySQL, Supabase.</p></div>
+      <div class="card tilt"><h3>Web development</h3><p>Mobile-friendly business websites, booking platforms and online shops built for speed and SEO. React, HTML, CSS, JS.</p></div>
+      <div class="card tilt"><h3>Mobile apps</h3><p>Android and iOS apps with login, push notifications and Play Store deployment, from one codebase. React Native, Expo.</p></div>
+      <div class="card tilt"><h3>Backend and APIs</h3><p>Secure backends, databases and auth, plus Paystack, Hubtel, WhatsApp and Google Maps integration. Node.js, Express, Firebase, MySQL, Supabase.</p></div>
     </div>
   </section>
 </main>
@@ -233,55 +217,27 @@ document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark'
 
 <script>
 (function(){
-  const root = document.documentElement;
-  const themeBtn = document.getElementById('themeBtn');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const updateThemeBtn = () => themeBtn.textContent = root.dataset.theme === 'dark' ? '☀️' : '🌙';
-  themeBtn.addEventListener('click', () => {
-    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    try{ localStorage.setItem('theme', root.dataset.theme); }catch(e){}
-    updateThemeBtn();
-  });
-  updateThemeBtn();
-
-  // Marquee: duplicate once for seamless loop
-  const track = document.getElementById('track');
-  if(track && !reduce){ [...track.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden','true'); track.appendChild(c); }); }
-
-  // Filters
-  const cards = document.querySelectorAll('.card[data-cat]');
-  document.querySelectorAll('.filter').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const f = btn.dataset.f;
-      document.querySelectorAll('.filter').forEach(x => x.setAttribute('aria-pressed', String(x === btn)));
-      cards.forEach(c => c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none');
+  const root=document.documentElement, themeBtn=document.getElementById('themeBtn');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const update=()=>themeBtn.textContent=root.dataset.theme==='dark'?'☀️':'🌙';
+  themeBtn.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}update()}); update();
+  const track=document.getElementById('track');
+  if(track&&!reduce){[...track.children].forEach(n=>{const c=n.cloneNode(true);c.setAttribute('aria-hidden','true');track.appendChild(c)})}
+  const cards=document.querySelectorAll('.card[data-cat]');
+  document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{const f=b.dataset.f;document.querySelectorAll('.filter').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));cards.forEach(c=>c.style.display=(f==='all'||c.dataset.cat===f)?'':'none')}));
+  const toast=document.getElementById('toast');let tt;const say=m=>{toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1600)};
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{const v=b.dataset.copy;try{await navigator.clipboard.writeText(v);say('Copied: '+v)}catch(e){say(v)}}));
+  const totop=document.getElementById('totop');addEventListener('scroll',()=>totop.classList.toggle('show',scrollY>700),{passive:true});totop.addEventListener('click',()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'}));
+  // Professional 3D tilt - max 7deg, disabled on touch / reduced motion
+  if(fine && !reduce){
+    document.querySelectorAll('.tilt, #photoTilt').forEach(el=>{
+      el.addEventListener('pointermove',e=>{
+        const r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+        el.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-4px) translateZ(6px)`;
+      });
+      el.addEventListener('pointerleave',()=>el.style.transform='');
     });
-  });
-
-  // Copy + toast
-  const toast = document.getElementById('toast'); let tt;
-  const say = m => { toast.textContent = m; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(()=>toast.classList.remove('show'), 1600); };
-  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
-    const v = b.dataset.copy;
-    try{ await navigator.clipboard.writeText(v); say('Copied: ' + v); }catch(e){ say(v); }
-  }));
-
-  // Back to top
-  const totop = document.getElementById('totop');
-  addEventListener('scroll', () => totop.classList.toggle('show', scrollY > 700), {passive:true});
-  totop.addEventListener('click', () => scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}));
-
-  // Restrained click feedback — single dot, disabled for reduced motion
-  const spark = document.getElementById('spark');
-  if(!reduce){
-    addEventListener('pointerdown', e => {
-      if(e.button !== 0) return;
-      spark.style.left = e.clientX + 'px'; spark.style.top = e.clientY + 'px';
-      spark.animate([
-        {opacity:.55, transform:'translate(-50%,-50%) scale(.6)'},
-        {opacity:0, transform:'translate(-50%,-50%) scale(2.2)'}
-      ], {duration:320, easing:'ease-out'});
-    }, {passive:true});
   }
 })();
 </script>
