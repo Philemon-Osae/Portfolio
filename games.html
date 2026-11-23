@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Philemon's Adult Game Center — 18+ | Hustle, Casino, Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0A0A0F;--card:#13131A;--card2:#1A1A24;--ink:#F2F0EB;--muted:#9A9AA8;--gold:#D4AF37;--gold2:#FFD700;--green:#22C55E;--red:#EF4444;--neon:#00FF88;--purple:#8B5CF6}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer;border:0}
+.btn{padding:12px 18px;border-radius:10px;font-weight:700;font-size:14px;transition:.15s}
+.btn:active{transform:scale(.96)} .btn-gold{background:var(--gold);color:#111}.btn-green{background:var(--green);color:#111}.btn-red{background:var(--red);color:#fff}.btn-ghost{background:#222;color:#fff;border:1px solid #333}.btn-neon{background:var(--neon);color:#111}
+.wrap{max-width:1120px;margin:0 auto;padding:0 14px}
+#top{position:sticky;top:0;z-index:60;background:rgba(10,10,15,.94);backdrop-filter:blur(12px);border-bottom:1px solid #222}
+#top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;gap:8px}
+.logo{font-family:'Playfair Display',serif;font-weight:800;font-size:19px}.logo span{color:var(--gold)}
+.topRight{display:flex;gap:6px;align-items:center}
+.chip{background:#1A1A24;border:1px solid #2A2A33;padding:7px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
+.chip b{color:var(--gold)}
+.ageBadge{background:#EF4444;color:#fff;font-weight:800;font-size:11px;padding:5px 9px;border-radius:6px;letter-spacing:.05em}
+.hero{text-align:center;padding:28px 0 12px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,8vw,56px);line-height:1.05}
+.hero h1 i{font-style:normal;color:var(--gold)}
+.hero p{color:var(--muted);max-width:620px;margin:12px auto 0;font-size:14.5px}.hero p b{color:#fff}
+.moodRow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.moodRow button{padding:9px 14px;border-radius:99px;background:#1A1A24;border:1px solid #2A2A33;color:#fff;font-weight:600;font-size:12.5px}
+.moodRow button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+#moodMsg{margin-top:10px;font-weight:600;color:var(--gold);min-height:22px;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.stat{background:var(--card);border:1px solid #222;border-radius:14px;padding:12px;text-align:center}
+.stat b{font-size:22px;display:block}.stat b.gold{color:var(--gold)}.stat span{font-size:11.5px;color:var(--muted)}
+.homeGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.homeCard{background:var(--card);border:1px solid #222;border-radius:16px;padding:14px 10px;text-align:center;cursor:pointer;transition:.15s}
+.homeCard:hover{transform:translateY(-3px);border-color:var(--gold)}
+.homeCard:active{transform:scale(.96)}
+.homeCard b{font-size:28px;display:block}.homeCard h3{font-size:13px;margin:6px 0 2px}.homeCard p{font-size:11px;color:var(--muted);line-height:1.4}
+.homeCard .pts{font-size:11px;font-weight:700;color:var(--gold);margin-top:6px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px;position:sticky;top:60px;z-index:40;background:var(--bg);padding:8px 0}
+.tabs button{padding:9px 12px;border-radius:99px;background:#1A1A24;border:1px solid #2A2A33;color:#fff;font-weight:600;font-size:12px}
+.tabs button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+.panel{display:none}.panel.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid #222;border-radius:18px;padding:18px}
+.card h2{font-size:20px;font-family:'Playfair Display',serif}.card p{color:var(--muted);font-size:13.5px;margin:6px 0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+/* CARDS */
+.playingCards{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0;min-height:96px}
+.pcard{width:64px;height:92px;background:#fff;color:#111;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:20px;box-shadow:0 8px 20px rgba(0,0,0,.5);animation:deal .3s}
+@keyframes deal{from{transform:translateY(-20px) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+.pcard.red{color:#C00}.pcard small{font-size:11px;opacity:.6}
+.pcard.back{background:linear-gradient(135deg,#111,#8B5CF6);color:#fff;border:2px solid var(--gold)}
+.betRow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.betRow button{width:56px;height:56px;border-radius:50%;font-weight:800;font-size:13px;border:2px solid #333;background:#1A1A24;color:#fff}
+.betRow button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+.betRow button:active{transform:scale(.92)}
+/* ROULETTE */
+.rouletteWheel{width:190px;height:190px;border-radius:50%;margin:14px auto;border:6px solid var(--gold);background:conic-gradient(#EF4444 0 10%,#111 0 20%,#EF4444 0 30%,#111 0 40%,#EF4444 0 50%,#111 0 60%,#EF4444 0 70%,#111 0 80%,#EF4444 0 90%,#111 0 100%);display:grid;place-items:center;position:relative;transition:transform 2s cubic-bezier(.1,.7,.2,1)}
+.rouletteWheel:after{content:"";position:absolute;width:36px;height:36px;background:#fff;border-radius:50%;border:3px solid var(--gold)}
+.rouletteNum{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;background:#111;border:2px solid var(--gold);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px}
+/* SLOTS */
+.slots{display:flex;gap:10px;justify-content:center;margin:16px 0}
+.slot{width:86px;height:86px;background:#111;border:2px solid #333;border-radius:14px;display:grid;place-items:center;font-size:38px}
+/* HUSTLE */
+.hustleBar{height:12px;background:#222;border-radius:99px;overflow:hidden;margin:8px 0}
+.hustleBar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0;transition:width .5s}
+.bizGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.biz{padding:14px;border-radius:14px;background:#1A1A24;border:1px solid #2A2A33;text-align:left}
+.biz h3{font-size:14px}.biz p{font-size:12px}
+.biz button{margin-top:8px;width:100%}
+/* TRIVIA */
+.quizOpt{display:grid;gap:8px;margin-top:12px}
+.quizOpt button{padding:13px;text-align:left;border-radius:12px;border:1px solid #333;background:#1A1A24;color:#fff;font-weight:600;font-size:14px}
+.quizOpt button.correct{background:var(--green)!important;color:#111}.quizOpt button.wrong{background:var(--red)!important}
+/* DICE */
+.diceRow{display:flex;gap:12px;justify-content:center;margin:16px 0}
+.dice{width:72px;height:72px;background:#fff;color:#111;border-radius:14px;display:grid;place-items:center;font-size:36px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.dice.rolling{animation:shake .4s infinite}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(10deg) translateY(-4px)}75%{transform:rotate(-10deg)}}
+/* DECISION */
+.decisionCard{background:#1A1A24;border:1px solid #333;border-radius:16px;padding:18px;text-align:center;min-height:150px;display:grid;place-items:center}
+.decisionCard h3{font-size:20px;line-height:1.4}
+/* LEADER */
+.lbRow{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;background:#1A1A24;border:1px solid #2A2A33;margin-top:8px}
+.lbRow.me{border-color:var(--gold);background:#2A2410}
+.lbRank{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#222;flex-shrink:0}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,12px);background:#fff;color:#111;padding:12px 16px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:100;border:2px solid var(--gold);max-width:92vw;text-align:center;font-size:14px}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#ageModal{position:fixed;inset:0;background:#000;z-index:200;display:grid;place-items:center;padding:16px}
+#ageModal.hide{display:none}
+.ageCard{background:#13131A;border:2px solid var(--gold);border-radius:20px;padding:28px;width:100%;max-width:400px;text-align:center}
+.ageCard h1{font-family:'Playfair Display',serif;font-size:28px}
+#nameModal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:120;display:none;place-items:center;padding:16px}
+#nameModal.show{display:grid}.modalCard{background:#13131A;border:2px solid var(--gold);border-radius:20px;padding:22px;width:100%;max-width:360px;text-align:center}
+.modalCard input{width:100%;padding:13px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-size:16px;font-weight:700;margin:12px 0;text-align:center}
+footer{text-align:center;padding:22px 0;color:var(--muted);font-size:13px}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}.homeGrid{grid-template-columns:repeat(2,1fr)}.bizGrid{grid-template-columns:1fr}.topRight .hideM{display:none}}
+</style>
+</head>
+<body>
+<div id="ageModal"><div class="ageCard"><span style="font-size:44px">🎰</span><h1>18+ Only</h1><p style="color:var(--muted);font-size:14px;margin-top:8px">This is an adult game center. Casino games, hustle, strategy, grown-man decisions. No real money — play money only. You must be 18+ to enter.</p><p style="font-size:13px;color:var(--gold);font-weight:700;margin-top:12px">Are you 18 or older?</p><div style="display:flex;gap:10px;margin-top:16px"><button class="btn btn-gold" style="flex:1" onclick="enterAdult()">Yes, I'm 18+ →</button><button class="btn btn-ghost" style="flex:1" onclick="location.href='https://google.com'">No, Leave</button></div><p style="font-size:11px;color:var(--muted);margin-top:12px">Play responsibly. This is for fun & stress relief — not real gambling.</p></div></div>
+
+<div id="top"><div class="wrap"><div class="logo">Philemon's <span>Adult Center 🎰</span></div><div class="topRight"><span class="ageBadge">18+</span><span class="chip hideM">💰 Balance: <b id="balanceTop">₵ 5,000</b></span><span class="chip">⭐ <span id="xpTop">0 XP</span></span><button class="btn btn-gold" style="padding:8px 12px;font-size:12px" onclick="showNameModal()">🏆 Join</button></div></div></div>
+<div id="nameModal"><div class="modalCard"><h2>Welcome, Boss 👑</h2><p style="color:var(--muted);font-size:14px;margin-top:6px">Enter your player name. Your balance & wins dey save.</p><input id="playerNameInput" placeholder="e.g. Kwame Boss" maxlength="20"><button class="btn btn-gold" style="width:100%" onclick="saveName()">Enter Casino →</button></div></div>
+
+<main class="wrap">
+<header class="hero">
+<h1>Play Like A <i>Boss.</i><br>Win Like A Boss.</h1>
+<p>No kiddie games here. <b>Blackjack, Roulette, Slots, Poker Dice, Hustle Empire, Adult Trivia</b> — play money, real strategy, real bragging rights. Built by <b>Philemon Osae-Hienno Kodua</b> from Accra.</p>
+<div class="moodRow" id="moodRow"><button data-mood="hustle" class="on">💰 I wan hustle</button><button data-mood="chill">🥃 I wan chill</button><button data-mood="risk">🎲 I feel lucky</button><button data-mood="smart">🧠 I wan think</button></div>
+<p id="moodMsg">Hustle mode: Start with Hustle Empire, build your business, then use profit for Blackjack. 💰</p>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px"><button class="btn btn-gold" onclick="dailyBonus()">🎁 Claim Daily ₵500</button><button class="btn btn-green" onclick="goTab('blackjack')">♠️ Play Blackjack</button><button class="btn btn-ghost" onclick="goTab('hustle')">🏢 Build Empire</button></div>
+</header>
+
+<div class="stats">
+<div class="stat"><b class="gold" id="statBalance">₵ 5,000</b><span>💰 Play Balance</span></div>
+<div class="stat"><b id="statWins">0</b><span>🏆 Total Wins</span></div>
+<div class="stat"><b id="statXP">0</b><span>⭐ XP / Rank</span></div>
+<div class="stat"><b id="statBiz">0</b><span>🏢 Businesses</span></div>
+</div>
+
+<div class="homeGrid">
+<div class="homeCard" onclick="goTab('blackjack')"><b>♠️</b><h3>Blackjack 21</h3><p>Beat dealer to 21. Classic casino.</p><div class="pts">Win = 2x bet</div></div>
+<div class="homeCard" onclick="goTab('roulette')"><b>🎡</b><h3>Roulette</h3><p>Red / Black / Number. Spin wheel.</p><div class="pts">Win up to 10x</div></div>
+<div class="homeCard" onclick="goTab('slots')"><b>🎰</b><h3>Slots</h3><p>3 reels. Match to win jackpot.</p><div class="pts">Jackpot 50x</div></div>
+<div class="homeCard" onclick="goTab('dice')"><b>🎲</b><h3>Poker Dice</h3><p>Roll 5 dice. Poker hand wins.</p><div class="pts">Straight = 5x</div></div>
+<div class="homeCard" onclick="goTab('hustle')"><b>🏢</b><h3>Hustle Empire</h3><p>Build business empire in Accra.</p><div class="pts">Passive income</div></div>
+<div class="homeCard" onclick="goTab('trivia')"><b>🧠</b><h3>Adult Trivia</h3><p>Money, life, Ghana, hustle trivia.</p><div class="pts">+100 XP per correct</div></div>
+<div class="homeCard" onclick="goTab('decision')"><b>🤔</b><h3>Boss Decisions</h3><p>Would you rather? Real-life choices.</p><div class="pts">See what others pick</div></div>
+<div class="homeCard" onclick="goTab('number')"><b>🔢</b><h3>Number Mind</h3><p>Guess number. High / Low strategy.</p><div class="pts">Win = 3x</div></div>
+<div class="homeCard" onclick="goTab('memory')"><b>🃏</b><h3>Memory — Cash</h3><p>Find pairs. Each pair = cash.</p><div class="pts">₵200 per pair</div></div>
+<div class="homeCard" onclick="goTab('leader')"><b>🏆</b><h3>High Rollers</h3><p>Leaderboard. Who be richest?</p><div class="pts">Top 1 = Boss 👑</div></div>
+</div>
+
+<div class="tabs" id="tabs">
+<button data-tab="blackjack" class="on">♠️ Blackjack</button><button data-tab="roulette">🎡 Roulette</button><button data-tab="slots">🎰 Slots</button><button data-tab="dice">🎲 Dice</button><button data-tab="hustle">🏢 Hustle</button><button data-tab="trivia">🧠 Trivia</button><button data-tab="decision">🤔 Decisions</button><button data-tab="number">🔢 Number</button><button data-tab="memory">🃏 Memory</button><button data-tab="leader">🏆 Leaders</button>
+</div>
+
+<!-- BLACKJACK -->
+<section class="panel on" id="panel-blackjack"><div class="card">
+<h2>♠️ Blackjack — Beat The Dealer to 21</h2><p>Place bet, Hit or Stand. Blackjack pays 3:2. Dealer must hit to 17. Play money only.</p>
+<div style="text-align:center;margin-top:10px"><span style="font-size:13px;color:var(--muted)">BET:</span> <b id="bjBetLabel" style="color:var(--gold)">₵100</b> · Balance: <b id="bjBalance">₵ 5,000</b></div>
+<div class="betRow" id="bjBets"><button data-bet="50">₵50</button><button data-bet="100" class="on">₵100</button><button data-bet="250">₵250</button><button data-bet="500">₵500</button><button data-bet="1000">₵1000</button></div>
+<p style="text-align:center;font-weight:700">Dealer <span id="dealerScore">( ? )</span></p>
+<div class="playingCards" id="dealerCards"></div>
+<p style="text-align:center;font-weight:700">You <span id="playerScore">( ? )</span></p>
+<div class="playingCards" id="playerCards"></div>
+<p id="bjMsg" style="text-align:center;font-weight:800;color:var(--gold);min-height:22px">Place bet & Deal to start.</p>
+<div class="controls"><button class="btn btn-gold" onclick="dealBlackjack()">🃏 Deal</button><button class="btn btn-green" onclick="hitBJ()">➕ Hit</button><button class="btn btn-red" onclick="standBJ()">✋ Stand</button><button class="btn btn-ghost" onclick="doubleBJ()">⚡ Double Down</button></div>
+</div></section>
+
+<!-- ROULETTE -->
+<section class="panel" id="panel-roulette"><div class="card" style="text-align:center">
+<h2>🎡 Roulette — Red / Black / Number</h2><p>Pick red, black, or exact number. Red/Black pays 2x. Number pays 10x.</p>
+<div class="rouletteWheel" id="wheel"><div class="rouletteNum" id="wheelNum">?</div></div>
+<p id="rouletteMsg" style="font-weight:800;color:var(--gold);min-height:22px">Place your bet, spin!</p>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px"><button class="btn btn-red" onclick="setRouletteBet('red')">🔴 Red — 2x</button><button class="btn btn-ghost" onclick="setRouletteBet('black')">⚫ Black — 2x</button><button class="btn btn-gold" onclick="setRouletteBet('even')">Even — 2x</button><button class="btn btn-ghost" onclick="setRouletteBet('odd')">Odd — 2x</button></div>
+<div style="margin-top:12px"><label style="font-size:13px;color:var(--muted)">Bet amount</label><div class="betRow" id="rouletteBets"><button data-bet="50">₵50</button><button data-bet="100" class="on">₵100</button><button data-bet="250">₵250</button><button data-bet="500">₵500</button></div></div>
+<button class="btn btn-gold" style="margin-top:12px" onclick="spinRoulette()">🎡 SPIN WHEEL</button>
+<p style="font-size:12px;color:var(--muted);margin-top:8px">Your pick: <b id="roulettePick" style="color:#fff">None yet</b> · Balance: <b id="rouletteBalance">₵ 5,000</b></p>
+</div></section>
+
+<!-- SLOTS -->
+<section class="panel" id="panel-slots"><div class="card" style="text-align:center">
+<h2>🎰 Slots — High Roller</h2><p>Bet ₵100 per spin. Match 3 = Jackpot 50x. Match 2 = 3x. No match = try again.</p>
+<div class="slots" id="slots"><div class="slot">🍒</div><div class="slot">💎</div><div class="slot">7️⃣</div></div>
+<p id="slotMsg" style="font-weight:800;color:var(--gold);min-height:22px">Tap SPIN — good luck, Boss.</p>
+<div class="controls"><button class="btn btn-gold" onclick="spinSlots()">🎰 SPIN — ₵100</button><button class="btn btn-green" onclick="spinSlots(500)">💎 BIG SPIN — ₵500 (5x Jackpot)</button></div>
+<p style="font-size:13px;color:var(--muted)">Balance: <b id="slotBalance" style="color:#fff">₵ 5,000</b> · Spins: <span id="slotSpins">0</span> · Biggest Win: <span id="slotBig">₵0</span></p>
+</div></section>
+
+<!-- DICE -->
+<section class="panel" id="panel-dice"><div class="card" style="text-align:center">
+<h2>🎲 Poker Dice — Roll 5 Dice</h2><p>Roll 5 dice. Get poker hand: Pair, Two Pair, Three of a Kind, Straight, Full House, Four of a Kind, Five of a Kind = BIG WIN.</p>
+<div class="diceRow" id="diceRow"><div class="dice">?</div><div class="dice">?</div><div class="dice">?</div><div class="dice">?</div><div class="dice">?</div></div>
+<p id="diceMsg" style="font-weight:800;color:var(--gold);min-height:22px">Roll to start. Bet ₵100.</p>
+<div class="controls"><button class="btn btn-gold" onclick="rollDice()">🎲 ROLL — ₵100</button><button class="btn btn-ghost" onclick="rollDice(500)">💎 HIGH ROLLER — ₵500</button></div>
+<p style="font-size:13px;color:var(--muted)">Balance: <b id="diceBalance">₵ 5,000</b> · Best Hand: <span id="diceBest">—</span></p>
+</div></section>
+
+<!-- HUSTLE -->
+<section class="panel" id="panel-hustle"><div class="card">
+<h2>🏢 Hustle Empire — Build Your Accra Empire</h2><p>Start small, buy businesses, collect passive income every 10 seconds. Real hustle simulation. No luck — strategy.</p>
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><span style="font-size:12px;color:var(--muted)">YOUR EMPIRE VALUE</span><br><b style="font-size:26px;color:var(--gold)" id="empireValue">₵ 0</b></div><div><span style="font-size:12px;color:var(--muted)">PASSIVE INCOME / 10s</span><br><b style="font-size:20px;color:var(--green)" id="passiveIncome">₵ 0</b></div><div><span style="font-size:12px;color:var(--muted)">BALANCE</span><br><b id="hustleBalance">₵ 5,000</b></div></div>
+<div class="hustleBar"><i id="empireBar"></i></div>
+<p style="font-size:12px;color:var(--muted)">Next Level: <span id="empireNext">Buy first business</span></p>
+<div class="bizGrid" id="bizGrid"></div>
+<div class="controls"><button class="btn btn-green" onclick="collectIncome()">💰 Collect Income Now</button><button class="btn btn-gold" onclick="claimHustleBonus()">🎁 Hustle Bonus +₵300</button></div>
+</div></section>
+
+<!-- TRIVIA -->
+<section class="panel" id="panel-trivia"><div class="card">
+<h2>🧠 Adult Trivia — Money, Life, Ghana, Hustle</h2><p id="triviaQ">Loading...</p>
+<div class="quizOpt" id="triviaOpts"></div>
+<p id="triviaFeedback" style="font-weight:800;margin-top:10px"></p>
+<div class="controls"><button class="btn btn-gold" id="nextTrivia" style="display:none">Next Question →</button><span style="align-self:center;font-weight:700">Trivia Score: <span id="triviaScore">0</span></span></div>
+</div></section>
+
+<!-- DECISION -->
+<section class="panel" id="panel-decision"><div class="card" style="text-align:center">
+<h2>🤔 Boss Decisions — Would You Rather?</h2><p>No right answer. Pick wetin you go do for real life. See wetin others pick.</p>
+<div class="decisionCard"><h3 id="decisionQ">Loading...</h3></div>
+<div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-gold" style="flex:1" id="decA" onclick="pickDecision('A')">Option A</button><button class="btn btn-ghost" style="flex:1" onclick="pickDecision('B')">Option B</button></div>
+<p id="decisionResult" style="font-weight:700;color:var(--gold);margin-top:12px;min-height:22px">Pick one to see results</p>
+<div class="controls"><button class="btn btn-green" onclick="nextDecision()">Next Dilemma →</button></div>
+</div></section>
+
+<!-- NUMBER -->
+<section class="panel" id="panel-number"><div class="card" style="text-align:center">
+<h2>🔢 Number Mind — High / Low</h2><p>I dey think of number 1-100. Bet ₵100. Guess. I go tell you Higher / Lower. Win in 5 guesses = 3x. Use brain, no be luck only.</p>
+<p style="font-size:28px;font-weight:800;color:var(--gold)">Guesses left: <span id="numLeft">5</span></p>
+<p id="numMsg" style="font-weight:700;color:var(--gold);min-height:22px">Start new game to get number.</p>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px"><input id="numInput" type="number" min="1" max="100" placeholder="1 - 100" style="padding:12px;border-radius:10px;border:2px solid #444;background:#111;color:#fff;font-weight:700;width:140px;text-align:center;font-size:16px"><button class="btn btn-gold" onclick="guessNumber()">Guess →</button></div>
+<div class="controls"><button class="btn btn-green" onclick="newNumberGame()">🎲 New Game — ₵100</button><button class="btn btn-ghost" onclick="hintNumber()">💡 Hint — ₵20</button></div>
+<p style="font-size:13px;color:var(--muted)">Balance: <b id="numBalance">₵ 5,000</b> · Your guesses: <span id="numHistory">—</span></p>
+</div></section>
+
+<!-- MEMORY CASH -->
+<section class="panel" id="panel-memory"><div class="card">
+<h2>🃏 Memory — Cash Pairs</h2><p>Find pairs. Each pair = ₵200. Find all 8 = ₵2000 bonus. Take your time, use memory.</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px" id="memGrid"></div>
+<div class="controls"><span style="align-self:center;font-weight:800">Pairs: <span id="memPairs">0</span>/8 · Flips: <span id="memFlips">0</span></span><button class="btn btn-gold" onclick="initMemory()">🔄 New Game — ₵50</button></div>
+</div></section>
+
+<!-- LEADER -->
+<section class="panel" id="panel-leader"><div class="card">
+<h2>🏆 High Rollers — Who Be Richest?</h2><p>Your balance + wins + empire value = rank. Top 1 go be Boss of the Week.</p>
+<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><input id="lbSearch" placeholder="🔍 Search player..." style="flex:1;min-width:160px;padding:11px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-weight:600"><select id="lbSort" style="padding:11px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-weight:700"><option value="balance">Richest First</option><option value="wins">Most Wins</option><option value="name">A-Z</option></select><button class="btn btn-gold" onclick="showNameModal()">+ Join</button></div>
+<div id="lbList"></div>
+<div style="background:linear-gradient(135deg,#1A1A24,#2A1A10);border:1px solid var(--gold);border-radius:14px;padding:14px;margin-top:14px;text-align:center"><b>🎁 DAILY HIGH ROLLER CHALLENGE</b><p style="font-size:13px;margin-top:6px">Win 3 Blackjack hands + Win 1 Roulette + Build 1 Business = +₵1000</p><p style="font-weight:800;color:var(--gold)" id="dailyProgress">Progress: 0/3</p><button class="btn btn-gold" style="margin-top:8px" onclick="claimDaily()">Claim +₵1000 🎁</button></div>
+<div class="controls"><button class="btn btn-gold" onclick="shareScore()">📤 Share My Rank</button><button class="btn btn-ghost" onclick="resetGame()">🔄 Reset Game</button></div>
+</div></section>
+
+<div class="card" style="margin:16px 0;text-align:center"><h2>Play Responsibly — 18+ Only</h2><p>All games use <b style="color:#fff">play money</b>. No real cash, no real betting. Na for fun, stress relief, and bragging rights. If gambling dey stress you for real life, take break, talk to someone you trust.</p><div class="controls"><button class="btn btn-gold" onclick="shareScore()">📤 Share Game Center</button><button class="btn btn-white" onclick="window.open('https://wa.me/233206834470','_blank')">💬 WhatsApp Philemon</button><button class="btn btn-ghost" onclick="window.open('https://github.com/Philemon-Osae','_blank')">GitHub ↗</button></div></div>
+</main>
+<footer>Philemon Osae-Hienno Kodua · Abomosu STEM · Techten · GCTU L100<br><span id="visitText">Play like a boss. Know when to stop. 🎰</span><br><span style="font-size:11px;color:var(--muted)">18+ · Play Money Only · No Real Gambling</span></footer>
+<div id="toast"></div>
+
+<script>
+// ===== AGE GATE =====
+function enterAdult(){ document.getElementById('ageModal').classList.add('hide'); localStorage.setItem('adult_18plus','yes'); toast('Welcome, Boss 👑 18+ Verified'); }
+if(localStorage.getItem('adult_18plus')==='yes') document.getElementById('ageModal').classList.add('hide');
+// ===== STATE =====
+let S = JSON.parse(localStorage.getItem('adult_center_v1')||'{}');
+S = Object.assign({balance:5000, xp:0, wins:0, losses:0, name:'', biz:{}, empire:0, triviaScore:0, visits:0, daily:{bj:0, roulette:0, biz:0}, lastDaily:0, slotSpins:0, slotBig:0, diceBest:'—', memPairsTotal:0}, S);
+function save(){ localStorage.setItem('adult_center_v1', JSON.stringify(S)); renderAll(); }
+function fmt(n){ return '₵ ' + n.toLocaleString(); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(window._tt); window._tt=setTimeout(()=>t.classList.remove('show'),2600); }
+function addXP(n, why){ S.xp+=n; if(why) toast(`+${n} XP — ${why}`); save(); }
+function renderAll(){
+  document.getElementById('balanceTop').textContent=fmt(S.balance);
+  document.getElementById('xpTop').textContent=S.xp+' XP · Lv '+(Math.floor(S.xp/500)+1);
+  document.getElementById('statBalance').textContent=fmt(S.balance);
+  document.getElementById('statWins').textContent=S.wins+'W / '+S.losses+'L';
+  document.getElementById('statXP').textContent=S.xp+' XP';
+  document.getElementById('statBiz').textContent=Object.keys(S.biz).length+' Biz · '+fmt(S.empire);
+  ['bjBalance','rouletteBalance','slotBalance','diceBalance','numBalance','hustleBalance'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=fmt(S.balance); });
+  document.getElementById('triviaScore').textContent=S.triviaScore;
+  document.getElementById('slotSpins').textContent=S.slotSpins;
+  document.getElementById('slotBig').textContent=fmt(S.slotBig);
+  document.getElementById('diceBest').textContent=S.diceBest;
+  document.getElementById('empireValue').textContent=fmt(S.empire);
+  const passive = calcPassive(); document.getElementById('passiveIncome').textContent=fmt(passive)+' / 10s';
+  document.getElementById('empireBar').style.width=Math.min(100, S.empire/50000*100)+'%';
+  document.getElementById('empireNext').textContent = S.empire<5000 ? 'Buy first business to start empire' : S.empire<20000 ? 'Next: Own 3 businesses = Boss Level' : 'You be Big Boss 👑';
+  renderLB(); renderDaily();
+  renderBiz();
+}
+function changeBalance(amount, isWin){
+  S.balance=Math.max(0, S.balance+amount);
+  if(isWin) S.wins++; else if(amount<0 && isWin===false) {}
+  if(S.balance<=0){ S.balance=500; toast('Broke? No wahala — House give you ₵500 free. Play again! 💰'); }
+  save();
+}
+function dailyBonus(){
+  const now=Date.now();
+  if(now - S.lastDaily < 60000){ toast('Daily bonus on cooldown — wait small ⏳'); return; }
+  S.lastDaily=now; S.balance+=500; addXP(20,'Daily bonus'); toast('🎁 +₵500 Daily Bonus!'); save();
+}
+// ===== TABS =====
+function goTab(tab){ document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab)); document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on', p.id==='panel-'+tab)); const el=document.getElementById('panel-'+tab); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>goTab(b.dataset.tab)));
+// Mood
+const moodMsgs={hustle:"Hustle mode: Start with Hustle Empire, build business, then use profit for Blackjack. 💰", chill:"Chill mode: Play Slots + Sound, no pressure. Just vibe. 🥃", risk:"Feeling lucky? Roulette + Slots + Dice — high risk, high reward. 🎲", smart:"Smart mode: Blackjack + Number Mind + Trivia — use brain, win big. 🧠"};
+document.querySelectorAll('#moodRow button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#moodRow button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); document.getElementById('moodMsg').textContent=moodMsgs[b.dataset.mood]; addXP(5,'Mood check'); if(b.dataset.mood==='hustle') goTab('hustle'); if(b.dataset.mood==='chill') goTab('slots'); if(b.dataset.mood==='risk') goTab('roulette'); if(b.dataset.mood==='smart') goTab('blackjack'); }));
+// ===== BLACKJACK =====
+let bjBet=100, bjPlayer=[], bjDealer=[], bjActive=false, bjDoubled=false;
+document.querySelectorAll('#bjBets button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#bjBets button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); bjBet=+b.dataset.bet; document.getElementById('bjBetLabel').textContent=fmt(bjBet); }));
+function cardVal(c){ if(['J','Q','K'].includes(c.v)) return 10; if(c.v==='A') return 11; return +c.v; }
+function handVal(hand){ let total=hand.reduce((s,c)=>s+cardVal(c),0); let aces=hand.filter(c=>c.v==='A').length; while(total>21 && aces>0){ total-=10; aces--; } return total; }
+function randomCard(){ const suits=['♠','♥','♦','♣']; const vals=['A','2','3','4','5','6','7','8','9','10','J','Q','K']; return {v:vals[Math.floor(Math.random()*vals.length)], s:suits[Math.floor(Math.random()*suits.length)]}; }
+function renderBJ(hideDealer=true){
+  const dc=document.getElementById('dealerCards'); dc.innerHTML='';
+  bjDealer.forEach((c,i)=>{ if(i===1 && hideDealer && bjActive){ const d=document.createElement('div'); d.className='pcard back'; d.innerHTML='🂠'; dc.appendChild(d); } else { const d=document.createElement('div'); d.className='pcard'+((c.s==='♥'||c.s==='♦')?' red':''); d.innerHTML=`${c.v}<br><span style="font-size:24px">${c.s}</span><small>${c.s}</small>`; dc.appendChild(d); } });
+  const pc=document.getElementById('playerCards'); pc.innerHTML='';
+  bjPlayer.forEach(c=>{ const d=document.createElement('div'); d.className='pcard'+((c.s==='♥'||c.s==='♦')?' red':''); d.innerHTML=`${c.v}<br><span style="font-size:24px">${c.s}</span><small>${c.s}</small>`; pc.appendChild(d); });
+  document.getElementById('playerScore').textContent='( '+handVal(bjPlayer)+' )';
+  document.getElementById('dealerScore').textContent= hideDealer && bjActive ? '( ? + '+cardVal(bjDealer[0])+' )' : '( '+handVal(bjDealer)+' )';
+}
+function dealBlackjack(){
+  if(S.balance < bjBet){ toast('Balance low — claim daily bonus! 💰'); return; }
+  bjPlayer=[randomCard(), randomCard()]; bjDealer=[randomCard(), randomCard()]; bjActive=true; bjDoubled=false;
+  renderBJ(true); document.getElementById('bjMsg').textContent='Your move: Hit, Stand, or Double Down.';
+  if(handVal(bjPlayer)===21){ finishBJ(true, 'BLACKJACK! 🔥'); }
+}
+function hitBJ(){
+  if(!bjActive) { toast('Deal first! 🃏'); return; }
+  bjPlayer.push(randomCard()); renderBJ(true);
+  if(handVal(bjPlayer)>21) finishBJ(false, 'BUST! Over 21. Dealer wins.');
+  else if(handVal(bjPlayer)===21) standBJ();
+}
+function standBJ(){
+  if(!bjActive) return; bjActive=false; renderBJ(false);
+  let dVal=handVal(bjDealer);
+  while(dVal<17){ bjDealer.push(randomCard()); dVal=handVal(bjDealer); renderBJ(false); }
+  const pVal=handVal(bjPlayer);
+  if(dVal>21) finishBJ(true, 'Dealer BUST! You win! 🎉');
+  else if(pVal>dVal) finishBJ(true, `You win! ${pVal} vs ${dVal} 🏆`);
+  else if(pVal<dVal) finishBJ(false, `Dealer wins. ${dVal} vs ${pVal}.`);
+  else finishBJ(null, `Push — Tie. Bet returned.`);
+}
+function doubleBJ(){
+  if(!bjActive || bjPlayer.length!==2) { toast('Double only on first 2 cards.'); return; }
+  if(S.balance < bjBet*2){ toast('Not enough to double.'); return; }
+  bjBet*=2; document.getElementById('bjBetLabel').textContent=fmt(bjBet)+' (Doubled)';
+  bjPlayer.push(randomCard()); renderBJ(true);
+  if(handVal(bjPlayer)>21) finishBJ(false, 'BUST after double!');
+  else standBJ();
+}
+function finishBJ(win, msg){
+  bjActive=false; renderBJ(false); document.getElementById('bjMsg').textContent=msg;
+  let payout=0;
+  if(win===true){ const isBJ = handVal(bjPlayer)===21 && bjPlayer.length===2; payout = isBJ ? Math.floor(bjBet*1.5) : bjBet; S.balance+=payout; S.wins++; S.daily.bj++; addXP(50,'Blackjack win'); toast(`🏆 +${fmt(payout)} — ${msg}`); }
+  else if(win===false){ S.balance-=bjBet; S.losses++; toast(`-${fmt(bjBet)} — ${msg}`); if(S.balance<=0) S.balance=500; }
+  else { toast('Push — bet returned.'); }
+  bjBet = Math.min(bjBet, 1000); if(bjBet>500) bjBet=100; document.getElementById('bjBetLabel').textContent=fmt(bjBet);
+  save();
+}
+// ===== ROULETTE =====
+let rouletteBet=100, roulettePick=null;
+document.querySelectorAll('#rouletteBets button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#rouletteBets button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); rouletteBet=+b.dataset.bet; }));
+function setRouletteBet(p){ roulettePick=p; document.getElementById('roulettePick').textContent=p.toUpperCase(); toast('Pick: '+p.toUpperCase()); }
+function spinRoulette(){
+  if(!roulettePick){ toast('Pick Red / Black / Even / Odd first!'); return; }
+  if(S.balance < rouletteBet){ toast('Balance low!'); return; }
+  const wheel=document.getElementById('wheel');
+  const deg=720+Math.floor(Math.random()*360);
+  wheel.style.transform=`rotate(${deg}deg)`;
+  document.getElementById('rouletteMsg').textContent='Spinning... 🎡';
+  setTimeout(()=>{
+    const num=Math.floor(Math.random()*37); // 0-36
+    const color = num===0 ? 'green' : num%2===0 ? 'black' : 'red';
+    const isEven = num!==0 && num%2===0; const isOdd = num%2===1;
+    document.getElementById('wheelNum').textContent=num;
+    document.getElementById('wheelNum').style.color = color==='red' ? '#EF4444' : color==='black' ? '#fff' : '#22C55E';
+    let win=false;
+    if(roulettePick==='red' && color==='red') win=true;
+    if(roulettePick==='black' && color==='black') win=true;
+    if(roulettePick==='even' && isEven) win=true;
+    if(roulettePick==='odd' && isOdd) win=true;
+    if(win){ S.balance+=rouletteBet; S.wins++; S.daily.roulette++; addXP(40,'Roulette win'); document.getElementById('rouletteMsg').textContent=`🎉 ${num} ${color.toUpperCase()} — YOU WIN +${fmt(rouletteBet)}!`; toast(`Roulette WIN +${fmt(rouletteBet)}`); }
+    else { S.balance-=rouletteBet; S.losses++; document.getElementById('rouletteMsg').textContent=`${num} ${color.toUpperCase()} — You lose -${fmt(rouletteBet)}. Try again.`; toast(`Roulette lose -${fmt(rouletteBet)}`); if(S.balance<=0) S.balance=500; }
+    save();
+  },2100);
+}
+// ===== SLOTS =====
+function spinSlots(bet=100){
+  if(S.balance < bet){ toast('Balance low!'); return; }
+  S.balance-=bet; S.slotSpins++;
+  const symbols=['🍒','🍋','💎','7️⃣','🔔','⭐','🍇'];
+  const slots=[...document.querySelectorAll('#slots .slot')];
+  let spins=0;
+  const iv=setInterval(()=>{
+    slots.forEach(s=>s.textContent=symbols[Math.floor(Math.random()*symbols.length)]);
+    spins++;
+    if(spins>12){
+      clearInterval(iv);
+      const vals=slots.map(s=>s.textContent);
+      if(vals[0]===vals[1] && vals[1]===vals[2]){
+        const jackpot = vals[0]==='💎' || vals[0]==='7️⃣' ? bet*50 : bet*10;
+        S.balance+=jackpot; S.wins++; S.slotBig=Math.max(S.slotBig, jackpot); addXP(100,'Slots JACKPOT'); document.getElementById('slotMsg').textContent=`🎰 JACKPOT! ${vals.join(' ')} — +${fmt(jackpot)}!!!`; toast(`JACKPOT +${fmt(jackpot)} 🎰`);
+      } else if(vals[0]===vals[1] || vals[1]===vals[2] || vals[0]===vals[2]){
+        const win=bet*3; S.balance+=win; S.wins++; document.getElementById('slotMsg').textContent=`Nice! Two match — +${fmt(win)}`; toast(`Slots +${fmt(win)}`);
+      } else {
+        S.losses++; document.getElementById('slotMsg').textContent=`${vals.join(' ')} — No match. Spin again.`;
+      }
+      if(S.balance<=0) S.balance=500;
+      save();
+    }
+  },90);
+}
+// ===== DICE =====
+function rollDice(bet=100){
+  if(S.balance < bet){ toast('Balance low!'); return; }
+  S.balance-=bet;
+  const dice=[...document.querySelectorAll('#diceRow .dice')];
+  dice.forEach(d=>d.classList.add('rolling'));
+  let rolls=0;
+  const iv=setInterval(()=>{
+    dice.forEach(d=>d.textContent=Math.floor(Math.random()*6)+1);
+    rolls++;
+    if(rolls>10){
+      clearInterval(iv); dice.forEach(d=>d.classList.remove('rolling'));
+      const vals=dice.map(d=>+d.textContent).sort((a,b)=>a-b);
+      const counts={}; vals.forEach(v=>counts[v]=(counts[v]||0)+1);
+      const countVals=Object.values(counts).sort((a,b)=>b-a);
+      const isStraight = vals.join(',')==='1,2,3,4,5' || vals.join(',')==='2,3,4,5,6';
+      let hand='No hand', mult=0;
+      if(countVals[0]===5){ hand='FIVE OF A KIND 👑'; mult=20; }
+      else if(countVals[0]===4){ hand='FOUR OF A KIND 🔥'; mult=10; }
+      else if(countVals[0]===3 && countVals[1]===2){ hand='FULL HOUSE 🏠'; mult=7; }
+      else if(isStraight){ hand='STRAIGHT 📏'; mult=5; }
+      else if(countVals[0]===3){ hand='THREE OF A KIND'; mult=3; }
+      else if(countVals[0]===2 && countVals[1]===2){ hand='TWO PAIR'; mult=2; }
+      else if(countVals[0]===2){ hand='ONE PAIR'; mult=1; }
+      if(mult>0){
+        const win=bet*mult; S.balance+=win; S.wins++; if(hand.includes('FIVE')||hand.includes('FOUR')) S.diceBest=hand; else if(S.diceBest==='—') S.diceBest=hand;
+        addXP(40,'Dice win'); document.getElementById('diceMsg').textContent=`${hand} — ${vals.join(' ')} — +${fmt(win)}!`; toast(`Dice WIN +${fmt(win)}`);
+      } else {
+        S.losses++; document.getElementById('diceMsg').textContent=`${vals.join(' ')} — No hand. Try again.`;
+      }
+      if(S.balance<=0) S.balance=500;
+      save();
+    }
+  },100);
+}
+// ===== HUSTLE =====
+const businesses=[
+  {id:'kiosk', name:'📱 Phone Accessories Kiosk', desc:'Osus, Accra — sell covers, chargers', cost:500, income:60},
+  {id:'food', name:'🍲 Waakye Joint', desc:'Madina — morning rush, loyal customers', cost:1200, income:150},
+  {id:'barber', name:'💈 Barber Shop', desc:'East Legon — fade + dye, premium', cost:2500, income:320},
+  {id:'studio', name:'🎙️ Music Studio', desc:'Record artists, beats, mixing', cost:5000, income:650},
+  {id:'cloth', name:'👕 Clothing Brand', desc:'Philemon Wear — hoodies, tees', cost:10000, income:1400},
+  {id:'tech', name:'💻 Tech Agency', desc:'Websites + Apps for clients', cost:20000, income:3000},
+];
+function calcPassive(){ return businesses.reduce((sum,b)=>sum + (S.biz[b.id]||0)*b.income, 0); }
+function renderBiz(){
+  const grid=document.getElementById('bizGrid'); grid.innerHTML='';
+  businesses.forEach(b=>{
+    const owned=S.biz[b.id]||0;
+    const div=document.createElement('div'); div.className='biz';
+    div.innerHTML=`<h3>${b.name}</h3><p>${b.desc}</p><p style="margin-top:6px">Owned: <b style="color:var(--gold)">${owned}</b> · Cost: <b>${fmt(b.cost)}</b> · Income: <b style="color:var(--green)">${fmt(b.income)} / 10s each</b></p>`;
+    const btn=document.createElement('button'); btn.className='btn btn-gold'; btn.textContent = S.balance>=b.cost ? `Buy — ${fmt(b.cost)}` : `Need ${fmt(b.cost)}`;
+    btn.disabled = S.balance < b.cost;
+    btn.addEventListener('click',()=>{
+      if(S.balance < b.cost){ toast('Not enough balance!'); return; }
+      S.balance-=b.cost; S.biz[b.id]=owned+1; S.empire+=b.cost; S.daily.biz++; addXP(60,'Bought business'); toast(`🏢 You buy ${b.name}! Empire +${fmt(b.cost)}`); save();
+    });
+    div.appendChild(btn); grid.appendChild(div);
+  });
+}
+function collectIncome(){
+  const inc=calcPassive();
+  if(inc===0){ toast('Buy business first to collect income! 🏢'); goTab('hustle'); return; }
+  S.balance+=inc; addXP(20,'Collected income'); toast(`💰 Collected +${fmt(inc)} passive income!`); save();
+}
+function claimHustleBonus(){ S.balance+=300; addXP(20,'Hustle bonus'); toast('+₵300 Hustle Bonus!'); save(); }
+setInterval(()=>{ const inc=calcPassive(); if(inc>0){ S.balance+=inc; S.empire+=Math.floor(inc*0.1); save(); } },10000);
+// ===== TRIVIA =====
+const trivia=[
+  {q:'If you invest ₵1,000 at 10% interest for 1 year, how much you get?', opts:['₵1,000','₵1,100','₵1,500','₵2,000'], ans:1},
+  {q:'Which one be passive income?', opts:['Salary only','Rent from shop you own','Borrowing money','Spending'], ans:1},
+  {q:'In Accra, which business get highest morning rush?', opts:['Club','Waakye joint','Cinema','Gym at midnight'], ans:1},
+  {q:'What does “Double Down” mean in Blackjack?', opts:['Run away','Double bet, get one more card','Split cards','Fold'], ans:1},
+  {q:'If you win ₵500 bet at 2x, how much you get back total (bet + profit)?', opts:['₵500','₵750','₵1,000','₵1,500'], ans:2},
+  {q:'Which be best for long-term wealth?', opts:['Spend all on flex','Save + invest small small','Borrow to flex','Keep cash under bed'], ans:1},
+  {q:'What is RLS in Supabase that Philemon use for ClassHub?', opts:['Row Level Security','Real Life System','Random Login Service','Red Light System'], ans:0},
+  {q:'Philemon built Healthy Habits for which competition?', opts:['GSTEP 2023','World Cup','Afcon','Hackathon 2025'], ans:0},
+];
+let tqi=0, tAnswered=false;
+function renderTrivia(){ const cur=trivia[tqi]; tAnswered=false; document.getElementById('triviaQ').textContent='🧠 Q'+(tqi+1)+'/'+trivia.length+': '+cur.q; const box=document.getElementById('triviaOpts'); box.innerHTML=''; document.getElementById('triviaFeedback').textContent=''; document.getElementById('nextTrivia').style.display='none'; cur.opts.forEach((o,i)=>{ const b=document.createElement('button'); b.textContent='ABCD'[i]+') '+o; b.addEventListener('click',()=>{ if(tAnswered) return; tAnswered=true; if(i===cur.ans){ b.classList.add('correct'); S.triviaScore+=100; S.balance+=100; addXP(100,'Trivia correct'); document.getElementById('triviaFeedback').textContent='Correct! +₵100 +100 XP 🎉'; } else { b.classList.add('wrong'); document.getElementById('triviaFeedback').textContent='Nope! Correct be: '+cur.opts[cur.ans]; } document.getElementById('nextTrivia').style.display='inline-flex'; save(); }); box.appendChild(b); }); }
+document.getElementById('nextTrivia').addEventListener('click',()=>{ tqi=(tqi+1)%trivia.length; renderTrivia(); }); renderTrivia();
+// ===== DECISIONS =====
+const decisions=[
+  {q:'You get ₵5,000. Would you rather...', a:'Invest ₵4,000 in business, keep ₵1,000', b:'Flex ₵5,000 for weekend, start broke Monday'},
+  {q:'Your friend ask you for ₵2,000 loan, e never pay last one. Would you rather...', a:'Give am but with clear payback date', b:'Say No, protect your peace'},
+  {q:'You get job offer ₵3,000/month vs business wey fit make ₵10,000 but risky. Pick...', a:'Take job, build business side', b:'Go all-in business, no safety net'},
+  {q:'You win ₵10,000 for casino. Would you rather...', a:'Cash out, save 70%, play 30%', b:'Keep playing to win more'},
+  {q:'Girl / Guy wey you like dey stress you but you love am. Would you rather...', a:'Talk, set boundaries, try fix', b:'Cut off, protect mental health'},
+  {q:'You get 1 hour free. Would you rather...', a:'Learn new skill (coding / business)', b:'Scroll TikTok, chill'},
+];
+let dqi=0;
+function renderDecision(){ const d=decisions[dqi]; document.getElementById('decisionQ').textContent=d.q; document.getElementById('decA').textContent='A: '+d.a; document.getElementById('decisionResult').textContent='Pick one to see results'; }
+function pickDecision(choice){
+  const aPct=55+Math.floor(Math.random()*20); const bPct=100-aPct;
+  document.getElementById('decisionResult').textContent = choice==='A' ? `You pick A. ${aPct}% of players pick A, ${bPct}% pick B.` : `You pick B. ${bPct}% of players pick B, ${aPct}% pick A.`;
+  addXP(20,'Boss decision'); toast('Decision saved! +20 XP');
+}
+function nextDecision(){ dqi=(dqi+1)%decisions.length; renderDecision(); }
+renderDecision();
+// ===== NUMBER GAME =====
+let numTarget=0, numLeft=5, numHistory=[];
+function newNumberGame(){
+  if(S.balance<100){ toast('Balance low!'); return; }
+  S.balance-=100; numTarget=Math.floor(Math.random()*100)+1; numLeft=5; numHistory=[];
+  document.getElementById('numLeft').textContent='5'; document.getElementById('numHistory').textContent='—'; document.getElementById('numMsg').textContent='I don think number 1-100. Guess! Higher / Lower go guide you.'; save();
+}
+function guessNumber(){
+  if(numTarget===0){ toast('Start new game first!'); return; }
+  const v=+document.getElementById('numInput').value;
+  if(!v || v<1 || v>100){ toast('Enter 1-100'); return; }
+  numHistory.push(v); document.getElementById('numHistory').textContent=numHistory.join(', ');
+  if(v===numTarget){
+    const win=300; S.balance+=win; S.wins++; addXP(80,'Number Mind win'); document.getElementById('numMsg').textContent=`🎉 CORRECT! Number be ${numTarget}! +${fmt(win)}!`; toast(`Number Mind WIN +${fmt(win)}`); numTarget=0; save(); return;
+  }
+  numLeft--; document.getElementById('numLeft').textContent=numLeft;
+  if(numLeft<=0){ S.losses++; document.getElementById('numMsg').textContent=`Game over! Number be ${numTarget}. Try again.`; numTarget=0; save(); return; }
+  document.getElementById('numMsg').textContent = v<numTarget ? `Higher! ⬆️ — ${numLeft} left` : `Lower! ⬇️ — ${numLeft} left`;
+  document.getElementById('numInput').value=''; document.getElementById('numInput').focus();
+}
+function hintNumber(){
+  if(numTarget===0){ toast('Start game first!'); return; }
+  if(S.balance<20){ toast('Need ₵20 for hint'); return; }
+  S.balance-=20; const range = numTarget>50 ? '50-100' : '1-50'; document.getElementById('numMsg').textContent=`💡 Hint: Number dey between ${range}. (-₵20)`; save();
+}
+// ===== MEMORY CASH =====
+let memFirst=null, memLock=false, memPairs=0, memFlips=0;
+function initMemory(){
+  if(S.balance<50){ toast('Need ₵50 to play Memory'); return; }
+  S.balance-=50;
+  const emojis=['♠️','♥️','♦️','♣️','💎','👑','🍒','7️⃣']; let deck=[...emojis,...emojis].sort(()=>Math.random()-0.5);
+  memFirst=null; memLock=false; memPairs=0; memFlips=0;
+  document.getElementById('memPairs').textContent='0'; document.getElementById('memFlips').textContent='0';
+  const grid=document.getElementById('memGrid'); grid.innerHTML='';
+  deck.forEach(em=>{
+    const b=document.createElement('button'); b.style.cssText='height:68px;border-radius:12px;background:#1A1A24;border:1px solid #333;font-size:24px;color:#fff';
+    b.textContent='🂠'; b.dataset.em=em;
+    b.addEventListener('click',()=>{
+      if(memLock||b.dataset.open==='1') return;
+      b.dataset.open='1'; b.textContent=em; b.style.background='#fff'; b.style.color='#111'; memFlips++; document.getElementById('memFlips').textContent=memFlips;
+      if(!memFirst){ memFirst=b; return; }
+      if(memFirst.dataset.em===em){ memPairs++; document.getElementById('memPairs').textContent=memPairs; S.balance+=200; addXP(30,'Memory pair'); toast('+₵200 Pair!'); memFirst=null; if(memPairs===8){ S.balance+=2000; S.wins++; addXP(150,'Memory win'); toast('🎉 MEMORY WIN! +₵2000 Bonus!'); save(); } save(); }
+      else { memLock=true; setTimeout(()=>{ memFirst.dataset.open=''; memFirst.textContent='🂠'; memFirst.style.background='#1A1A24'; memFirst.style.color='#fff'; b.dataset.open=''; b.textContent='🂠'; b.style.background='#1A1A24'; b.style.color='#fff'; memFirst=null; memLock=false; },700); }
+    });
+    grid.appendChild(b);
+  });
+  save();
+}
+initMemory();
+// ===== LEADERBOARD =====
+function getBoard(){ let board=JSON.parse(localStorage.getItem('adult_board')||'null'); if(!board){ board=[{name:'Philemon 👑',balance:45000,wins:120},{name:'Kwame Boss 💰',balance:22000,wins:80},{name:'Ama Rich 👸',balance:18000,wins:65},{name:'Yaw Hustler 🥁',balance:12000,wins:50},{name:'Efua Lucky 🍀',balance:9000,wins:40}]; localStorage.setItem('adult_board',JSON.stringify(board)); } const me={name:S.name||'You (Guest)',balance:S.balance,wins:S.wins,isMe:true}; const idx=board.findIndex(r=>r.isMe); if(idx>=0) board[idx]=me; else board.push(me); return board; }
+function renderLB(){ const q=(document.getElementById('lbSearch')?.value||'').toLowerCase(); const sort=document.getElementById('lbSort')?.value||'balance'; let board=getBoard().filter(r=>r.name.toLowerCase().includes(q)); if(sort==='balance') board.sort((a,b)=>b.balance-a.balance); else if(sort==='wins') board.sort((a,b)=>b.wins-a.wins); else board.sort((a,b)=>a.name.localeCompare(b.name)); const list=document.getElementById('lbList'); if(!list) return; list.innerHTML=board.slice(0,10).map((r,i)=>`<div class="lbRow ${r.isMe?'me':''}"><div class="lbRank">${i+1}</div><div style="flex:1;font-weight:700;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name}</div><span style="font-size:12px;color:var(--muted)">${r.wins} wins</span><b style="color:var(--gold)">${fmt(r.balance)}</b></div>`).join(''); const all=getBoard(); localStorage.setItem('adult_board', JSON.stringify(all.filter(r=>!r.isMe))); }
+document.getElementById('lbSearch')?.addEventListener('input',renderLB); document.getElementById('lbSort')?.addEventListener('change',renderLB);
+function renderDaily(){ const done=(S.daily.bj>=3?1:0)+(S.daily.roulette>=1?1:0)+(S.daily.biz>=1?1:0); const el=document.getElementById('dailyProgress'); if(el) el.textContent=`Progress: ${done}/3 — Blackjack wins ${S.daily.bj}/3 · Roulette ${S.daily.roulette}/1 · Business ${S.daily.biz}/1`; }
+function claimDaily(){ const done=(S.daily.bj>=3?1:0)+(S.daily.roulette>=1?1:0)+(S.daily.biz>=1?1:0); if(done<3){ toast('Do 3 tasks first: Win 3 Blackjack + 1 Roulette + Buy 1 Business'); goTab('blackjack'); return; } S.balance+=1000; S.daily={bj:0,roulette:0,biz:0}; addXP(100,'Daily challenge'); toast('🎁 +₵1000 Daily!'); save(); }
+function showNameModal(){ document.getElementById('nameModal').classList.add('show'); document.getElementById('playerNameInput').value=S.name||''; }
+function saveName(){ const v=document.getElementById('playerNameInput').value.trim()||'Guest'; S.name=v; save(); document.getElementById('nameModal').classList.remove('show'); toast(`Welcome, ${v}! 👑`); }
+document.getElementById('nameModal').addEventListener('click',e=>{ if(e.target.id==='nameModal') e.target.classList.remove('show'); });
+function shareScore(){ window.open(`https://wa.me/233206834470?text=${encodeURIComponent(`I dey play Philemon's Adult Game Center 🎰 — My balance: ${fmt(S.balance)}, Wins: ${S.wins}, XP: ${S.xp}. I be Boss! Try am!`)}`,'_blank'); }
+function resetGame(){ if(!confirm('Reset all? Balance + empire go clear.')) return; localStorage.removeItem('adult_center_v1'); location.reload(); }
+// Init
+S.visits++; save(); renderAll();
+document.getElementById('visitText').textContent=`You don visit ${S.visits} time${S.visits>1?'s':''} — Play like a boss. Know when to stop. 🎰`;
+setTimeout(()=>{ if(!S.name && localStorage.getItem('adult_18plus')==='yes') showNameModal(); },2000);
+</script>
+</body>
+</html>
