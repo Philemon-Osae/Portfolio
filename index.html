@@ -3,361 +3,391 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Philemon's House — Enter My World 🏠</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Philemon's Game Center — 10 Games to Relax & Play 🎮</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0A0A12;color:#FFF8EC;overflow:hidden;height:100vh}
-button{font-family:inherit;cursor:pointer;border:0}
-.btn{padding:13px 18px;border-radius:14px;font-weight:800;font-size:14px;transition:.15s}
-.btn:active{transform:scale(.96)} .btn-o{background:#FF5C28;color:#fff}.btn-g{background:#FFC700;color:#111}.btn-w{background:#fff;color:#111}
-.pill{font-size:11px;font-weight:800;padding:5px 10px;border-radius:99px;background:#FFC700;color:#111;display:inline-block}
-
-/* ===== TOP BAR ALWAYS ===== */
-#topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(10,10,18,.85);backdrop-filter:blur(10px);border-bottom:2px solid #FF5C28}
-#topbar b{font-size:16px}#topbar b span{color:#FF5C28}
-#topbar .right{display:flex;gap:6px;align-items:center}
-#topbar .xp{font-size:12px;font-weight:800;background:#222;padding:7px 11px;border-radius:99px;border:1px solid #FFC700}
-#hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:100;background:#111;border:2px solid #FFC700;border-radius:99px;padding:9px 16px;font-size:13px;font-weight:700;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis;text-align:center}
-#toast{position:fixed;left:50%;bottom:62px;transform:translate(-50%,10px);background:#fff;color:#111;padding:12px 16px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:200;border:2px solid #FF5C28;max-width:92vw;text-align:center}
+:root{--bg:#0E1B1A;--card:#162A28;--card2:#1E3A36;--ink:#FFF8EC;--muted:#B8CFC8;--mint:#7FFFD4;--gold:#FFC700;--pink:#FF9EC6;--sky:#7EC8FF;--purple:#C9A7FF;--green:#4ADE80;--orange:#FF5C28;--red:#EF4444}
+body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:0} input,select{font-family:inherit}
+.btn{padding:11px 16px;border-radius:99px;font-weight:700;font-size:13px;transition:.15s}
+.btn:active{transform:scale(.95)} .btn-mint{background:var(--mint);color:#0A2A22}.btn-gold{background:var(--gold);color:#111}.btn-white{background:#fff;color:#111}.btn-ghost{background:#222;color:#fff;border:2px solid #333}.btn-pink{background:var(--pink);color:#111}
+.wrap{max-width:1120px;margin:0 auto;padding:0 14px}
+#top{position:sticky;top:0;z-index:60;background:rgba(14,27,26,.94);backdrop-filter:blur(12px);border-bottom:1px solid #2A4A44}
+#top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;gap:8px}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px}.logo span{color:var(--mint)}
+.topRight{display:flex;gap:6px;align-items:center}
+.chip{background:#1E3A36;border:1px solid #2A4A44;padding:7px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
+.xpBar{width:80px;height:8px;background:#222;border-radius:99px;overflow:hidden}.xpBar i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--gold));width:0;transition:width .5s}
+.hero{text-align:center;padding:24px 0 10px}
+.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(32px,8vw,58px);line-height:1.02}
+.hero h1 i{font-style:normal;color:var(--mint)}
+.hero p{color:var(--muted);max-width:620px;margin:10px auto 0;font-size:14.5px}.hero p b{color:#fff}
+.moodRow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.moodRow button{padding:9px 14px;border-radius:99px;background:#1E3A36;border:2px solid #2A4A44;color:#fff;font-weight:700;font-size:12.5px}
+.moodRow button.on{background:var(--mint);color:#0A2A22;border-color:var(--mint)}
+#moodMsg{margin-top:10px;font-weight:700;color:var(--gold);min-height:22px;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.stat{background:var(--card);border:1px solid #2A4A44;border-radius:16px;padding:12px;text-align:center}
+.stat b{font-size:22px;display:block}.stat span{font-size:11.5px;color:var(--muted)}
+/* GAME GRID HOME */
+.homeGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.homeCard{background:var(--card);border:2px solid #2A4A44;border-radius:18px;padding:14px 10px;text-align:center;cursor:pointer;transition:.15s}
+.homeCard:hover{transform:translateY(-3px);border-color:var(--mint)}
+.homeCard:active{transform:scale(.96)}
+.homeCard b{font-size:28px;display:block}.homeCard h3{font-size:13px;margin:6px 0 2px}.homeCard p{font-size:11px;color:var(--muted);line-height:1.4}
+.homeCard .pts{font-size:11px;font-weight:800;color:var(--gold);margin-top:6px}
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px;position:sticky;top:60px;z-index:40;background:var(--bg);padding:8px 0}
+.tabs button{padding:9px 12px;border-radius:99px;background:#1E3A36;border:2px solid #2A4A44;color:#fff;font-weight:700;font-size:12px}
+.tabs button.on{background:var(--mint);color:#0A2A22;border-color:var(--mint)}
+.panel{display:none}.panel.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid #2A4A44;border-radius:20px;padding:18px}
+.card h2{font-size:20px}.card p{color:var(--muted);font-size:13.5px;margin:6px 0}
+.gameArea{height:340px;border-radius:16px;position:relative;overflow:hidden;border:1px solid #2A4A44;margin-top:12px;background:#162A28}
+.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+/* BREATHE */
+.breatheCircle{width:200px;height:200px;margin:16px auto;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#7FFFD4 30%,#2A7A5A 70%,#162A28);display:grid;place-items:center;box-shadow:0 0 60px rgba(127,255,212,.4);transition:transform 4s ease-in-out,box-shadow 4s;text-align:center}
+.breatheCircle.in{transform:scale(1.35)} .breatheCircle.out{transform:scale(.85)}
+.breatheCircle span{font-weight:800;font-size:17px;color:#0A2A22;line-height:1.3}.breatheCircle small{font-size:12px;opacity:.7}
+/* BUBBLE */
+.bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(127,255,212,.4) 30%,transparent);border:1.5px solid rgba(255,255,255,.5);display:grid;place-items:center;animation:rise linear forwards;cursor:pointer}
+@keyframes rise{from{transform:translateY(0) scale(.6);opacity:0}10%{opacity:1}to{transform:translateY(-400px) scale(1.1);opacity:0}}
+.bubble.pop{animation:pop .25s forwards!important}
+@keyframes pop{to{transform:scale(1.8);opacity:0}}
+/* GARDEN */
+.sun{position:absolute;top:16px;right:18px;width:52px;height:52px;background:#FFC700;border-radius:50%;box-shadow:0 0 30px #FFC700;display:grid;place-items:center;font-size:24px}
+.plant{position:absolute;bottom:0;transform-origin:bottom center;animation:grow .5s ease-out;cursor:pointer;text-align:center}
+@keyframes grow{from{transform:scale(0)}to{transform:scale(1)}}
+.plant .emoji{font-size:36px;display:block}.plant .label{font-size:10px;font-weight:700;background:rgba(0,0,0,.55);color:#fff;padding:2px 6px;border-radius:99px;white-space:nowrap}
+/* STARS */
+.starFall{position:absolute;font-size:26px;animation:fall linear forwards;cursor:pointer}
+@keyframes fall{from{transform:translateY(-20px) rotate(0)}to{transform:translateY(360px) rotate(360deg)}}
+/* MEMORY */
+.memGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.mem{height:72px;border-radius:14px;background:#1E3A36;border:2px solid #2A4A44;font-size:26px;color:#fff;transition:.2s}
+.mem.flip{background:#fff;color:#111;transform:rotateY(180deg)}
+.mem.matched{background:var(--mint);color:#0A2A22;border-color:var(--mint)}
+/* SNAKE */
+#snakeCanvas{width:100%;max-width:420px;height:320px;background:#0A2A22;border-radius:14px;display:block;margin:12px auto;border:2px solid #2A4A44}
+.dpad{display:grid;grid-template-columns:repeat(3,64px);gap:6px;justify-content:center;margin-top:8px}
+.dpad button{height:52px;border-radius:14px;background:#1E3A36;border:2px solid #2A4A44;color:#fff;font-size:20px}
+.dpad button:active{background:var(--mint);color:#111}
+/* COLOR ZEN */
+.colorBig{width:140px;height:140px;border-radius:50%;margin:14px auto;box-shadow:0 0 40px rgba(255,255,255,.2);transition:background .3s;cursor:pointer}
+.colorOpts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.colorOpts button{height:48px;border-radius:12px;border:2px solid #fff;font-weight:800;color:#fff}
+/* WHACK */
+.whackGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.whackHole{height:86px;border-radius:16px;background:#0A2A22;border:2px solid #2A4A44;display:grid;place-items:center;font-size:36px;overflow:hidden}
+.whackHole.active{background:#2A4A22}
+/* PIANO */
+.piano{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:12px}
+.piano button{height:80px;border-radius:12px;background:#fff;color:#111;font-weight:800;font-size:13px;box-shadow:0 5px 0 #ccc}
+.piano button:active{transform:translateY(3px);background:var(--gold)}
+.piano button.playing{background:var(--mint)}
+.soundGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.soundBtn{padding:14px 8px;border-radius:14px;background:#1E3A36;border:2px solid #2A4A44;color:#fff;text-align:center}
+.soundBtn.on{background:var(--mint);color:#0A2A22;border-color:var(--mint)}
+.soundBtn b{display:block;font-size:20px}.soundBtn span{font-size:11px;font-weight:700}
+/* NUMBER / QUIZ */
+.quizOpt{display:grid;gap:8px;margin-top:12px}
+.quizOpt button{padding:13px;text-align:left;border-radius:12px;border:2px solid #444;background:#222;color:#fff;font-weight:600;font-size:14px}
+.quizOpt button.correct{background:var(--green)!important}.quizOpt button.wrong{background:var(--red)!important}
+/* LEADER */
+.lbRow{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;background:#1E3A36;border:1px solid #2A4A44;margin-top:8px}
+.lbRow.me{border-color:var(--gold);background:#2A2A1A}
+.lbRank{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#222;flex-shrink:0}
+.rewardGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.reward{padding:12px 8px;border-radius:14px;background:#1E3A36;border:2px solid #2A4A44;text-align:center;opacity:.35}
+.reward.unlocked{opacity:1;border-color:var(--gold);background:#2A2A1A}
+.reward b{font-size:22px;display:block}.reward span{font-size:11px;font-weight:700}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,12px);background:#fff;color:#111;padding:12px 16px;border-radius:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:100;border:2px solid var(--mint);max-width:92vw;text-align:center;font-size:14px}
 #toast.show{opacity:1;transform:translate(-50%,0)}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:190}.confetti{position:absolute;width:9px;height:13px;top:-20px;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
-
-/* ===== SCREEN 1: OUTSIDE HOUSE ===== */
-.screen{position:absolute;inset:0;display:none;overflow:hidden}
-.screen.on{display:block}
-#outside{background:linear-gradient(180deg,#1E1B4B 0%,#0A0A12 55%,#111 100%)}
-.stars{position:absolute;inset:0;pointer-events:none}
-.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s infinite}
-@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
-.moon{position:absolute;top:58px;right:22px;width:68px;height:68px;background:#FFC700;border-radius:50%;box-shadow:0 0 40px #FFC700;font-size:30px;display:grid;place-items:center;animation:float 3s infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.cloud{position:absolute;background:#fff;opacity:.12;border-radius:99px;animation:drift linear infinite}
-@keyframes drift{from{left:-20%}to{left:110%}}
-.ground{position:absolute;bottom:0;left:0;right:0;height:22%;background:linear-gradient(180deg,#1A3A1A,#0A2A0A);border-top:3px solid #2A5A2A}
-.path{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:110px;height:22%;background:repeating-linear-gradient(#C8A96A 0 20px,#A88A4A 20px 24px);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%)}
-.houseWrap{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);width:min(92vw,420px);text-align:center}
-.roof{width:0;height:0;border-left:210px solid transparent;border-right:210px solid transparent;border-bottom:120px solid #FF5C28;margin:0 auto;position:relative;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
-.roof:after{content:"🏠 PHILEMON'S HOUSE";position:absolute;top:64px;left:50%;transform:translateX(-50%);background:#111;color:#FFC700;font-weight:800;font-size:13px;padding:7px 12px;border-radius:99px;white-space:nowrap;border:2px solid #FFC700}
-.chimney{position:absolute;top:-58px;right:44px;width:36px;height:66px;background:#7A2E1A;border-radius:6px}
-.smoke{position:absolute;top:-28px;left:6px;font-size:20px;animation:smoke 2s infinite}
-@keyframes smoke{0%{transform:translateY(0);opacity:0}50%{opacity:1}100%{transform:translateY(-18px);opacity:0}}
-.houseBody{width:min(88vw,360px);margin:-2px auto 0;background:#FFF8EC;color:#111;border:4px solid #111;border-radius:0 0 18px 18px;padding:14px 14px 18px;position:relative;box-shadow:0 20px 40px rgba(0,0,0,.6)}
-.windows{display:flex;justify-content:space-between;gap:10px}
-.window{flex:1;height:72px;background:#FFC700;border:3px solid #111;border-radius:10px;display:grid;place-items:center;font-size:28px;position:relative;overflow:hidden}
-.window span{font-size:11px;font-weight:800;position:absolute;bottom:4px;left:0;right:0;text-align:center}
-.window .glow{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.6),transparent);animation:glow 2s infinite}
-@keyframes glow{0%,100%{opacity:.3}50%{opacity:1}}
-.doorWrap{margin:14px auto 0;width:132px}
-.door{height:168px;background:linear-gradient(180deg,#8B4513,#5A2A0A);border:4px solid #111;border-radius:70px 70px 10px 10px;position:relative;cursor:pointer;transition:.2s;overflow:hidden}
-.door:hover{transform:scale(1.03);box-shadow:0 0 30px #FFC700}
-.door .knob{position:absolute;right:14px;top:50%;width:16px;height:16px;background:#FFC700;border-radius:50%;border:2px solid #111}
-.door .peep{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;border:3px solid #FFC700;overflow:hidden}
-.door .peep img{width:100%;height:100%;object-fit:cover}
-.door p{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#fff;font-weight:800;font-size:12px}
-.enterPulse{animation:pulse 1.2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,199,0,.7)}50%{box-shadow:0 0 0 14px rgba(255,199,0,0)}}
-.outsideText{margin-top:12px;color:#fff;text-align:center;padding:0 16px}
-.outsideText h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,7vw,42px);line-height:1.05}
-.outsideText h1 b{color:#FFC700}
-.outsideText p{color:#B8B0A3;font-size:14px;margin-top:8px;max-width:480px;margin-left:auto;margin-right:auto}
-.outsideBtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
-.poster{position:absolute;left:12px;bottom:24%;background:#111;border:2px solid #FFC700;border-radius:14px;padding:10px 12px;font-size:12px;font-weight:700;transform:rotate(-4deg);max-width:140px;line-height:1.4}
-.poster b{color:#FFC700}
-
-/* ===== SCREEN 2: INSIDE ROOM - 3D FLOATING WORLD ===== */
-#inside{background:radial-gradient(ellipse at center,#2A1D17 0%,#0A0A12 70%)}
-.room{position:absolute;inset:0;perspective:1200px;overflow:hidden;cursor:grab}
-.room:active{cursor:grabbing}
-.world{position:absolute;left:50%;top:52%;width:1px;height:1px;transform-style:preserve-3d;transition:transform .08s linear;will-change:transform}
-.wall{position:absolute;width:900px;height:520px;left:-450px;top:-260px;background:linear-gradient(180deg,#2A2A33,#1A1A22);border:3px solid #333;border-radius:20px;transform:translateZ(-420px);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:.95}
-.wall h2{font-size:28px}.wall p{color:#B8B0A3;font-size:14px}
-.floor{position:absolute;width:900px;height:600px;left:-450px;top:120px;background:repeating-linear-gradient(90deg,#3A2A1A 0 60px,#2A1D17 60px 120px);transform:rotateX(78deg) translateZ(-120px);border:3px solid #111;border-radius:20px;opacity:.9}
-.rug{position:absolute;width:340px;height:180px;left:-170px;top:60px;background:#FF5C28;border-radius:50%;transform:rotateX(78deg) translateZ(-100px);display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff;opacity:.9}
-/* Floating cards in 3D */
-.floatCard{position:absolute;width:300px;background:#17171F;border:2px solid #333;border-radius:20px;padding:16px;transform-style:preserve-3d;box-shadow:0 20px 40px rgba(0,0,0,.6);transition:transform .15s,border-color .15s;cursor:pointer}
-.floatCard:hover{border-color:#FFC700;transform:translateZ(20px) scale(1.03)!important}
-.floatCard h3{font-size:18px;margin:6px 0 4px}.floatCard p{font-size:13px;color:#B8B0A3}
-.floatCard .stack{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.floatCard .stack span{font-size:11px;background:#2A2A33;padding:4px 8px;border-radius:99px}
-.floatCard .actions{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;align-items:center}
-.floatCard .love{margin-left:auto;background:#2A2A33;color:#fff;padding:7px 10px;border-radius:99px;font-weight:800;border:2px solid #444}
-.floatCard .love.loved{background:#FF2E9A;border-color:#FF2E9A}
-.meCard{width:280px;text-align:center}
-.meCard img{width:100%;height:200px;object-fit:cover;border-radius:14px;background:#333}
-.meCard .drums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
-.meCard .drums button{height:44px;border-radius:10px;background:#2A2A33;border:2px solid #444;font-size:18px}
-.meCard .drums button:active{background:#FF5C28;transform:scale(.92)}
-.miniGame{width:280px}
-.miniGame .tapGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
-.miniGame .tapGrid button{height:48px;border-radius:10px;background:#2A2A33;border:2px solid #444;font-size:20px}
-.miniGame .tapGrid button.hit{background:#22C55E!important;border-color:#fff!important}
-.calcCard input,.calcCard select{width:100%;padding:10px;border-radius:10px;border:2px solid #444;background:#111;color:#fff;margin-top:6px;font-weight:700}
-.controls{position:fixed;left:50%;bottom:58px;transform:translateX(-50%);display:flex;gap:8px;z-index:90;flex-wrap:wrap;justify-content:center}
-.controls button{background:#222;border:2px solid #444;color:#fff;padding:10px 14px;border-radius:99px;font-weight:800;font-size:13px}
-.controls button.on{background:#FF5C28;border-color:#FF5C28}
-#doorBack{position:fixed;top:58px;left:12px;z-index:90;background:#111;border:2px solid #FFC700;color:#fff;padding:9px 13px;border-radius:99px;font-weight:800;font-size:13px}
-#miniMap{position:fixed;top:58px;right:12px;z-index:90;background:rgba(0,0,0,.7);border:2px solid #333;border-radius:14px;padding:8px 10px;font-size:11px;font-weight:700;text-align:center}
-#miniMap i{width:10px;height:10px;background:#FFC700;border-radius:50%;display:inline-block;animation:blink 1s infinite}
-@keyframes blink{50%{opacity:0}}
-
-/* ===== MODAL - FULL PROJECT VIEW ===== */
-#modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:150;display:none;place-items:center;padding:16px}
-#modal.show{display:grid}
-.modalCard{background:#1B1B22;border:2px solid #FFC700;border-radius:22px;padding:22px;width:100%;max-width:440px;max-height:86vh;overflow:auto}
-.modalCard h2{font-size:24px}.modalCard p{color:#B8B0A3;font-size:14px;margin-top:8px}
-@media(max-width:640px){.floatCard{width:270px}.wall{width:720px;left:-360px}.floor{width:720px;left:-360px}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}.confetti{position:absolute;width:9px;height:13px;top:-20px;animation:cFall linear forwards}
+@keyframes cFall{to{transform:translateY(110vh) rotate(720deg)}}
+#nameModal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:120;display:none;place-items:center;padding:16px}
+#nameModal.show{display:grid}.modalCard{background:#162A28;border:2px solid var(--gold);border-radius:20px;padding:22px;width:100%;max-width:360px;text-align:center}
+.modalCard input{width:100%;padding:13px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-size:16px;font-weight:700;margin:12px 0;text-align:center}
+footer{text-align:center;padding:22px 0;color:var(--muted);font-size:13px}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}.homeGrid{grid-template-columns:repeat(2,1fr)}.soundGrid{grid-template-columns:repeat(2,1fr)}.rewardGrid{grid-template-columns:repeat(2,1fr)}.topRight .hideM{display:none}.colorOpts{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<div id="topbar"><b>Philemon<span>.dev</span> 🏠</b><div class="right"><span class="xp" id="xpTop">⭐ 0 XP · Lv 1</span><button class="btn btn-g" style="padding:8px 12px;font-size:12px" onclick="goOutside()">🏠 Outside</button></div></div>
-<div id="hint">🏠 You dey outside — Tap the DOOR or my picture to ENTER</div>
+<div id="top"><div class="wrap"><div class="logo">Philemon's <span>Game Center 🎮</span></div><div class="topRight"><span class="chip hideM">😌 Stress: <b id="stressTop">70%</b></span><span class="chip">⭐ <span id="xpTop">0 XP</span></span><div class="xpBar"><i id="xpFill"></i></div><button class="btn btn-gold" style="padding:8px 12px;font-size:12px" onclick="showNameModal()">🏆 Join</button></div></div></div>
+<div id="nameModal"><div class="modalCard"><h2>🎮 Welcome to Game Center</h2><p style="color:var(--muted);font-size:14px;margin-top:6px">Enter name make we save your points, garden & leaderboard.</p><input id="playerNameInput" placeholder="e.g. Ama from Accra" maxlength="20"><button class="btn btn-mint" style="width:100%" onclick="saveName()">Enter Game Center →</button></div></div>
+
+<main class="wrap">
+<header class="hero">
+<h1>10 Games. One Place.<br><i>Play. Relax. Win. 🌿</i></h1>
+<p>No losing stress. No fail. Every game give you <b>Calm Points</b>. Play wetin your mood want — breathe, pop, grow, catch, remember, snake, color, whack, piano, quiz.</p>
+<div class="moodRow" id="moodRow"><button data-mood="stressed" class="on">😩 Stressed</button><button data-mood="bored">🥱 Bored</button><button data-mood="tired">😴 Tired</button><button data-mood="happy">😊 Happy</button></div>
+<p id="moodMsg">Stressed? Start with Breathe + Bubbles. Bored? Try Memory + Snake. Let's go! 💚</p>
+</header>
+
+<div class="stats">
+<div class="stat"><b id="statCalm">0</b><span>⭐ Calm Points</span></div>
+<div class="stat"><b id="statGames">0</b><span>🎮 Games Played</span></div>
+<div class="stat"><b id="statBest">0</b><span>🏆 Best Streak</span></div>
+<div class="stat"><b id="statFlowers">0</b><span>🌸 Flowers</span></div>
+</div>
+
+<!-- HOME GRID - PICK GAME -->
+<div class="homeGrid" id="homeGrid">
+<div class="homeCard" onclick="goTab('breathe')"><b>🌬️</b><h3>Breathe</h3><p>4s in, 4s out. Calm heart.</p><div class="pts">+15 per breath</div></div>
+<div class="homeCard" onclick="goTab('bubbles')"><b>🫧</b><h3>Bubble Pop</h3><p>Pop soft bubbles. So satisfying.</p><div class="pts">+3 per pop</div></div>
+<div class="homeCard" onclick="goTab('garden')"><b>🌸</b><h3>Garden</h3><p>Plant, water, grow. Save garden.</p><div class="pts">+5 per flower</div></div>
+<div class="homeCard" onclick="goTab('stars')"><b>⭐</b><h3>Catch Stars</h3><p>Catch falling stars. Make wish.</p><div class="pts">+8 per star</div></div>
+<div class="homeCard" onclick="goTab('memory')"><b>🧠</b><h3>Memory Match</h3><p>Find pairs. Train brain calmly.</p><div class="pts">+20 per pair</div></div>
+<div class="homeCard" onclick="goTab('snake')"><b>🐍</b><h3>Calm Snake</h3><p>Slow snake. Eat, grow, no rush.</p><div class="pts">+10 per food</div></div>
+<div class="homeCard" onclick="goTab('color')"><b>🎨</b><h3>Color Zen</h3><p>Match the color. Fast & fun.</p><div class="pts">+10 per correct</div></div>
+<div class="homeCard" onclick="goTab('whack')"><b>🐹</b><h3>Whack Mole</h3><p>Tap the mole. Quick reflex.</p><div class="pts">+5 per hit</div></div>
+<div class="homeCard" onclick="goTab('piano')"><b>🎹</b><h3>Sound Garden</h3><p>Piano + rain + birds. Make music.</p><div class="pts">+2 per note</div></div>
+<div class="homeCard" onclick="goTab('quiz')"><b>🧩</b><h3>Quiz + Numbers</h3><p>Fun quiz about Philemon.</p><div class="pts">+20 per correct</div></div>
+</div>
+
+<div class="tabs" id="tabs">
+<button data-tab="breathe" class="on">🌬️ Breathe</button><button data-tab="bubbles">🫧 Bubbles</button><button data-tab="garden">🌸 Garden</button><button data-tab="stars">⭐ Stars</button><button data-tab="memory">🧠 Memory</button><button data-tab="snake">🐍 Snake</button><button data-tab="color">🎨 Color</button><button data-tab="whack">🐹 Whack</button><button data-tab="piano">🎹 Sound</button><button data-tab="quiz">🧩 Quiz</button><button data-tab="leader">🏆 Leaders</button>
+</div>
+
+<!-- 1 BREATHE -->
+<section class="panel on" id="panel-breathe"><div class="card" style="text-align:center"><h2>🌬️ Breathe With Me</h2><p>Follow circle. In 4s, hold 2s, out 4s. Stress go drop.</p><div class="breatheCircle" id="breatheCircle"><span id="breatheText">Tap Start<br><small>to begin</small></span></div><p id="breathCount" style="font-size:13px;color:var(--muted)">Breaths: 0 · Stress: 70%</p><div class="controls"><button class="btn btn-mint" id="breathBtn" onclick="toggleBreath()">▶ Start Breathing</button><button class="btn btn-ghost" onclick="resetBreath()">Reset</button><button class="btn btn-gold" onclick="calmBoost()">✨ Instant Calm +20</button></div></div></section>
+
+<!-- 2 BUBBLES -->
+<section class="panel" id="panel-bubbles"><div class="card"><h2>🫧 Bubble Pop</h2><p>Tap bubbles as e dey rise. No miss penalty. Just pop.</p><div class="gameArea" id="bubbleArea" style="cursor:pointer;background:linear-gradient(180deg,#0E2A2A,#162A28)"></div><div class="controls"><span style="align-self:center;font-weight:800">Popped: <span id="bubbleScore">0</span> · Combo: <span id="bubbleCombo">x1</span></span><button class="btn btn-mint" onclick="burstBubbles()">💥 Burst 10</button><button class="btn btn-ghost" onclick="toggleRain()">🌧️ <span id="rainLabel">Rain ON</span></button></div></div></section>
+
+<!-- 3 GARDEN -->
+<section class="panel" id="panel-garden"><div class="card"><h2>🌸 My Garden</h2><p>Tap anywhere to plant. Tap flower again to water & grow. Garden dey save.</p><div class="gameArea" id="garden" style="cursor:pointer;background:linear-gradient(180deg,#7EC8FF 0%,#A8E6A1 40%,#4A7A3A 100%)"><div class="sun">☀️</div></div><div class="controls"><button class="btn btn-mint" onclick="plantRandom(5)">🌸 Plant 5</button><button class="btn btn-gold" onclick="waterAll()">💧 Water All</button><button class="btn btn-white" onclick="clearGarden()">🧹 Clear</button><span style="align-self:center;font-weight:700" id="gardenCount">0 flowers</span></div></div></section>
+
+<!-- 4 STARS -->
+<section class="panel" id="panel-stars"><div class="card"><h2>⭐ Catch Falling Stars</h2><p>Tap stars before e reach ground. Collect 20 = wish.</p><div class="gameArea" id="starArea" style="background:linear-gradient(180deg,#0A0A2A,#1A1A4A)"><div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:44px">🧺</div></div><div class="controls"><button class="btn btn-mint" onclick="starShower()">🌠 Star Shower</button><button class="btn btn-gold" onclick="makeWish()">💫 Make Wish</button><span style="align-self:center;font-weight:700">Caught: <span id="starCaught">0</span> / 20</span></div><p id="wishText" style="text-align:center;font-weight:700;color:var(--gold);margin-top:10px;min-height:22px">Your wish go appear here ✨</p></div></section>
+
+<!-- 5 MEMORY -->
+<section class="panel" id="panel-memory"><div class="card"><h2>🧠 Memory Match — Calm Brain Game</h2><p>Flip cards, find pairs. No timer stress. Take your time.</p><div class="memGrid" id="memGrid"></div><div class="controls"><span style="align-self:center;font-weight:800">Pairs: <span id="memPairs">0</span>/8 · Flips: <span id="memFlips">0</span></span><button class="btn btn-mint" onclick="initMemory()">🔄 New Game</button></div></div></section>
+
+<!-- 6 SNAKE -->
+<section class="panel" id="panel-snake"><div class="card" style="text-align:center"><h2>🐍 Calm Snake — Slow & Chill</h2><p>Snake dey move slow, no rush. Eat 🍎, grow, no wall death — e go wrap around. Use arrows or buttons.</p><canvas id="snakeCanvas" width="420" height="320"></canvas><p style="font-weight:800">Score: <span id="snakeScore">0</span> · Length: <span id="snakeLen">3</span></p><div class="dpad"><span></span><button onclick="setDir(0,-1)">↑</button><span></span><button onclick="setDir(-1,0)">←</button><button onclick="setDir(0,1)">↓</button><button onclick="setDir(1,0)">→</button></div><div class="controls"><button class="btn btn-mint" onclick="startSnake()">▶ Start Snake</button><button class="btn btn-ghost" onclick="pauseSnake()">⏸ Pause</button><button class="btn btn-gold" onclick="speedSnake()">🐢 Slower / Faster</button></div></div></section>
+
+<!-- 7 COLOR -->
+<section class="panel" id="panel-color"><div class="card" style="text-align:center"><h2>🎨 Color Zen — Match the Color</h2><p>See the big circle color. Tap the correct color name below. Fast = more points. Wrong = no wahala, try again.</p><div class="colorBig" id="colorBig" style="background:#FF5C28"></div><p style="font-weight:800;font-size:18px" id="colorQ">Which color be this?</p><div class="colorOpts" id="colorOpts"></div><div class="controls"><span style="align-self:center;font-weight:800">Score: <span id="colorScore">0</span> · Streak: <span id="colorStreak">0</span></span><button class="btn btn-mint" onclick="newColor()">🎨 New Color</button></div></div></section>
+
+<!-- 8 WHACK -->
+<section class="panel" id="panel-whack"><div class="card"><h2>🐹 Whack-A-Mole — Quick & Fun</h2><p>Mole go pop up. Tap am fast! 30 seconds, no stress — just tap and laugh.</p><div style="text-align:center;font-weight:800">Time: <span id="whackTime">30</span>s · Hits: <span id="whackHits">0</span> · Best: <span id="whackBest">0</span></div><div class="whackGrid" id="whackGrid"><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div><div class="whackHole">🕳️</div></div><div class="controls"><button class="btn btn-mint" onclick="startWhack()">▶ Start Whack!</button><button class="btn btn-ghost" onclick="stopWhack()">⏹ Stop</button></div></div></section>
+
+<!-- 9 SOUND -->
+<section class="panel" id="panel-piano"><div class="card"><h2>🎵 Sound Garden — Piano + Ambient</h2><p>Mix rain, birds, waves. Play piano on top. No wrong note.</p><div class="soundGrid"><button class="soundBtn" onclick="toggleSound(this,'rain')"><b>🌧️</b><span>Rain</span></button><button class="soundBtn" onclick="toggleSound(this,'birds')"><b>🐦</b><span>Birds</span></button><button class="soundBtn" onclick="toggleSound(this,'waves')"><b>🌊</b><span>Waves</span></button><button class="soundBtn" onclick="toggleSound(this,'night')"><b>🌙</b><span>Night</span></button></div><p style="font-weight:700;margin-top:14px">🎹 Calm Piano</p><div class="piano" id="piano"><button data-f="261.63">C<br><small>Do</small></button><button data-f="293.66">D<br><small>Re</small></button><button data-f="329.63">E<br><small>Mi</small></button><button data-f="349.23">F<br><small>Fa</small></button><button data-f="392">G<br><small>Sol</small></button><button data-f="440">A<br><small>La</small></button><button data-f="493.88">B<br><small>Ti</small></button></div><div class="controls"><button class="btn btn-mint" onclick="playLullaby()">▶ Play Lullaby</button><button class="btn btn-ghost" onclick="stopAllSound()">⏹ Stop All</button></div></div></section>
+
+<!-- 10 QUIZ -->
+<section class="panel" id="panel-quiz"><div class="card"><h2>🧩 Quiz — How Well You Know Philemon?</h2><p id="quizQ">Loading...</p><div class="quizOpt" id="quizOpts"></div><p id="quizFeedback" style="font-weight:800;margin-top:10px"></p><div class="controls"><button class="btn btn-mint" id="nextQuiz" style="display:none">Next Question →</button><span style="align-self:center;font-weight:700">Quiz Score: <span id="quizScore">0</span></span></div></div></section>
+
+<!-- LEADER -->
+<section class="panel" id="panel-leader"><div class="card"><h2>🏆 Calm Leaders</h2><p>Who don calm pass? Your points from ALL 10 games dey count here.</p><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><input id="lbSearch" placeholder="🔍 Search name..." style="flex:1;min-width:160px;padding:11px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-weight:600"><select id="lbSort" style="padding:11px;border-radius:12px;border:2px solid #444;background:#111;color:#fff;font-weight:700"><option value="score">Most Calm</option><option value="name">A-Z</option></select><button class="btn btn-gold" onclick="showNameModal()">+ Join</button></div><div id="lbList"></div><div style="background:linear-gradient(135deg,#1E3A36,#2A1A3A);border:2px solid var(--purple);border-radius:16px;padding:14px;margin-top:14px;text-align:center"><b>🎁 DAILY CHALLENGE</b><p style="font-size:13px;margin-top:6px">Breathe 3x + Pop 10 bubbles + Plant 3 flowers + Match 2 pairs = +100 Points</p><p style="font-weight:800;color:var(--gold)" id="dailyProgress">Progress: 0/4</p><button class="btn btn-mint" style="margin-top:8px" onclick="claimDaily()">Claim +100 🎁</button></div><h3 style="margin-top:16px">🏅 Rewards</h3><div class="rewardGrid" id="rewards"><div class="reward" data-r="first"><b>🌱</b><span>First Breath</span></div><div class="reward" data-r="pop10"><b>🫧</b><span>Pop 10</span></div><div class="reward" data-r="garden5"><b>🌸</b><span>Garden 5</span></div><div class="reward" data-r="stars10"><b>⭐</b><span>10 Stars</span></div><div class="reward" data-r="mem"><b>🧠</b><span>Memory Win</span></div><div class="reward" data-r="snake10"><b>🐍</b><span>Snake 10</span></div><div class="reward" data-r="color5"><b>🎨</b><span>Color 5 Streak</span></div><div class="reward" data-r="whack10"><b>🐹</b><span>Whack 10</span></div></div><div class="controls"><button class="btn btn-mint" onclick="shareScore()">📤 Share My Score</button><button class="btn btn-ghost" onclick="resetGame()">🔄 Reset</button></div></div></section>
+
+<div class="card" style="margin:16px 0;text-align:center"><h2>Built with love in Accra 🇬🇭</h2><p>By <b style="color:#fff">Philemon Osae-Hienno Kodua</b> — Developer, Drummer, GCTU L100. If this calm you, share am to person wey dey stress.</p><div class="controls"><button class="btn btn-mint" onclick="shareScore()">📤 Share Game Center</button><button class="btn btn-white" onclick="window.open('https://wa.me/233206834470','_blank')">💬 WhatsApp Philemon</button><button class="btn btn-gold" onclick="window.open('https://github.com/Philemon-Osae','_blank')">GitHub ↗</button></div></div>
+</main>
+<footer>Philemon Osae-Hienno Kodua · Abomosu STEM · Techten · GCTU L100<br><span id="visitText">Take your time. No rush. Breathe. 🌿</span></footer>
 <div id="toast"></div><div id="confetti"></div>
-
-<!-- ========== OUTSIDE ========== -->
-<div id="outside" class="screen on">
-<div class="stars" id="stars"></div>
-<div class="moon">🌙</div>
-<div class="cloud" style="top:70px;width:120px;height:26px;animation-duration:28s"></div>
-<div class="cloud" style="top:110px;width:90px;height:20px;animation-duration:22s;animation-delay:-8s"></div>
-<div class="ground"></div><div class="path"></div>
-<div class="poster">📍 ACCRA, GHANA<br><b>8 PROJECTS INSIDE</b><br>Tap door to enter →<br>🥁 🎸 💻 🚀</div>
-
-<div class="houseWrap">
-<div class="roof"><div class="chimney"><span class="smoke">💨</span></div></div>
-<div class="houseBody">
-<div class="windows">
-<div class="window"><div class="glow"></div>🥁<span>DRUM ROOM</span></div>
-<div class="window"><div class="glow"></div>💻<span>CODE ROOM</span></div>
-<div class="window"><div class="glow"></div>🎸<span>MUSIC ROOM</span></div>
-</div>
-<div class="doorWrap"><div class="door enterPulse" id="door" onclick="enterHouse()">
-<div class="peep"><img src="profile.jpg" alt="Philemon"></div>
-<div class="knob"></div><p>👆 TAP TO ENTER</p>
-</div></div>
-<p style="font-size:12px;font-weight:800;margin-top:10px;color:#111">🚪 KNOCK KNOCK — WHO DEY THERE? IT'S PHILEMON!</p>
-</div>
-</div>
-
-<div class="outsideText" style="position:absolute;bottom:2%;left:0;right:0">
-<h1>Welcome to <b>My House</b> 🏠</h1>
-<p>No be just portfolio. Na my house. Enter inside, waka around with your mouse, touch my works wey dey float for air.</p>
-<div class="outsideBtns">
-<button class="btn btn-o" onclick="enterHouse()">🚪 Enter My House →</button>
-<button class="btn btn-w" onclick="knock()">🔔 Knock Knock</button>
-<button class="btn btn-g" onclick="copyContact()">📧 Copy Email</button>
-</div>
-</div>
-</div>
-
-<!-- ========== INSIDE ========== -->
-<div id="inside" class="screen">
-<div class="room" id="room"><div class="world" id="world">
-<div class="wall"><h2>🏠 WELCOME INSIDE MY HOUSE</h2><p>Drag with mouse / finger to look around · Click any floating card to open am</p><p style="margin-top:8px;font-weight:700;color:#FFC700">← Drag left / right to waka for house →</p></div>
-<div class="floor"></div><div class="rug">🔥 PHILEMON'S HOUSE 🔥</div>
-
-<!-- ME -->
-<div class="floatCard meCard" data-pos="0" style="transform:translate3d(-140px,-140px,120px)">
-<span class="pill">● ONLINE NOW</span><h3>Philemon Kodua 🥁</h3><p>Drummer · Developer · Accra, Ghana</p>
-<img src="profile.jpg" alt="Philemon">
-<p style="margin-top:10px">Level 100 @ GCTU · BSc Web App Dev · 8 projects · 7 live</p>
-<div class="drums" id="miniDrums"><button data-k="q">🥁</button><button data-k="w">🥁</button><button data-k="e">🎵</button><button data-k="a">🥁</button><button data-k="s">🥁</button><button data-k="d">💥</button></div>
-<p style="font-size:11px;margin-top:6px">Tap drums — real sound 🔊</p>
-<div style="display:flex;gap:6px;margin-top:10px"><button class="btn btn-o" style="flex:1" onclick="openModal('about')">About Me →</button><button class="btn btn-g" style="flex:1" onclick="copyContact()">Copy Email</button></div>
-</div>
-
-<!-- CLASSHUB -->
-<div class="floatCard" data-pos="1" style="transform:translate3d(280px,-120px,80px);border-color:#FFC700">
-<span class="pill">👑 FLAGSHIP</span><h3>ClassHub 🎓</h3><p>Secure Class Portal — my own class website. Supabase RLS + Trigger. No bypass.</p>
-<div class="stack"><span>Supabase</span><span>RLS</span><span>Postgres</span><span>Vercel</span></div>
-<div class="actions"><button class="btn btn-o" onclick="window.open('https://classhub2.vercel.app','_blank')">Visit 🚀</button><button class="btn btn-w" onclick="openModal('classhub')">Details 👇</button><button class="love" data-love="classhub">❤️ <span>0</span></button></div>
-</div>
-
-<!-- PHIL JAZZY -->
-<div class="floatCard" data-pos="2" style="transform:translate3d(-520px,-60px,60px)">
-<span class="pill">🥁 LIVE</span><h3>Phil Jazzy 🥁</h3><p>Interactive Drummer Portfolio — 9-pad drum machine + AI chatbot wey book gigs.</p>
-<div class="stack"><span>Web Audio</span><span>AI Chat</span></div>
-<div class="actions"><button class="btn btn-o" onclick="window.open('https://phil-jazzy.netlify.app','_blank')">Visit 🚀</button><button class="btn btn-w" onclick="openModal('jazzy')">Details 👇</button><button class="love" data-love="jazzy">❤️ <span>0</span></button></div>
-</div>
-
-<!-- HEALTHY -->
-<div class="floatCard" data-pos="3" style="transform:translate3d(300px,180px,40px)">
-<span class="pill">🤰 IN PROGRESS</span><h3>Healthy Habits 🤰</h3><p>Prenatal exercises for Ghana. 100% offline. 4 routines, 2 mins each.</p>
-<div class="stack"><span>React Native</span><span>Expo</span><span>Offline</span></div>
-<div class="actions"><button class="btn btn-w" onclick="openModal('healthy')">Details 👇</button><button class="love" data-love="healthy">❤️ <span>0</span></button></div>
-</div>
-
-<!-- TAP GAME -->
-<div class="floatCard miniGame" data-pos="4" style="transform:translate3d(-540px,190px,40px)">
-<span class="pill">🎮 GAME</span><h3>Tap Game 🎯</h3><p>Hit the GREEN one fast = +10 XP. Miss = streak reset.</p>
-<p style="font-weight:800;color:#FFC700;margin-top:8px" id="gameScore">Score: 0 · Streak: 0</p>
-<div class="tapGrid" id="tapGame"><button>🥁</button><button>🎸</button><button>💻</button><button>🔥</button><button>⚡</button><button>🎵</button><button>🚀</button><button>⭐</button><button>🎓</button></div>
-</div>
-
-<!-- GUITAR -->
-<div class="floatCard" data-pos="5" style="transform:translate3d(680px,40px,0px)">
-<span class="pill">🎸 MUSIC ROOM</span><h3>Try My Guitar 🎸</h3><p>Tap strings — real sound, no mp3.</p>
-<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:10px" id="guitarStrings"><button style="height:72px;border-radius:10px;background:#222;color:#fff;border:2px solid #444">E</button><button style="height:72px;border-radius:10px;background:#222;color:#fff;border:2px solid #444">A</button><button style="height:72px;border-radius:10px;background:#222;color:#fff;border:2px solid #444">D</button><button style="height:72px;border-radius:10px;background:#222;color:#fff;border:2px solid #444">G</button><button style="height:72px;border-radius:10px;background:#222;color:#fff;border:2px solid #444">B</button><button style="height:72px;border-radius:10px;background:#222;color:#fff;border:2px solid #444">e</button></div>
-<button class="btn btn-o" style="width:100%;margin-top:10px" onclick="strum()">🎸 STRUM ALL — +10 XP</button>
-</div>
-
-<!-- CALC + LEADERBOARD -->
-<div class="floatCard calcCard" data-pos="6" style="transform:translate3d(-180px,320px,0px);width:320px">
-<span class="pill">💰 QUOTE ROOM</span><h3>Price Calculator 💰</h3><p>Calculate your website price here.</p>
-<select id="calcType"><option value="500">Business Website — GHC 500</option><option value="1200">Booking Website — GHC 1200</option><option value="2500">Premium / Shop — GHC 2500</option><option value="800">Portfolio — GHC 800</option></select>
-<select id="calcSpeed"><option value="0">Normal — Free</option><option value="300">Express +300</option><option value="600">Urgent +600</option></select>
-<p style="font-size:20px;font-weight:800;color:#22C55E;margin-top:10px" id="calcTotal">GHC 500</p>
-<button class="btn btn-g" style="width:100%;margin-top:8px" onclick="sendQuote()">Send to WhatsApp ↗</button>
-</div>
-
-<div class="floatCard" data-pos="7" style="transform:translate3d(220px,340px,0px);width:320px">
-<span class="pill">🏆 LEADERBOARD</span><h3>Top Fans 🏆</h3><p>Play to climb. Top 1 go get shoutout!</p>
-<div id="lbList" style="margin-top:10px"></div>
-<div style="display:flex;gap:6px;margin-top:10px"><input id="playerName" placeholder="Your name..." style="flex:1;padding:10px;border-radius:10px;border:2px solid #444;background:#111;color:#fff;font-weight:700"><button class="btn btn-g" onclick="saveName()">Join</button></div>
-<button class="btn btn-o" style="width:100%;margin-top:8px" onclick="shareScore()">📤 Share My Score</button>
-</div>
-
-<!-- MORE PROJECTS -->
-<div class="floatCard" data-pos="8" style="transform:translate3d(-900px,40px,0px)">
-<span class="pill">⚡ LIVE</span><h3>Phil Tech ⚡</h3><p>Campus Business Booking — Basic 500-800, Standard 1200-1800, Premium 2500-4000.</p>
-<div class="actions"><button class="btn btn-o" onclick="window.open('https://phil-tech-two.vercel.app','_blank')">Visit 🚀</button><button class="love" data-love="philtech">❤️ <span>0</span></button></div>
-</div>
-
-<div class="floatCard" data-pos="9" style="transform:translate3d(980px,120px,0px)">
-<span class="pill">💍 CLIENT</span><h3>Wedding GH 💍</h3><p>V1 + V2 — Countdown, Maps, MoMo, RSVP. Premium envelope animation.</p>
-<div class="actions"><button class="btn btn-w" onclick="window.open('https://wedding-invitation-gh.netlify.app','_blank')">Visit V2 💍</button><button class="love" data-love="wedding">❤️ <span>0</span></button></div>
-</div>
-
-<div class="floatCard" data-pos="10" style="transform:translate3d(700px,340px,0px)">
-<span class="pill">🎺 CLIENT</span><h3>Adom Trombonist 🎺</h3><p>Try My Horn — 12-note brass. FAQ + WhatsApp booking.</p>
-<div class="actions"><button class="btn btn-o" onclick="window.open('https://adom-the-trombonist-gh.netlify.app','_blank')">Visit 🎺</button></div>
-</div>
-
-<div class="floatCard" data-pos="11" style="transform:translate3d(-900px,320px,0px)">
-<span class="pill">🥁 CLIENT</span><h3>Kwamepapaa 🥁</h3><p>Booking + Rental for Joseph Offei. Instant Quote + WhatsApp.</p>
-<div class="actions"><button class="btn btn-o" onclick="window.open('https://kwamepapaa.netlify.app','_blank')">Visit 🚀</button></div>
-</div>
-
-</div></div>
-<button id="doorBack" onclick="goOutside()">← 🚪 Exit House</button>
-<div id="miniMap">📍 YOU DEY INSIDE<br><i></i> <span id="roomName">Living Room</span><br><span id="roomPos" style="color:#FFC700">Room 1 / 4</span></div>
-<div class="controls">
-<button data-room="0" class="on" onclick="goRoom(0)">🏠 Living Room</button>
-<button data-room="1" onclick="goRoom(1)">🥁 Music Room</button>
-<button data-room="2" onclick="goRoom(2)">💰 Business Room</button>
-<button data-room="3" onclick="goRoom(3)">🏆 Fans Room</button>
-</div>
-</div>
-
-<!-- MODAL -->
-<div id="modal" onclick="if(event.target.id==='modal') closeModal()"><div class="modalCard" id="modalContent"></div></div>
 
 <script>
 // ===== STATE =====
-let S = JSON.parse(localStorage.getItem('philemon_house_v1')||'{}');
-S = Object.assign({xp:0, score:0, streak:0, best:0, loves:{}, name:'', visits:0}, S);
-function save(){ localStorage.setItem('philemon_house_v1', JSON.stringify(S)); renderTop(); renderLB(); }
+let S = JSON.parse(localStorage.getItem('gamecenter_v1')||'{}');
+S = Object.assign({xp:0, popped:0, flowers:0, stars:0, breaths:0, stress:70, name:'', rewards:[], visits:0, garden:[], games:0, bestStreak:0, streak:0, memWins:0, snakeBest:0, colorStreak:0, whackBest:0, quizScore:0}, S);
+function save(){ localStorage.setItem('gamecenter_v1', JSON.stringify(S)); renderAll(); }
 function level(){ return Math.floor(S.xp/100)+1; }
-function renderTop(){ document.getElementById('xpTop').textContent = `⭐ ${S.xp} XP · Lv ${level()} · ${S.name||'Guest'}`; document.getElementById('gameScore').textContent = `Score: ${S.score} · Streak: ${S.streak}`; }
-function addXP(n, why){
-  const old = level(); S.xp+=n; S.score+=n; S.streak+=1; if(S.streak>S.best) S.best=S.streak;
-  save(); if(why) toast(`+${n} XP — ${why}`);
-  if(level()>old){ toast(`🎉 LEVEL UP! Level ${level()}!`); boom(); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(window._tt); window._tt=setTimeout(()=>t.classList.remove('show'),2400); }
+function boom(n=40){ const c=['#7FFFD4','#FFC700','#FF9EC6','#7EC8FF','#fff']; const box=document.getElementById('confetti'); for(let i=0;i<n;i++){ const d=document.createElement('div'); d.className='confetti'; d.style.left=Math.random()*100+'vw'; d.style.background=c[i%c.length]; d.style.animationDuration=(1.4+Math.random()*1.4)+'s'; box.appendChild(d); setTimeout(()=>d.remove(),3000); } }
+function addXP(n, why, game){
+  S.xp+=n; S.stress=Math.max(5, S.stress-Math.ceil(n/4)); S.streak+=1; if(S.streak>S.bestStreak) S.bestStreak=S.streak;
+  if(game) S.games+=1;
+  if(why) toast(`+${n} — ${why} 🌿`);
+  checkRewards(); save();
 }
-function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(window._tt); window._tt=setTimeout(()=>t.classList.remove('show'),2200); }
-function boom(){ const c=['#FF5C28','#FFC700','#FF2E9A','#00E5FF','#fff']; const box=document.getElementById('confetti'); for(let i=0;i<50;i++){ const d=document.createElement('div'); d.className='confetti'; d.style.left=Math.random()*100+'vw'; d.style.background=c[i%c.length]; d.style.animationDuration=(1.4+Math.random()*1.4)+'s'; box.appendChild(d); setTimeout(()=>d.remove(),3000); } }
-// Stars
-const stars=document.getElementById('stars'); for(let i=0;i<60;i++){ const s=document.createElement('div'); s.className='star'; s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*55+'%'; s.style.width=s.style.height=(1+Math.random()*2)+'px'; s.style.animationDelay=(Math.random()*2)+'s'; stars.appendChild(s); }
-// ===== ENTER / EXIT =====
-function enterHouse(){
-  document.getElementById('outside').classList.remove('on');
-  document.getElementById('inside').classList.add('on');
-  document.getElementById('hint').textContent = '🖱️ DRAG to waka for house · Click any floating card · Use bottom buttons to jump rooms';
-  toast('🚪 Welcome inside! Drag to look around!'); boom(); addXP(10,'Entered house');
-  setTimeout(()=>{ document.getElementById('hint').textContent='🖱️ Drag left/right to waka · Click cards to open'; }, 4000);
-  goRoom(0);
+function renderAll(){
+  document.getElementById('xpTop').textContent=S.xp+' XP · Lv '+level();
+  document.getElementById('xpFill').style.width=(S.xp%100)+'%';
+  document.getElementById('stressTop').textContent=S.stress+'%';
+  document.getElementById('statCalm').textContent=S.xp;
+  document.getElementById('statGames').textContent=S.games;
+  document.getElementById('statBest').textContent=S.bestStreak;
+  document.getElementById('statFlowers').textContent=S.flowers;
+  document.getElementById('bubbleScore').textContent=S.popped;
+  document.getElementById('starCaught').textContent=S.stars;
+  document.getElementById('gardenCount').textContent=S.flowers+' flowers · Garden Lv '+(Math.floor(S.flowers/10)+1);
+  document.getElementById('breathCount').textContent=`Breaths: ${S.breaths} · Stress: ${S.stress}%`;
+  document.getElementById('quizScore').textContent=S.quizScore;
+  document.getElementById('whackBest').textContent=S.whackBest;
+  document.querySelectorAll('#rewards .reward').forEach(r=>r.classList.toggle('unlocked', S.rewards.includes(r.dataset.r)));
+  renderLB(); renderDaily();
 }
-function goOutside(){
-  document.getElementById('inside').classList.remove('on');
-  document.getElementById('outside').classList.add('on');
-  document.getElementById('hint').textContent='🏠 You dey outside — Tap DOOR or my picture to ENTER';
+function unlock(r,label){ if(S.rewards.includes(r)) return; S.rewards.push(r); toast(`🏅 Unlocked: ${label}`); boom(30); save(); }
+function checkRewards(){
+  if(S.breaths>=1) unlock('first','First Breath 🌱');
+  if(S.popped>=10) unlock('pop10','Pop 10 🫧');
+  if(S.flowers>=5) unlock('garden5','Garden 5 🌸');
+  if(S.stars>=10) unlock('stars10','10 Stars ⭐');
+  if(S.memWins>=1) unlock('mem','Memory Win 🧠');
+  if(S.snakeBest>=10) unlock('snake10','Snake 10 🐍');
+  if(S.colorStreak>=5) unlock('color5','Color 5 Streak 🎨');
+  if(S.whackBest>=10) unlock('whack10','Whack 10 🐹');
 }
-function knock(){ toast('🔔 Knock knock... Come inside! 🚪'); const d=document.getElementById('door'); d.style.transform='scale(1.05) rotate(-1deg)'; setTimeout(()=>d.style.transform='',300); addXP(2,'Knocked'); }
-// ===== ROOM NAVIGATION - DRAG + BUTTONS =====
-let rotY=0, rotX=0, targetRotY=0, isDragging=false, lastX=0, lastY=0;
-const world=document.getElementById('world');
-function applyWorld(){ world.style.transform=`rotateY(${rotY}deg) rotateX(${rotX}deg)`; }
-function goRoom(n){
-  document.querySelectorAll('.controls button').forEach(b=>b.classList.remove('on'));
-  document.querySelectorAll('.controls button')[n].classList.add('on');
-  const rooms=[{y:0, name:'Living Room', pos:'Room 1 / 4'},{y:-45, name:'Music Room', pos:'Room 2 / 4'},{y:45, name:'Business Room', pos:'Room 3 / 4'},{y:90, name:'Fans Room', pos:'Room 4 / 4'}];
-  targetRotY=rooms[n].y; rotY=rooms[n].y;
-  document.getElementById('roomName').textContent=rooms[n].name;
-  document.getElementById('roomPos').textContent=rooms[n].pos;
-  applyWorld(); addXP(3,'Waka to '+rooms[n].name);
-}
-const roomEl=document.getElementById('room');
-roomEl.addEventListener('pointerdown',e=>{ isDragging=true; lastX=e.clientX; lastY=e.clientY; roomEl.setPointerCapture(e.pointerId); });
-roomEl.addEventListener('pointermove',e=>{
-  if(!isDragging) return;
-  const dx=e.clientX-lastX, dy=e.clientY-lastY; lastX=e.clientX; lastY=e.clientY;
-  rotY+=dx*0.25; rotX=Math.max(-12, Math.min(12, rotX - dy*0.1));
-  applyWorld();
-});
-roomEl.addEventListener('pointerup',()=>isDragging=false);
-roomEl.addEventListener('pointercancel',()=>isDragging=false);
-// Mouse wheel = zoom / move forward
-roomEl.addEventListener('wheel',e=>{ e.preventDefault(); rotY += e.deltaY>0?6:-6; applyWorld(); },{passive:false});
-// Keyboard arrows to waka
-addEventListener('keydown',e=>{
-  if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)) return;
-  if(e.key==='ArrowRight'){ rotY+=12; applyWorld(); }
-  if(e.key==='ArrowLeft'){ rotY-=12; applyWorld(); }
-  if(e.key==='Escape'){ closeModal(); goOutside(); }
-  if('qweasd'.includes(e.key.toLowerCase())) playDrum(e.key.toLowerCase());
-});
+// ===== TABS =====
+function goTab(tab){ document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab)); document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on', p.id==='panel-'+tab)); const el=document.getElementById('panel-'+tab); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>goTab(b.dataset.tab)));
+// Mood
+const moodMsgs={stressed:"Stressed? Start with Breathe + Bubbles. Slow slow. 💚", bored:"Bored? Try Memory + Snake + Whack — e go wake your brain! 🥱", tired:"Tired? Sound Garden + Garden — soft, no pressure. 😴", happy:"Happy? Keep am going — play all 10, collect points! 😊"};
+document.querySelectorAll('#moodRow button').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('#moodRow button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); document.getElementById('moodMsg').textContent=moodMsgs[b.dataset.mood]; addXP(5,'Mood check-in'); if(b.dataset.mood==='stressed') goTab('breathe'); if(b.dataset.mood==='bored') goTab('memory'); if(b.dataset.mood==='tired') goTab('piano'); if(b.dataset.mood==='happy') goTab('whack'); }));
 // ===== AUDIO =====
 let actx; function ctx(){ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume(); return actx; }
-function tone(f,dur=0.25,type='sine',vol=0.3,when=0){ try{ const a=ctx(),o=a.createOscillator(),g=a.createGain(); o.type=type; o.frequency.value=f; g.gain.setValueAtTime(vol,a.currentTime+when); g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+when+dur); o.connect(g); g.connect(a.destination); o.start(a.currentTime+when); o.stop(a.currentTime+when+dur);}catch(e){} }
-function noise(dur=0.15,vol=0.3){ try{ const a=ctx(),len=a.sampleRate*dur,buf=a.createBuffer(1,len,a.sampleRate),d=buf.getChannelData(0); for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*(1-i/len); const s=a.createBufferSource(); s.buffer=buf; const g=a.createGain(); g.gain.value=vol; s.connect(g); g.connect(a.destination); s.start(); }catch(e){} }
-const drumMap={q:()=>tone(55,.35,'sine',.5), w:()=>noise(.18,.4), e:()=>noise(.06,.2), a:()=>tone(120,.18,'sine',.4), s:()=>tone(95,.18,'sine',.4), d:()=>{noise(.5,.25); tone(800,.4,'triangle',.15)}};
-function playDrum(k){ if(!drumMap[k]) return; drumMap[k](); addXP(2,'Drum'); }
-document.querySelectorAll('#miniDrums button').forEach(b=>b.addEventListener('click',()=>playDrum(b.dataset.k)));
-// Guitar
-const gf=[82.41,110,146.83,196,246.94,329.63];
-document.querySelectorAll('#guitarStrings button').forEach((b,i)=>b.addEventListener('click',()=>{ tone(gf[i],1.2,'triangle',.35); addXP(3,'Guitar'); toast('Guitar string '+(i+1)+' 🎸 +3 XP'); }));
-function strum(){ gf.forEach((f,i)=>tone(f,1.5,'triangle',.3,i*0.07)); addXP(10,'Guitar strum'); toast('STRUMMM! 🎸 +10 XP'); boom(); }
-// Tap Game - FIXED
-let targetBtn=null, targetTimer=null;
-function newTarget(){ document.querySelectorAll('#tapGame button').forEach(b=>{b.classList.remove('hit'); b.textContent='🥁';}); const btns=[...document.querySelectorAll('#tapGame button')]; targetBtn=btns[Math.floor(Math.random()*btns.length)]; targetBtn.classList.add('hit'); targetBtn.textContent='🎯'; clearTimeout(targetTimer); targetTimer=setTimeout(()=>{ if(targetBtn){targetBtn.textContent='🥁'; targetBtn.classList.remove('hit');} },1500); }
-setInterval(newTarget,1700); newTarget();
-document.querySelectorAll('#tapGame button').forEach(b=>b.addEventListener('click',()=>{ if(b.classList.contains('hit')){ addXP(10,'Tap game'); toast('+10 XP! Sharp! 🔥'); clearTimeout(targetTimer); b.textContent='🥁'; b.classList.remove('hit'); setTimeout(newTarget,300); } else { S.streak=0; save(); toast('Miss! Hit GREEN one 😅'); } }));
-// Calculator
-function updateCalc(){ const base=+document.getElementById('calcType').value; const speed=+document.getElementById('calcSpeed').value; const total=base+speed; document.getElementById('calcTotal').textContent='GHC '+total; return total; }
-document.getElementById('calcType').addEventListener('change',()=>{updateCalc(); addXP(2,'Calculator');});
-document.getElementById('calcSpeed').addEventListener('change',()=>{updateCalc(); addXP(2,'Calculator');});
-function sendQuote(){ const t=updateCalc(); window.open(`https://wa.me/233206834470?text=${encodeURIComponent('Hi Philemon! I used calculator inside your house 🏠. My estimate is GHC '+t)}`,'_blank'); }
-// Love
-document.querySelectorAll('.love').forEach(b=>{ const k=b.dataset.love; let n=S.loves[k]||0; b.querySelector('span').textContent=n; if(n>0) b.classList.add('loved'); b.addEventListener('click',e=>{ e.stopPropagation(); n++; S.loves[k]=n; b.querySelector('span').textContent=n; b.classList.add('loved'); addXP(4,'Loved '+k); save(); }); });
-// Leaderboard
-function getBoard(){ let board=JSON.parse(localStorage.getItem('philemon_house_board')||'null'); if(!board){ board=[{name:'Philemon 👑',score:999,level:10},{name:'Kwame 🇬🇭',score:340,level:4},{name:'Ama 🎓',score:280,level:3},{name:'Yaw 🥁',score:210,level:3}]; localStorage.setItem('philemon_house_board',JSON.stringify(board)); } const me={name:S.name||'You (Guest)',score:S.score,level:level(),isMe:true}; const idx=board.findIndex(r=>r.isMe); if(idx>=0) board[idx]=me; else board.push(me); return board; }
-function renderLB(){ const board=getBoard().sort((a,b)=>b.score-a.score).slice(0,5); document.getElementById('lbList').innerHTML=board.map((r,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:${r.isMe?'#2A1D17':'#222'};border:${r.isMe?'2px solid #FFC700':'1px solid #333'};margin-top:6px"><span style="font-weight:700">${i+1}. ${r.name}</span><b style="color:#FFC700">${r.score} XP</b></div>`).join(''); }
-function saveName(){ const v=document.getElementById('playerName').value.trim()||'Guest'; S.name=v; save(); toast(`Welcome ${v}! 🏆 You dey leaderboard!`); boom(); }
-function shareScore(){ window.open(`https://wa.me/233206834470?text=${encodeURIComponent(`Hi Philemon! I enter your house 🏠. My score: ${S.score} XP · Level ${level()} · Best streak ${S.best}. Add me to leaderboard! Name: ${S.name||'Guest'}`)}`,'_blank'); }
-function copyContact(){ navigator.clipboard.writeText('philemonosae1@gmail.com').then(()=>toast('Copied email! philemonosae1@gmail.com ✅')).catch(()=>toast('philemonosae1@gmail.com')); addXP(2,'Copied contact'); }
-// Modal
-const modals={
-about:`<h2>About Me 👋</h2><p>Philemon Osae-Hienno Kodua — Full-stack developer from Accra, Ghana.</p><p>Built Healthy Habits for GSTEP 2023 at Abomosu STEM SHS, self-taught at Techten Planets since 2023, now BSc Web App Development Level 100 at GCTU.</p><p><b>Focus:</b> React Native · Node.js · Supabase · Supabase RLS</p><div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><button class="btn btn-o" onclick="window.open('https://github.com/Philemon-Osae','_blank')">GitHub ↗</button><button class="btn btn-g" onclick="window.open('https://wa.me/233206834470','_blank')">WhatsApp 💬</button><button class="btn btn-w" onclick="closeModal()">Close ✕</button></div>`,
-classhub:`<h2>ClassHub 🎓</h2><p>Secure Class Portal for GCTU BWAD L100. Students register once, browse materials by course/week, past questions, announcements, timetable, countdowns.</p><p><b>Secure:</b> Postgres trigger checks rep index + secret code, RLS blocks everyone else.</p><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-o" onclick="window.open('https://classhub2.vercel.app','_blank')">Visit Live 🚀</button><button class="btn btn-w" onclick="closeModal()">Close</button></div>`,
-jazzy:`<h2>Phil Jazzy 🥁</h2><p>Interactive Drummer Portfolio. Try My Kit — 9-pad drum machine Q,W,E,A,S,D,Z,X,C. Worship Pad — 12-note chord sustainer. AI assistant books gigs via WhatsApp.</p><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-o" onclick="window.open('https://phil-jazzy.netlify.app','_blank')">Visit 🚀</button><button class="btn btn-w" onclick="closeModal()">Close</button></div>`,
-healthy:`<h2>Healthy Habits 🤰</h2><p>Safe prenatal exercises for Ghana. 100% offline after install. 4 routines, 2 mins each, safe in all trimesters. No login, no data.</p><div style="display:flex;gap:8px;margin-top:14px"><button class="btn btn-g" onclick="closeModal()">Close</button></div>`
-};
-function openModal(k){ document.getElementById('modalContent').innerHTML=modals[k]||'<h2>Coming soon</h2>'; document.getElementById('modal').classList.add('show'); addXP(3,'Opened project'); }
-function closeModal(){ document.getElementById('modal').classList.remove('show'); }
-// Floating animation for cards - gentle bob
-let t=0; setInterval(()=>{ t+=0.05; document.querySelectorAll('.floatCard').forEach((c,i)=>{ const base=c.style.transform; if(c.matches(':hover')) return; }); },100);
+function tone(f,dur=0.6,type='sine',vol=0.25,when=0){ try{ const a=ctx(),o=a.createOscillator(),g=a.createGain(); o.type=type; o.frequency.value=f; g.gain.setValueAtTime(vol,a.currentTime+when); g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+when+dur); o.connect(g); g.connect(a.destination); o.start(a.currentTime+when); o.stop(a.currentTime+when+dur);}catch(e){} }
+function softNoise(dur=0.12,vol=0.18){ try{ const a=ctx(),len=a.sampleRate*dur,buf=a.createBuffer(1,len,a.sampleRate),d=buf.getChannelData(0); for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*(1-i/len)*0.6; const s=a.createBufferSource(); s.buffer=buf; const g=a.createGain(); g.gain.value=vol; s.connect(g); g.connect(a.destination); s.start(); }catch(e){} }
+// ===== BREATHE =====
+let breathOn=false;
+function toggleBreath(){
+  breathOn=!breathOn; document.getElementById('breathBtn').textContent= breathOn?'⏸ Pause':'▶ Start Breathing';
+  const circle=document.getElementById('breatheCircle'), text=document.getElementById('breatheText');
+  if(!breathOn){ circle.className='breatheCircle'; text.innerHTML='Paused<br><small>Tap start</small>'; return; }
+  let phase='in';
+  const step=()=>{
+    if(!breathOn) return;
+    if(phase==='in'){ circle.className='breatheCircle in'; text.innerHTML='Breathe IN... 🌬️<br><small>4 seconds</small>'; setTimeout(()=>{ if(!breathOn) return; phase='hold'; step(); },4000); }
+    else if(phase==='hold'){ circle.className='breatheCircle'; text.innerHTML='Hold... ✨<br><small>2 seconds</small>'; setTimeout(()=>{ if(!breathOn) return; phase='out'; step(); },2000); }
+    else { circle.className='breatheCircle out'; text.innerHTML='Breathe OUT... 😮‍💨<br><small>4 seconds</small>'; setTimeout(()=>{ if(!breathOn) return; S.breaths++; addXP(15,'Full breath','breathe'); phase='in'; step(); },4000); }
+  }; step();
+}
+function resetBreath(){ breathOn=false; document.getElementById('breathBtn').textContent='▶ Start Breathing'; document.getElementById('breatheCircle').className='breatheCircle'; document.getElementById('breatheText').innerHTML='Tap Start<br><small>to begin</small>'; }
+function calmBoost(){ S.stress=Math.max(5,S.stress-15); addXP(20,'Instant calm','breathe'); }
+// ===== BUBBLES =====
+let bubbleRain=true, combo=0, comboTimer=null;
+function spawnBubble(big=false){ const area=document.getElementById('bubbleArea'); if(!area) return; const b=document.createElement('div'); b.className='bubble'; const size=big?70+Math.random()*40:36+Math.random()*44; b.style.width=b.style.height=size+'px'; b.style.left=Math.random()*88+'%'; b.style.bottom='-60px'; b.style.animationDuration=(4+Math.random()*3)+'s'; b.textContent=['🫧','✨','💙','💚','💛','🌸','⭐'][Math.floor(Math.random()*7)]; b.addEventListener('click',e=>{ e.stopPropagation(); popBubble(b); }); area.appendChild(b); setTimeout(()=>b.remove(),8000); }
+function popBubble(b){ if(b.dataset.popped) return; b.dataset.popped='1'; b.classList.add('pop'); softNoise(0.12,0.22); tone(520,0.18,'sine',0.18); S.popped++; combo++; clearTimeout(comboTimer); comboTimer=setTimeout(()=>combo=0,2000); document.getElementById('bubbleCombo').textContent='x'+Math.min(combo,10); addXP(3+Math.min(combo,5),'Bubble pop','bubbles'); setTimeout(()=>b.remove(),250); }
+setInterval(()=>{ if(bubbleRain) spawnBubble(); },1400);
+function burstBubbles(){ for(let i=0;i<10;i++) setTimeout(()=>spawnBubble(true), i*80); toast('💥 10 bubbles! Pop am all!'); }
+function toggleRain(){ bubbleRain=!bubbleRain; document.getElementById('rainLabel').textContent='Rain '+(bubbleRain?'ON':'OFF'); }
+document.getElementById('bubbleArea').addEventListener('click',e=>{ if(e.target.id==='bubbleArea') spawnBubble(true); });
+// ===== GARDEN =====
+const flowers=['🌸','🌷','🌹','🌻','🌼','🌺','💐','🌿','🍀'];
+function plantAt(x,y){ const g=document.getElementById('garden'); const p=document.createElement('div'); p.className='plant'; p.style.left=x+'px'; p.style.bottom=(8+Math.random()*20)+'px'; const em=flowers[Math.floor(Math.random()*flowers.length)]; p.innerHTML=`<span class="emoji">${em}</span><span class="label">Grew with love 💚</span>`; p.addEventListener('click',e=>{ e.stopPropagation(); const e2=p.querySelector('.emoji'); e2.style.fontSize='58px'; tone(523,0.5,'sine',0.2); addXP(2,'Watered flower','garden'); }); g.appendChild(p); S.garden.push({x,y,emoji:em}); if(S.garden.length>60) S.garden.shift(); S.flowers++; save(); }
+document.getElementById('garden').addEventListener('click',e=>{ const r=e.currentTarget.getBoundingClientRect(); plantAt(e.clientX-r.left-20, e.clientY-r.top); tone(392,0.6,'sine',0.18); addXP(5,'Planted flower','garden'); });
+function plantRandom(n){ const g=document.getElementById('garden'); const r=g.getBoundingClientRect(); for(let i=0;i<n;i++) setTimeout(()=>plantAt(20+Math.random()*(r.width-60),100), i*120); }
+function waterAll(){ document.querySelectorAll('.plant .emoji').forEach(em=>em.style.fontSize='58px'); addXP(15,'Watered all','garden'); toast('💧 All watered!'); }
+function clearGarden(){ document.querySelectorAll('.plant').forEach(p=>p.remove()); S.garden=[]; S.flowers=0; save(); toast('Garden cleared 🌱'); }
+S.garden.forEach(g=>{ const el=document.createElement('div'); el.className='plant'; el.style.left=g.x+'px'; el.style.bottom='18px'; el.innerHTML=`<span class="emoji">${g.emoji}</span><span class="label">Grew with love 💚</span>`; el.addEventListener('click',e=>{e.stopPropagation(); el.querySelector('.emoji').style.fontSize='58px'; addXP(2,'Watered','garden');}); document.getElementById('garden').appendChild(el); });
+// ===== STARS =====
+function spawnStar(){ const area=document.getElementById('starArea'); const s=document.createElement('div'); s.className='starFall'; s.textContent=['⭐','🌟','✨','💫'][Math.floor(Math.random()*4)]; s.style.left=Math.random()*88+'%'; s.style.top='-20px'; s.style.animationDuration=(3.5+Math.random()*2)+'s'; s.addEventListener('click',e=>{ e.stopPropagation(); S.stars++; tone(880,0.6,'sine',0.25); tone(1320,0.8,'sine',0.15,0.08); addXP(8,'Caught star','stars'); s.remove(); if(S.stars%20===0){ toast('💫 20 stars! Make a wish!'); boom(40); } }); area.appendChild(s); setTimeout(()=>s.remove(),6000); }
+setInterval(()=>{ if(document.getElementById('panel-stars').classList.contains('on')) spawnStar(); },1600);
+setInterval(spawnStar,3200);
+function starShower(){ for(let i=0;i<12;i++) setTimeout(spawnStar, i*150); }
+function makeWish(){ const wishes=["Your heart go find peace this week 💚","Someone go surprise you with good news 🎁","You go sleep well tonight 😴","Your hustle go pay — keep going 🚀","You be enough. You dey do well. 💚"]; document.getElementById('wishText').textContent='💫 Your wish: '+wishes[Math.floor(Math.random()*wishes.length)]; addXP(20,'Made a wish','stars'); boom(30); }
+// ===== MEMORY =====
+let memFirst=null, memLock=false, memPairs=0, memFlips=0;
+function initMemory(){
+  const emojis=['🌸','🥁','🎸','💻','🚀','🔥','⭐','🌿']; let deck=[...emojis,...emojis].sort(()=>Math.random()-0.5);
+  memFirst=null; memLock=false; memPairs=0; memFlips=0;
+  document.getElementById('memPairs').textContent='0'; document.getElementById('memFlips').textContent='0';
+  const grid=document.getElementById('memGrid'); grid.innerHTML='';
+  deck.forEach(em=>{
+    const b=document.createElement('button'); b.className='mem'; b.textContent='?'; b.dataset.em=em;
+    b.addEventListener('click',()=>{
+      if(memLock||b.classList.contains('flip')||b.classList.contains('matched')) return;
+      b.classList.add('flip'); b.textContent=em; memFlips++; document.getElementById('memFlips').textContent=memFlips;
+      tone(440,0.3,'sine',0.15);
+      if(!memFirst){ memFirst=b; return; }
+      if(memFirst.dataset.em===em){ memFirst.classList.add('matched'); b.classList.add('matched'); memPairs++; document.getElementById('memPairs').textContent=memPairs; addXP(20,'Memory pair','memory'); tone(880,0.5,'sine',0.25); memFirst=null; if(memPairs===8){ S.memWins++; addXP(50,'Memory win!','memory'); toast('🧠 You win Memory! +50!'); boom(50); save(); } }
+      else { memLock=true; setTimeout(()=>{ memFirst.classList.remove('flip'); memFirst.textContent='?'; b.classList.remove('flip'); b.textContent='?'; memFirst=null; memLock=false; },700); }
+    });
+    grid.appendChild(b);
+  });
+}
+initMemory();
+// ===== SNAKE =====
+const canvas=document.getElementById('snakeCanvas'), sctx=canvas.getContext('2d');
+let snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}], dir={x:1,y:0}, food={x:15,y:10}, snakeScore=0, snakeTimer=null, snakeSpeed=220, snakePaused=false;
+function setDir(x,y){ if(dir.x===-x && dir.y===-y) return; dir={x,y}; }
+function drawSnake(){
+  sctx.fillStyle='#0A2A22'; sctx.fillRect(0,0,420,320);
+  sctx.fillStyle='#FF5C28'; sctx.font='20px sans-serif'; sctx.fillText('🍎', food.x*20, food.y*20+16);
+  snake.forEach((s,i)=>{ sctx.fillStyle=i===0?'#7FFFD4':'#2A7A5A'; sctx.fillRect(s.x*20,s.y*20,18,18); sctx.fillStyle='#fff'; if(i===0){ sctx.fillRect(s.x*20+4,s.y*20+4,3,3); sctx.fillRect(s.x*20+11,s.y*20+4,3,3); } });
+}
+function stepSnake(){
+  if(snakePaused) return;
+  const head={x:snake[0].x+dir.x, y:snake[0].y+dir.y};
+  if(head.x<0) head.x=20; if(head.x>20) head.x=0; if(head.y<0) head.y=15; if(head.y>15) head.y=0;
+  if(snake.some(s=>s.x===head.x && s.y===head.y)){ toast('Oops! Snake bite itself — but no wahala, continue! 🐍'); snake=snake.slice(0,3); snakeScore=Math.max(0,snakeScore-5); }
+  snake.unshift(head);
+  if(head.x===food.x && head.y===food.y){ snakeScore+=10; S.snakeBest=Math.max(S.snakeBest,snakeScore); document.getElementById('snakeScore').textContent=snakeScore; document.getElementById('snakeLen').textContent=snake.length; food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*15)}; tone(660,0.3,'sine',0.2); addXP(10,'Snake ate','snake'); }
+  else snake.pop();
+  drawSnake();
+}
+function startSnake(){ if(snakeTimer) clearInterval(snakeTimer); snakePaused=false; snakeTimer=setInterval(stepSnake, snakeSpeed); toast('🐍 Snake started! Eat apples!'); }
+function pauseSnake(){ snakePaused=!snakePaused; toast(snakePaused?'Paused ⏸':'Continued ▶'); }
+function speedSnake(){ snakeSpeed = snakeSpeed===220?140:220; if(snakeTimer){ clearInterval(snakeTimer); snakeTimer=setInterval(stepSnake, snakeSpeed); } toast(snakeSpeed===140?'Faster! ⚡':'Slower — calm mode 🐢'); }
+addEventListener('keydown',e=>{ if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)) return; if(e.key==='ArrowUp') setDir(0,-1); if(e.key==='ArrowDown') setDir(0,1); if(e.key==='ArrowLeft') setDir(-1,0); if(e.key==='ArrowRight') setDir(1,0); });
+drawSnake();
+// ===== COLOR ZEN =====
+const colors=[{name:'Orange',hex:'#FF5C28'},{name:'Mint',hex:'#7FFFD4'},{name:'Gold',hex:'#FFC700'},{name:'Pink',hex:'#FF9EC6'},{name:'Sky',hex:'#7EC8FF'},{name:'Purple',hex:'#C9A7FF'},{name:'Green',hex:'#4ADE80'},{name:'Red',hex:'#EF4444'}];
+let colorAnswer=null, colorScore=0, colorStreak=0;
+function newColor(){
+  const c=colors[Math.floor(Math.random()*colors.length)]; colorAnswer=c;
+  document.getElementById('colorBig').style.background=c.hex;
+  document.getElementById('colorQ').textContent='Which color be this? 👀';
+  const opts=[...colors].sort(()=>Math.random()-0.5).slice(0,4);
+  if(!opts.includes(c)) opts[0]=c;
+  opts.sort(()=>Math.random()-0.5);
+  const box=document.getElementById('colorOpts'); box.innerHTML='';
+  opts.forEach(o=>{ const b=document.createElement('button'); b.textContent=o.name; b.style.background=o.hex; b.style.color='#111'; b.addEventListener('click',()=>{ if(o===colorAnswer){ colorScore+=10; colorStreak++; S.colorStreak=Math.max(S.colorStreak,colorStreak); document.getElementById('colorScore').textContent=colorScore; document.getElementById('colorStreak').textContent=colorStreak; tone(880,0.4,'sine',0.2); addXP(10,'Color correct','color'); if(colorStreak>=5) toast('🎨 5 streak! You be color master!'); newColor(); } else { colorStreak=0; document.getElementById('colorStreak').textContent='0'; toast('Nope! That be '+o.name+'. Try again 💚'); } }); box.appendChild(b); });
+}
+newColor();
+// ===== WHACK =====
+let whackTimer=null, whackTime=30, whackHits=0, whackActive=false;
+function startWhack(){
+  if(whackActive) return; whackActive=true; whackTime=30; whackHits=0;
+  document.getElementById('whackHits').textContent='0'; document.getElementById('whackTime').textContent='30';
+  toast('🐹 Whack started! Tap moles!');
+  whackTimer=setInterval(()=>{
+    whackTime--; document.getElementById('whackTime').textContent=whackTime;
+    document.querySelectorAll('.whackHole').forEach(h=>{ h.classList.remove('active'); h.textContent='🕳️'; });
+    if(whackTime<=0){ stopWhack(); toast(`Done! You hit ${whackHits} moles! 🎉`); addXP(whackHits*2,'Whack game','whack'); return; }
+    const holes=[...document.querySelectorAll('.whackHole')]; const h=holes[Math.floor(Math.random()*holes.length)]; h.classList.add('active'); h.textContent=['🐹','🐰','🦔','🐹'][Math.floor(Math.random()*4)];
+  },800);
+}
+function stopWhack(){ clearInterval(whackTimer); whackActive=false; S.whackBest=Math.max(S.whackBest, whackHits); document.getElementById('whackBest').textContent=S.whackBest; document.querySelectorAll('.whackHole').forEach(h=>{h.classList.remove('active'); h.textContent='🕳️';}); save(); }
+document.querySelectorAll('.whackHole').forEach(h=>h.addEventListener('click',()=>{ if(!whackActive||!h.classList.contains('active')) return; whackHits++; document.getElementById('whackHits').textContent=whackHits; h.textContent='💥'; h.classList.remove('active'); tone(520,0.2,'sine',0.2); addXP(5,'Whack hit','whack'); setTimeout(()=>{ if(h.textContent==='💥') h.textContent='🕳️'; },300); }));
+// ===== SOUND =====
+let activeSounds={};
+function toggleSound(btn, kind){
+  btn.classList.toggle('on');
+  if(activeSounds[kind]){ clearInterval(activeSounds[kind]); delete activeSounds[kind]; toast(kind+' OFF'); return; }
+  toast(kind+' ON 🎵'); addXP(5,'Ambient','piano');
+  if(kind==='rain') activeSounds[kind]=setInterval(()=>softNoise(0.3,0.08),400);
+  if(kind==='birds') activeSounds[kind]=setInterval(()=>tone(1200+Math.random()*800,0.3,'sine',0.06),900);
+  if(kind==='waves') activeSounds[kind]=setInterval(()=>softNoise(0.8,0.07),1200);
+  if(kind==='night') activeSounds[kind]=setInterval(()=>tone(1800+Math.random()*400,0.15,'sine',0.04),700);
+}
+function stopAllSound(){ Object.values(activeSounds).forEach(clearInterval); activeSounds={}; document.querySelectorAll('.soundBtn').forEach(b=>b.classList.remove('on')); toast('Quiet mode 🤫'); }
+document.querySelectorAll('#piano button').forEach(b=>b.addEventListener('click',()=>{ const f=+b.dataset.f; tone(f,1.2,'triangle',0.3); tone(f*2,0.8,'sine',0.08); b.classList.add('playing'); setTimeout(()=>b.classList.remove('playing'),400); addXP(2,'Piano','piano'); }));
+function playLullaby(){ [261.63,293.66,329.63,392,440,392,329.63,261.63].forEach((f,i)=>tone(f,1.0,'triangle',0.22,i*0.6)); toast('🎵 Lullaby playing...'); addXP(15,'Lullaby','piano'); }
+// ===== QUIZ =====
+const quizzes=[{q:'Which tool did Philemon use to make ClassHub secure?',opts:['Only CSS','Supabase + Postgres RLS + Trigger','Just WhatsApp','No security'],ans:1},{q:'How many projects has Philemon built?',opts:['3','5','8','12'],ans:2},{q:'Where is Philemon studying now?',opts:['Abomosu STEM','Techten Planets','GCTU — BSc Web App Dev','No school'],ans:2},{q:'What does Healthy Habits do?',opts:['Booking drums','Prenatal exercises for Ghana','Wedding invitation','Online shop'],ans:1},{q:'Which language is Phil Jazzy drum machine built with?',opts:['Python','Web Audio API + JS','Only HTML','Excel'],ans:1},{q:'What is Philemon\'s calm game about?',opts:['Stress relief','Shooting','Racing','Fighting'],ans:0}];
+let qi=0, quizAnswered=false;
+function renderQuiz(){ const cur=quizzes[qi]; quizAnswered=false; document.getElementById('quizQ').textContent='🧩 Q'+(qi+1)+'/'+quizzes.length+': '+cur.q; const box=document.getElementById('quizOpts'); box.innerHTML=''; document.getElementById('quizFeedback').textContent=''; document.getElementById('nextQuiz').style.display='none'; cur.opts.forEach((o,i)=>{ const b=document.createElement('button'); b.textContent='ABCD'[i]+') '+o; b.addEventListener('click',()=>{ if(quizAnswered) return; quizAnswered=true; if(i===cur.ans){ b.classList.add('correct'); document.getElementById('quizFeedback').textContent='Correct! 🎉 +20'; S.quizScore+=20; addXP(20,'Quiz correct','quiz'); } else { b.classList.add('wrong'); document.getElementById('quizFeedback').textContent='Nope! Correct be: '+cur.opts[cur.ans]; } document.getElementById('nextQuiz').style.display='inline-flex'; }); box.appendChild(b); }); }
+document.getElementById('nextQuiz').addEventListener('click',()=>{ qi=(qi+1)%quizzes.length; renderQuiz(); }); renderQuiz();
+// ===== LEADERBOARD =====
+function getBoard(){ let board=JSON.parse(localStorage.getItem('gamecenter_board')||'null'); if(!board){ board=[{name:'Philemon 👑',score:1200,level:12},{name:'Ama — GCTU 🌸',score:680,level:7},{name:'Kwame 🇬🇭',score:540,level:6},{name:'Efua 💚',score:420,level:5},{name:'Yaw 🥁',score:310,level:4}]; localStorage.setItem('gamecenter_board',JSON.stringify(board)); } const me={name:S.name||'You (Guest)',score:S.xp,level:level(),isMe:true}; const idx=board.findIndex(r=>r.isMe); if(idx>=0) board[idx]=me; else board.push(me); return board; }
+function renderLB(){ const q=(document.getElementById('lbSearch')?.value||'').toLowerCase(); const sort=document.getElementById('lbSort')?.value||'score'; let board=getBoard().filter(r=>r.name.toLowerCase().includes(q)); if(sort==='score') board.sort((a,b)=>b.score-a.score); else board.sort((a,b)=>a.name.localeCompare(b.name)); const list=document.getElementById('lbList'); if(!list) return; list.innerHTML=board.slice(0,10).map((r,i)=>`<div class="lbRow ${r.isMe?'me':''}"><div class="lbRank">${i+1}</div><div style="flex:1;font-weight:700;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name}</div><span style="font-size:12px;color:var(--muted)">Lv ${r.level}</span><b style="color:var(--gold)">${r.score} pts</b></div>`).join(''); const all=getBoard(); localStorage.setItem('gamecenter_board', JSON.stringify(all.filter(r=>!r.isMe))); }
+document.getElementById('lbSearch')?.addEventListener('input',renderLB); document.getElementById('lbSort')?.addEventListener('change',renderLB);
+function renderDaily(){ const done=(S.breaths>=3?1:0)+(S.popped>=10?1:0)+(S.flowers>=3?1:0)+(memPairs>=2?1:0); const el=document.getElementById('dailyProgress'); if(el) el.textContent=`Progress: ${done} / 4 — Breaths ${S.breaths}/3 · Bubbles ${S.popped}/10 · Flowers ${S.flowers}/3 · Memory pairs ${memPairs}/2`; }
+function claimDaily(){ const done=(S.breaths>=3?1:0)+(S.popped>=10?1:0)+(S.flowers>=3?1:0)+(memPairs>=2?1:0); if(done<4){ toast('Do 4 tasks first: Breathe 3x + Pop 10 + Plant 3 + Memory 2 pairs 🌿'); goTab('breathe'); return; } addXP(100,'Daily challenge','leader'); boom(60); toast('🎁 +100! Daily Champ!'); }
+function showNameModal(){ document.getElementById('nameModal').classList.add('show'); document.getElementById('playerNameInput').value=S.name||''; }
+function saveName(){ const v=document.getElementById('playerNameInput').value.trim()||'Guest'; S.name=v; save(); document.getElementById('nameModal').classList.remove('show'); toast(`Welcome, ${v}! 🎮`); boom(30); }
+document.getElementById('nameModal').addEventListener('click',e=>{ if(e.target.id==='nameModal') e.target.classList.remove('show'); });
+function shareScore(){ window.open(`https://wa.me/233206834470?text=${encodeURIComponent(`I just played Philemon's Game Center 🎮 — I get ${S.xp} Calm Points, Level ${level()}, ${S.flowers} flowers, ${S.popped} bubbles. My stress drop to ${S.stress}%. Try am!`)}`,'_blank'); }
+function resetGame(){ if(!confirm('Reset all? Garden + points go clear.')) return; localStorage.removeItem('gamecenter_v1'); location.reload(); }
 // Init
-S.visits++; save(); renderTop(); renderLB(); updateCalc();
+S.visits++; save(); renderAll();
+document.getElementById('visitText').textContent=`You don visit ${S.visits} time${S.visits>1?'s':''} — take your time, no rush. Breathe. 🌿`;
+setTimeout(()=>{ if(!S.name) showNameModal(); },2000);
+for(let i=0;i<3;i++) setTimeout(()=>spawnBubble(), i*400);
 </script>
 </body>
 </html>
